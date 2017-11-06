@@ -1,10 +1,15 @@
 class CustomersController < ApplicationController
 
   def index
-    customers = Customer.customer_with_movie_count(Customer.all)
+    customers = Customer.all
+    customers_array = []
+    customers.each do |customer|
+      customer_hash = customer.as_json(only: [:id, :name, :registered_at, :postal_code, :phone]).merge('movies_checked_out_count' => 0)
+      customers_array << customer_hash
+    end
 
     render(
-      json: customers.to_json(only: [:id, :name, :registered_at, :postal_code, :phone])
+      json: customers_array.to_json
     )
   end
 end
