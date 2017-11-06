@@ -21,4 +21,17 @@ describe Movie do
       dune.valid?.must_equal false
     end
   end
+
+  describe "relationships" do
+    it "must have a collection of rentals" do
+      dune.must_respond_to :rentals
+      dune.rentals.length.must_equal 1
+      dune.rentals[0].must_be_instance_of Rental
+    end
+
+    it "must have a collection of customers" do
+      gremlins.must_respond_to :customers
+      gremlins.customers[0].must_be_instance_of Customer
+    end
+  end
 end
