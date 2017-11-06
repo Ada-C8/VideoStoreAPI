@@ -10,5 +10,6 @@ class MoviesController < ApplicationController
   end
 
   def check
+    render json: { message: "it works!" }
   end
 end
