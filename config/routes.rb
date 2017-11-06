@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  get '/zomg', to: 'application#zomg'
+
+  get '/customers', to: "customers#index", as: "customers"
+  
 end

@@ -1,9 +1,9 @@
 require "test_helper"
 
 describe Customer do
-  let(:customer) { Customer.new }
 
-  it "must be valid" do
-    value(customer).must_be :valid?
+  it "a customer object can be saved to the database" do
+    customer = Customer.new
+    customer.save.must_equal true
   end
 end
