@@ -1,10 +1,6 @@
 require "test_helper"
 
 describe MoviesController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
-
   describe "index" do
     it "it is a working route" do
       get movies_path
