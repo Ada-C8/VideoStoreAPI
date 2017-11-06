@@ -30,7 +30,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(id title overview release_date inventory)
+      keys = %w(id title overview release_date inventory available_inventory)
       get movies_url
       body = JSON.parse(response.body)
       body.each do |movie|
