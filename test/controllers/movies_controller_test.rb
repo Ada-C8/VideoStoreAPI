@@ -46,8 +46,6 @@ describe MoviesController do
     it "can get a movie" do
       get movie_path(movies(:one).id)
       must_respond_with :success
-      # Try testing for the response's body
-      # body = JSON.parse(response.body)
     end
 
     it "returns an error for an invalid id" do
@@ -55,10 +53,16 @@ describe MoviesController do
       get movie_path(movies(:two))
       must_respond_with :not_found
     end
+
+    it "returns movies with exactly the required fields" do
+      keys = %w(inventory overview release_date title)
+      get movie_path(movies(:one))
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+    end
   end
 
-  # it "should get create" do
-  #
-  # end
+  describe "create" do
 
+  end
 end
