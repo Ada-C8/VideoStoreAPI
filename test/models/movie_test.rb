@@ -17,18 +17,23 @@ describe Movie do
       movie.title = nil
 
       movie.wont_be :valid?
+      movie.errors.must_include :title
     end
 
     it 'validates presence of inventory' do
-      movie.title = nil
+      movie.inventory = nil
 
       movie.wont_be :valid?
+      movie.errors.must_include :inventory
+
     end
 
     it 'validates numericality of inventory' do
-      movie.title = "dog"
+      movie.inventory = "dog"
 
       movie.wont_be :valid?
+      movie.errors.must_include :inventory
+
     end
   end
 end
