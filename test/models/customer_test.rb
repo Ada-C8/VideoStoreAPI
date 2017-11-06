@@ -3,7 +3,8 @@ require "test_helper"
 describe Customer do
   let(:customer) { Customer.new }
 
-  it "must be valid" do
-    value(customer).must_be :valid?
+  it "Can be created" do
+    customer.save
+    customer.must_be_instance_of Customer
   end
 end
