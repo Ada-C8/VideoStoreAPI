@@ -4,6 +4,9 @@ describe Customer do
   let(:customer) { Customer.new }
 
   it "must be valid" do
-    value(customer).must_be :valid?
+    customer.save
+    customer.valid?.must_equal true
   end
+
+
 end
