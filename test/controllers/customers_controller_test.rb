@@ -13,7 +13,10 @@ describe CustomersController do
     end
 
     it 'returns an array' do
-      
+      get customers_path
+      body = JSON.parse(response.body)
+      body.must_be_instance_of Array 
+
     end
   end
 end
