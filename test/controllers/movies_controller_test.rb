@@ -49,4 +49,34 @@ describe MoviesController do
     end
   end
 
+  describe "#show" do
+    let(:movie) {movies(:harry_sally)}
+
+    it "shows an existing movie" do
+      get movie_path(movie.id)
+      must_respond_with :success
+
+      body= JSON.parse(response.body)
+
+      body.must_be_kind_of Hash
+      status.must_equal 200
+    end
+
+    it "returns a movie with all of the required fields" do
+      keys = %w(inventory overview release_date title)
+      get movie_path(movie.id)
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+    end
+
+    it "returns an error message if no movie is found" do
+      get movie_path((Movie.last.id) +  1)
+      body = JSON.parse(response.body)
+      body["errors"].must_include "No Movie Found"
+
+      status.must_equal 404
+    end
+
+  end
+
 end
