@@ -11,3 +11,9 @@ two:
   overview: MyString
   release_date: MyString
   inventory: 1
+
+jaws:
+  title: Jaws
+  overview: A movie about a beautiful shark
+  release_date: 1975
+  inventory: 10
