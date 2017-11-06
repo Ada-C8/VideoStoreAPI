@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
 
     if movie
       render(
-        json: movie.as_json(only: [:age, :id, :human, :name]),status: :ok
+        json: movie.as_json(only: [:title, :release_date, :overview, :inventory, :available_inventory]),status: :ok
       )
     else
       render(
@@ -24,6 +24,20 @@ class MoviesController < ApplicationController
   end
 
   def create
+    movie = Movie.create(movie_params)
+
+    if movie.valid?
+      render(
+        json: movie.as_json(only: [:id, :title, :release_date, :overview, :inventory, :available_inventory]),
+        status: :created
+      )
+    else
+      render(
+        json: { errors: movie.errors.messages },
+        status: :bad_request
+      )
+    end
+
   end
 
   private
