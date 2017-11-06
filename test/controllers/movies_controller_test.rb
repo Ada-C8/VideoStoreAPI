@@ -71,4 +71,45 @@ describe MoviesController do
       body.must_equal "nothing" => true
     end
   end
+
+  describe 'create' do
+    let (:movie_data) {
+      {
+        title: "Scream",
+        overview: "fun party",
+        release_date: "yesterday",
+        inventory: 10
+      }
+    }
+
+    it 'creates a new movie' do
+      proc { post movies_path, params: {movie: movie_data}}.must_change 'Movie.count', 1
+
+      must_respond_with :success
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+      Movie.find(body["id"]).title.must_equal movie_data[:title]
+    end
+
+    it 'returns an error for invalid movie' do
+      invalid_movie_data = {
+        title: "Dan"
+      }
+
+      proc {
+        post movies_path, params: {
+          movie: invalid_movie_data
+        }
+      }.wont_change 'Movie.count'
+
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+
+      body.must_equal "errors" => {"inventory" => ["can't be blank"]}
+    end
+  end
 end

@@ -68,9 +68,52 @@ describe CustomersController do
       get customer_path(invalid_customer_id)
       must_respond_with :not_found
       body = JSON.parse(response.body)
-      body.must_equal "nothing" => true 
+      body.must_equal "nothing" => true
+    end
+  end
+
+  describe 'create' do
+    let (:customer_data) {
+      {
+        name: "Jamie",
+        registered_at: "yesterday",
+        address: "ADA",
+        city: "Los Angeles",
+        state: "California",
+        postal_code: "90210",
+        phone: "12345",
+        account_credit: 2
+      }
+    }
+
+    it 'creates a new customer' do
+      proc { post customers_path, params: {customer: customer_data}}.must_change 'Customer.count', 1
+
+      must_respond_with :success
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+      Customer.find(body["id"]).name.must_equal customer_data[:name]
     end
 
+    it 'returns an error for invalid customer' do
+      invalid_customer_data = {
+        name: "Dan"
+      }
 
+      proc {
+        post customers_path, params: {
+          customer: invalid_customer_data
+        }
+      }.wont_change 'Customer.count'
+
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+
+      body.must_equal "errors" => {"phone" => ["can't be blank"]}
+    end
   end
 end
