@@ -1,9 +1,11 @@
 require "test_helper"
 
 describe Movie do
-  let(:movie) { Movie.new }
 
-  it "must be valid" do
-    value(movie).must_be :valid?
+  it "a movie object can be saved to the database" do
+    movie = Movie.new
+    movie.save.must_equal true
   end
+
+  
 end
