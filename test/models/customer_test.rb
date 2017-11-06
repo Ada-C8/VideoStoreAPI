@@ -22,6 +22,7 @@ describe Customer do
       customer.name = nil
 
       customer.wont_be :valid?
+      customer.errors.must_include :name
     end
 
     describe 'address' do
@@ -29,24 +30,28 @@ describe Customer do
         customer.address = nil
 
         customer.wont_be :valid?
+        customer.errors.must_include :address
       end
 
       it 'validates presence of city' do
         customer.city = nil
 
         customer.wont_be :valid?
+        customer.errors.must_include :city
       end
 
       it 'validates presence of state' do
         customer.state = nil
 
         customer.wont_be :valid?
+        customer.errors.must_include :state
       end
 
       it 'validates presence of postal code' do
         customer.postal_code = nil
 
         customer.wont_be :valid?
+        customer.errors.must_include :postal_code
       end
     end
 
@@ -54,12 +59,14 @@ describe Customer do
       customer.account_credit = nil
 
       customer.wont_be :valid?
+      customer.errors.must_include :account_credit
     end
 
     it 'validates numericality of account balance' do
       customer.account_credit = "dog"
 
       customer.wont_be :valid?
+      customer.errors.must_include :account_credit
     end
   end
 end
