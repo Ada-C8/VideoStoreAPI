@@ -70,4 +70,36 @@ describe MoviesController do
 
   end
 
+  describe "create" do
+    let(:movie_data) {
+      {
+        title: "Kazaam",
+        overview: "it existed",
+        inventory: 10,
+        release_date: "9 Aug 1994"
+      }
+    }
+    it "creates a movie" do
+      proc{
+        post movies_path, params: {movie: movie_data}
+      }.must_change 'Movie.count', 1
+
+      must_respond_with :success
+    end
+    #
+    # it "won't change the db if data is missing" do
+    #   invalid_movie_data = {
+    #     title: "Shazaam",
+    #     overview: "it existed",
+    #     release_date: "9 Aug 1994"
+    #   }
+    #   proc{
+    #     post movies_path, params: { movie: invalid_movie_data}
+    #   }.wont_change "Movie.count"
+    #   must_respond_with :bad_request
+    #   body = JSON.parse(response.body)
+    #   body.must_equal "errors" => {"name" => ["can't be blank"]}
+    # end
+
+  end
 end
