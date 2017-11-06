@@ -5,7 +5,7 @@ describe CustomersController do
 
     it "returns successfully returns json as an Array" do
       get customers_path
-      must_respond_with :success
+      must_respond_with :ok
 
       response.header['Content-Type'].must_include 'json'
 
@@ -26,6 +26,15 @@ describe CustomersController do
       body.each do |customer|
         customer.keys.sort.must_equal keys.sort
       end
+    end
+
+    it "returns an empty array if there are no Customers" do
+      Customer.destroy_all
+      get customers_path
+      must_respond_with :ok
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+      body.must_be :empty?
     end
   end
 end
