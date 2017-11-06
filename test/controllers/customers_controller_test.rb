@@ -13,6 +13,13 @@ describe CustomersController do
       response.header['Content-Type'].must_include 'json'
     end
 
+    it "returns an Array" do
+      get customers_path
+
+      body = JSON.parse(response.body)
+      body.length.must_equal Customer.count
+    end
+
 
   end
 end
