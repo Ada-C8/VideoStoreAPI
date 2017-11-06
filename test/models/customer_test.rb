@@ -6,4 +6,11 @@ describe Customer do
   it "must be valid" do
     value(customer).must_be :valid?
   end
+
+  describe "relationships" do
+
+  end
+  
+  describe "validations" do
+  end
 end
