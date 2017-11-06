@@ -12,46 +12,54 @@ describe Customer do
     "account_credit": 13.15)
   }
 
-  it 'is valid with valid data' do
-    customer.must_be :valid?
-  end
+  describe 'validations' do
 
-  it 'is not valid without a name' do
-    customer.name.clear
+    it 'is valid with valid data' do
+      customer.must_be :valid?
+    end
 
-    customer.wont_be :valid?
-  end
-
-  describe 'address' do
-
-    it 'is not valid without an address' do
-      customer.address.clear
+    it 'validates presence of name' do
+      customer.name = nil
 
       customer.wont_be :valid?
     end
 
-    it 'is not valid without a city' do
-      customer.city.clear
+    describe 'address' do
+      it 'validates presence of address' do
+        customer.address = nil
+
+        customer.wont_be :valid?
+      end
+
+      it 'validates presence of city' do
+        customer.city = nil
+
+        customer.wont_be :valid?
+      end
+
+      it 'validates presence of state' do
+        customer.state = nil
+
+        customer.wont_be :valid?
+      end
+
+      it 'validates presence of postal code' do
+        customer.postal_code = nil
+
+        customer.wont_be :valid?
+      end
+    end
+
+    it 'validates presence of account balance' do
+      customer.account_credit = nil
 
       customer.wont_be :valid?
     end
 
-    it 'is not valid without a state' do
-      customer.state.clear
+    it 'validates numericality of account balance' do
+      customer.account_credit = "dog"
 
       customer.wont_be :valid?
     end
-
-    it 'is not valid without a postal code' do
-      customer.postal_code.clear
-
-      customer.wont_be :valid?
-    end
-  end
-
-  it 'is not valid without an account balance' do
-    customer.account_credit = nil
-
-    customer.wont_be :valid?
   end
 end
