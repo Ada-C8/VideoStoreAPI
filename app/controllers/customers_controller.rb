@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
     customers = Customer.all
 
     render(
-      json: customers.as_json(only: [:name, :registered_at, :address, :city, :state, :postal_code, :account_credit]),
+      json: customers.as_json(only: [:name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit]),
       status: :ok
     )
   end
