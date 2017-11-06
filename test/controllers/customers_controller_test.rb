@@ -17,8 +17,16 @@ describe CustomersController do
       get customers_path
 
       body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+    end
+
+    it "returns all customers" do
+      get customers_path
+
+      body = JSON.parse(response.body)
       body.length.must_equal Customer.count
     end
+
 
 
   end
