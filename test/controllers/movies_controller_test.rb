@@ -72,7 +72,8 @@ describe MoviesController do
     it "returns an error message if no movie is found" do
       get movie_path((Movie.last.id) +  1)
       body = JSON.parse(response.body)
-      body["errors"].must_include "No Movie Found"
+      body["errors"].must_include "id"
+      body["errors"]["id"].must_equal ["No Movie with ID #{(Movie.last.id) +  1} Found"]
 
       status.must_equal 404
     end
@@ -102,6 +103,21 @@ describe MoviesController do
       body.must_be_kind_of Hash
       status.must_equal 201
 
+    end
+
+    it "returns an error for an invalid movie" do
+      bad_data = new_movie_data.clone()
+      bad_data.delete(:title)
+
+      assert_no_difference "Movie.count" do
+        post movies_url, params: {movie: bad_data}
+        assert_response :bad_request
+      end
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "title"
     end
 
   end
