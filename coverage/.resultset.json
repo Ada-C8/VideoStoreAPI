@@ -1,17 +1,17 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/controllers/customers_controller.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/controllers/customers_controller.rb": [
         1,
         1,
         null,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/controllers/application_controller.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/controllers/application_controller.rb": [
         1,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/test/controllers/movies_controller_test.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/test/controllers/movies_controller_test.rb": [
         1,
         null,
         1,
@@ -83,7 +83,7 @@
         null,
         null,
         null,
-        1,
+        2,
         null,
         null,
         1,
@@ -95,11 +95,20 @@
         1,
         null,
         1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null,
         null,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/controllers/movies_controller.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/controllers/movies_controller.rb": [
         1,
         1,
         6,
@@ -117,19 +126,14 @@
         null,
         null,
         1,
+        2,
+        2,
         1,
+        null,
+        null,
+        null,
+        null,
         1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null,
         null,
         null,
         null,
@@ -137,11 +141,11 @@
         1,
         null,
         1,
-        1,
+        2,
         null,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/test/models/customer_test.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/test/models/customer_test.rb": [
         1,
         null,
         1,
@@ -152,16 +156,16 @@
         null,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/customer.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/models/customer.rb": [
         1,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/application_record.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/test/models/movie_test.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/test/models/movie_test.rb": [
         1,
         null,
         1,
@@ -172,12 +176,16 @@
         null,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/movie.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/models/movie.rb": [
         1,
+        1,
+        null,
+        null,
+        null,
         null
       ]
     },
-    "timestamp": 1510008038
+    "timestamp": 1510010476
   },
   "Unit Tests": {
     "coverage": {

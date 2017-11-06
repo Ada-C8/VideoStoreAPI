@@ -33,7 +33,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(inventory overview release_date title)
+      keys = %w(id inventory overview release_date title)
       get movies_path
       body = JSON.parse(response.body)
       body.each do |movie|
@@ -55,7 +55,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(inventory overview release_date title)
+      keys = %w(id inventory overview release_date title)
       get movie_path(movies(:one))
       body = JSON.parse(response.body)
       body.keys.sort.must_equal keys
@@ -81,6 +81,15 @@ describe MoviesController do
       body.must_include "id"
 
       Movie.find(body["id"]).title.must_equal movie_data[:title]
+    end
+
+    it "returns an error for an invalid moive" do
+      bad_movie = movie_data.clone()
+      bad_movie.delete(:title)
+      assert_no_difference "Movie.count" do
+        post movies_path, params: { movie: bad_movie }
+        assert_response :bad_request
+      end
     end
   end
 end

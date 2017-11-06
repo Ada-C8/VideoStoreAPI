@@ -22,12 +22,7 @@ class MoviesController < ApplicationController
         status: :created
       )
     else
-      render(
-        json:{
-          errors: movie.errors.messages
-        },
-        status: :bad_request
-      )
+      render json: {errors: movie.errors.messages}, status: :bad_request
     end
 
   end
