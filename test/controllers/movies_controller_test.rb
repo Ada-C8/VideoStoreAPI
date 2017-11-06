@@ -4,7 +4,7 @@ describe MoviesController do
   describe "INDEX" do
     it "successfully returns json as an Array" do
       get movies_path
-      must_respond_with :success
+      must_respond_with :ok
 
       response.header['Content-Type'].must_include 'json'
 
@@ -25,6 +25,15 @@ describe MoviesController do
       body.each do |movie|
         movie.keys.sort.must_equal keys.sort
       end
+    end
+
+    it "returns an empty array if there are no Movies" do
+      Movie.destroy_all
+      get movies_path
+      must_respond_with :ok
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+      body.must_be :empty?
     end
   end
 
