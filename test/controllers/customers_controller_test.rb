@@ -7,6 +7,15 @@ describe CustomersController do
       response.header['Content-Type'].must_include 'json'
     end
 
+    it "returns only the required fields" do
+      keys = %w(id name phone postal_code registered_at)
+      get customers_path
+      body = JSON.parse(response.body)
+      body.each do |customer|
+        customer.keys.sort.must_equal keys
+      end
+    end
+
     it "must return an empty arry if no customers exist" do
       Customer.destroy_all
       get customers_path
