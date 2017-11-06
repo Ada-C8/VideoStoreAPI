@@ -1,10 +1,10 @@
 class CustomersController < ApplicationController
 
   def index
-    customers = Customer.all
+    customers = Customer.customer_with_movie_count(Customer.all)
 
     render(
-      json: customers.as_json(only: [:id, :name, :registered_at, :postal_code, :phone])
+      json: customers.to_json(only: [:id, :name, :registered_at, :postal_code, :phone])
     )
   end
 end
