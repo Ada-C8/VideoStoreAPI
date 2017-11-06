@@ -30,7 +30,7 @@ describe MoviesController do
     end
 
     it 'returns movies with exactly the required fields' do
-      keys = %w(title overview release_date inventory)
+      keys = %w(id title overview release_date inventory available_inventory)
       get movies_path
       body = JSON.parse(response.body)
 
@@ -75,10 +75,12 @@ describe MoviesController do
   describe 'create' do
     let (:movie_data) {
       {
+        id: 3,
         title: "Scream",
         overview: "fun party",
         release_date: "yesterday",
-        inventory: 10
+        inventory: 10,
+        available_inventory: 9
       }
     }
 

@@ -30,7 +30,7 @@ describe CustomersController do
     end
 
     it 'returns customers with exactly the required fields' do
-      keys = %w(name registered_at address city state postal_code phone account_credit)
+      keys = %w(id name registered_at address city state postal_code phone account_credit movies_checked_out_count)
       get customers_path
       body = JSON.parse(response.body)
 
@@ -75,6 +75,7 @@ describe CustomersController do
   describe 'create' do
     let (:customer_data) {
       {
+        id: 1,
         name: "Jamie",
         registered_at: "yesterday",
         address: "ADA",
@@ -82,7 +83,8 @@ describe CustomersController do
         state: "California",
         postal_code: "90210",
         phone: "12345",
-        account_credit: 2
+        account_credit: 2,
+        movies_checked_out_count: 1
       }
     }
 
