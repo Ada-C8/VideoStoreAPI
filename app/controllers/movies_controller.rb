@@ -3,4 +3,13 @@ class MoviesController < ApplicationController
     movies = Movie.all
     render json: movies.as_json(only: [:id, :title, :overview, :inventory, :release_date])
   end
+
+  def show
+    movie = Movie.find_by(id: params[:id])
+    if movie
+      render json: movie.as_json(only: [:id, :title, :overview, :inventory, :release_date])
+    else
+      render json: { nothing: true }, status: :not_found
+    end
+  end
 end
