@@ -34,8 +34,8 @@ describe 'index' do
       keys = %w(name registered_at address city state postal_code phone account_credit)
       get customers_url
       body = JSON.parse(response.body)
-      body.each do |pet|
-        pet.keys.must_equal keys
+      body.each do |customer|
+      customer.keys.must_equal keys
       end
     end
 
