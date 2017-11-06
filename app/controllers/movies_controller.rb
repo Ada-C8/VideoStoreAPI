@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
       )
     else
       render(
-        json:{nothing: true},
+        json:{nothing: "true"},
         status: :not_found
       )
     end
