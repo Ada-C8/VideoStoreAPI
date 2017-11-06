@@ -7,5 +7,13 @@ describe CustomersController do
       must_respond_with :success
     end
 
+    it "returns json" do
+      get customers_path
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it 'returns an array' do
+      
+    end
   end
 end

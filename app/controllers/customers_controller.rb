@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController
   def index
+    customers = Customer.all
 
-  end 
+    render json: { message: 'hey yall!'}
+  end
 end
