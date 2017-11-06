@@ -16,7 +16,7 @@ describe Customer do
       customer.postal_code = "V5C 6P2"
       customer.phone = "50560"
       customer.registered_at = "Mon, 06 Nov 2017 14:32:26 -0800"
-      customer.must_be_instance_of Customer
+      proc{customer.save}.must_change('Customer.count', 1)
     end
 
     it "Cannot be created without a name, registered_at, postal_code, phone" do
