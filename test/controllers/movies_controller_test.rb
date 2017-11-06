@@ -64,6 +64,8 @@ describe MoviesController do
       must_respond_with :not_found
       body = JSON.parse(response.body)
       body["ok"].must_equal false
+      body["errors"].keys.must_include "id"
+      body["errors"]["id"].must_include "Could not find movie with id: #{invalid_id}"
     end
   end
 
