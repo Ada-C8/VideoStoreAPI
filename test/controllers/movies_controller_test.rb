@@ -21,7 +21,7 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
     it "it returns movies with the exact required fields" do
-      keys = %w(id name registered_at address city state postal_code phone account_credit).sort
+      keys = %w(id title overview release_date inventory).sort
       get movies_path
       body = JSON.parse(response.body)
 
