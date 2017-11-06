@@ -1,7 +1,41 @@
 require "test_helper"
 
 describe MoviesController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
+  describe "index" do
+    # Positive test
+    it "is a real working route" do
+      get movies_path
+      must_respond_with :success
+    end
+    #
+
+    it "returns json" do
+      get movies_path
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it "returns an Array" do
+      get movies_path
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+    end
+
+    it "returns all movies" do
+      get movies_path
+
+      body = JSON.parse(response.body)
+      body.length.must_equal Movie.count
+    end
+
+    it "returns all movies with exactly the required fields" do
+      keys = %w(id title release_date)
+
+      get movies_path
+      body = JSON.parse(response.body)
+      body.each do |movie|
+        movie.keys.must_equal keys
+      end
+    end
+  end #index tests
 end
