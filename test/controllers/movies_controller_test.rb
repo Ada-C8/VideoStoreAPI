@@ -49,4 +49,19 @@ describe MoviesController do
     end
   end
 
+  describe "show" do
+    let(:movie) { movies(:movie1) }
+
+    it "can get a movie" do
+      get movie_path(movie.id)
+      must_respond_with :success
+    end
+
+    it "returns an error for an invalid id" do
+      movie.destroy()
+      get movie_path(movie.id)
+      must_respond_with :not_found
+    end
+  end
+
 end
