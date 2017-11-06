@@ -63,6 +63,24 @@ describe MoviesController do
   end
 
   describe "create" do
+    let(:movie_data) {
+      {
+        title: "Jack and The Beanstalk",
+        overview: "The giant falls from the beanstalk. I think he's alive?",
+        release_date: "1000-01-01",
+        inventory: 2
+      }
+    }
 
+    it "can create a movie" do
+      assert_difference "Movie.count", 1 do
+        post movies_path, params:{ movie: movie_data }
+      end
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+      Movie.find(body["id"]).title.must_equal movie_data[:title]
+    end
   end
 end
