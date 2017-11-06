@@ -27,7 +27,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(title overview release_date inventory)
+      keys = %w(inventory overview release_date title)
       get movies_url
       body = JSON.parse(response.body)
       body.each do |movie|
@@ -55,10 +55,10 @@ describe MoviesController do
   describe "create" do
     let(:movie_data) {
       {
-        title: "Jaws",
-        overview: "A great white shark terrorizes townspeople.",
-        release_date: "1975-06-19",
-        inventory: 6
+        title: "Jaws 2",
+        overview: "An insatiable great white shark terrorizes the townspeople of Amity Island AGAIN, The police chief, an oceanographer and a grizzled shark hunter seek to destroy the bloodthirsty beast.",
+        release_date: "1981-06-19",
+        inventory: 4
       }
     }
 
