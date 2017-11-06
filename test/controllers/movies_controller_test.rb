@@ -42,10 +42,21 @@ describe MoviesController do
     end
   end
 
-  # it "should get show" do
-  #
-  # end
-  #
+  describe "show" do
+    it "can get a movie" do
+      get movie_path(movies(:one).id)
+      must_respond_with :success
+      # Try testing for the response's body
+      # body = JSON.parse(response.body)
+    end
+
+    it "returns an error for an invalid id" do
+      movies(:two).destroy
+      get movie_path(movies(:two))
+      must_respond_with :not_found
+    end
+  end
+
   # it "should get create" do
   #
   # end

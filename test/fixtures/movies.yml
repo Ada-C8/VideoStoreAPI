@@ -1,13 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  overview: MyString
-  release_date: MyString
-  inventory: 1
+  title: Twilight
+  overview: Some movie, it has vampires??
+  release_date: idk
+  inventory: 2
 
 two:
-  title: MyString
-  overview: MyString
-  release_date: MyString
-  inventory: 1
+  title: Mary Poppins
+  overview: There's penguins?
+  release_date: 1980
+  inventory: 4
+
+three:
+  title: Sold Out Movie
+  overview: It's so good, it's always sold out
+  release_date: 1940
+  inventory: 0
