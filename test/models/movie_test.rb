@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Movie do
 
-  it "a movie must have a title" do
+  it "a movie requires a title" do
     start_count = Movie.count
 
     movie1 = Movie.new
@@ -13,7 +13,7 @@ describe Movie do
     Movie.count.must_equal start_count
   end
 
-  it "a movie must have a title" do
+  it "a movie is created with a title" do
     start_count = Movie.count
 
     movie = Movie.new(title: "Sleeping B")
