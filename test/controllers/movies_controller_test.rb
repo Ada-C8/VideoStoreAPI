@@ -79,4 +79,31 @@ describe MoviesController do
 
   end
 
+  describe "#create" do
+    let(:new_movie_data) {
+      {title: "Super Movie",
+      overview: "The Greatest movie of all time",
+      inventory: 12,
+      release_date: "2017-11-06"
+      }
+    }
+
+    it "creates a movie given valid data" do
+      count = Movie.count
+      # proc {
+      #   post movies_path, params: new_movie_data
+      # }.must_change "Movie.count", 1
+
+      post movies_path, params: {movie: new_movie_data}
+
+      Movie.count.must_equal count+1
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      status.must_equal 201
+
+    end
+
+  end
+
 end
