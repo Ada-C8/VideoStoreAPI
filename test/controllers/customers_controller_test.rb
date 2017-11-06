@@ -40,7 +40,21 @@ describe CustomersController do
       body.must_be_kind_of Array
       body.must_be :empty?
     end
+  end
 
+  describe "show" do
+    it "returns a customer" do
+      get customer_path(customers(:one).id)
+      must_respond_with :success
+    end
 
+    it "returns not_found when customer is not found" do
+      invalid_customer_id = Customer.last.id + 1
+      get customer_path(invalid_customer_id)
+      must_respond_with :not_found
+
+      body = JSON.parse(response.body)
+      body.must_equal "nothing" => true
+    end
   end
 end
