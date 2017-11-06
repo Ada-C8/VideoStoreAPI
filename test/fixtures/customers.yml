@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+averi:
+  name: Averi
+  registered_at: Wed, 29 Apr 2015 07:54:14 -0700
+  address: 123 3rd st
+  city: Seattle
+  state: Wa
+  postal_code: 98102
+  phone: 2061234567
+
+gale:
+  name: Gale
+  registered_at: 06 Nov 2017
+  address: 456 4th Ave
+  city: Seattle
+  state: Wa
+  postal_code: 98144
+  phone: 3601239876
