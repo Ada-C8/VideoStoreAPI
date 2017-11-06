@@ -2,6 +2,7 @@ require "test_helper"
 
 describe Movie do
   let(:movie) { Movie.new }
+  let(:movie2) {Movie.new(title: "The II", release_date: "Mon, 06 Nov 2017 14:32:26 -0800")}
 
   describe "VALIDATIONS" do
     it "Can be created" do
@@ -18,7 +19,10 @@ describe Movie do
     end
 
     it "has an id" do
+      movie2.save
+      id = Movie.find_by(title: "The II").id
 
+      movie2.id.must_equal id
     end
 
   end #VALIDATIONS
