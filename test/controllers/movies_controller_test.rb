@@ -49,4 +49,26 @@ describe MoviesController do
       body.must_be :empty?
     end
   end
+
+  describe "show" do
+    it "can get a movie" do
+      get movie_path(movies(:one).id)
+      must_respond_with :success
+    end
+
+    it "returns a hash with all of the fields about a particular movie" do
+      get movie_path(movies(:one).id)
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body["title"].must_equal movies("one").title
+    end
+
+    it "returns not found when movie does not exist" do
+      invalid_movie_id = Movie.all.last.id + 1
+      get movie_path(invalid_movie_id)
+      must_respond_with :not_found
+      body = JSON.parse(response.body)
+      body.must_equal "nothing" => true
+    end
+  end
 end
