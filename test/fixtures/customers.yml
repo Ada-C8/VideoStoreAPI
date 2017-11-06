@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  phone: MyString
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
+harry:
+  name: Harry Henderson
+  phone: (999) 999-9999
+  address: 123 Main St
+  city: Seattle
+  state: WA
+  postal_code: 98144
 
-two:
-  name: MyString
-  phone: MyString
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
+sally:
+  name: Sally Field
+  phone: (123) 456-7890
+  address: 224 Peach St
+  city: Seattle
+  state: WA
+  postal_code: 98122
