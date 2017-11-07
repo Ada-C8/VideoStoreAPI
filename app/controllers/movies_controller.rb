@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     movies = Movie.all
 
     render(
-      json: movies, status: :ok
+      json: movies, each_serializer: AllMovieSerializer, status: :ok
     )
   end
 
@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 
     if movie
       render(
-        json: movie, status: :ok
+        json: movie, each_serializer: MovieSerializer, status: :ok
       )
     else
       render(
@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
 
     if movie.valid?
       render(
-        json: movie, status: :ok
+        json: movie, each_serializer: MovieSerializer, status: :ok
       )
     else
       render(
