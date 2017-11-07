@@ -2,14 +2,16 @@ require "test_helper"
 
 describe RentalsController do
   describe "create" do
-    let(:create_rental) {
+    let(:movie_one) {movies(:one)}
+    let(:customer_one) {customers(:one)}
+    def create_rental
       post create_rental_path,
       params: {
-        movie_id: movies(:one).id,
-        customer_id: customers(:one).id,
+        movie_id: movie_one.id,
+        customer_id: customer_one.id,
         due_date: "2017-12-15"
       }
-    }
+    end
 
     it "must respond with JSON" do
       create_rental
@@ -30,14 +32,44 @@ describe RentalsController do
       body["id"].must_be_instance_of Integer
     end
 
-    # it "cannot save a duplicate movie (same title)" do
-    #   proc {post create_movie_path, params: {title: "Raiders of the Lost Ark"}}.must_change "Movie.count", 1
-    #   proc {post create_movie_path, params: {title: "Raiders of the Lost Ark"}}.must_change "Movie.count", 0
-    #   must_respond_with :bad_request
-    #   body = JSON.parse(response.body)
-    #   body["ok"].must_equal false
-    #   body["errors"].keys.must_include "title"
-    #   body["errors"]["title"].must_include "Movie title must be unique."
-    # end
+    it "cannot check out more movies than inventory allows" do
+      movie_one.inventory = 1
+      movie_one.save.must_equal true
+      create_rental
+      must_respond_with :ok
+      create_rental
+      must_respond_with :bad_request
+    end
+
+    it "cannot check out a movie for either an invalid customer id" do
+      invalid_customer_id = -1
+      post create_rental_path,
+      params: {
+        movie_id: movie_one.id,
+        customer_id: invalid_customer_id,
+        due_date: "2017-12-15"
+      }
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body["ok"].must_equal false
+      body["errors"].must_include "customer"
+      body["errors"]["customer"].must_include "must exist"
+    end
+
+    it "cannot check out a movie for either an invalid movie id" do
+      invalid_movie_id = -1
+      post create_rental_path,
+      params: {
+        movie_id: invalid_movie_id,
+        customer_id: customer_one.id,
+        due_date: "2017-12-15"
+      }
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body["ok"].must_equal false
+      print body
+      body["errors"].must_include "movie"
+      body["errors"]["movie"].must_include "must exist"
+    end
   end
 end

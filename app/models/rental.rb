@@ -18,4 +18,12 @@ class Rental < ApplicationRecord
   validates :checkout_date,
     presence:
       { message: "Checkout date is required." }
+
+
+  def self.available?(movie_id)
+    inventory = Movie.find_by(id: movie_id.to_i).inventory
+    currently_rented = Rental.where(movie_id: movie_id.to_i).where('checkout_date <= ?', Date.today).where('due_date >= ?', Date.today)
+    return true if currently_rented.length < inventory
+    return false
+  end
 end

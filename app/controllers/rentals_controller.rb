@@ -3,11 +3,21 @@ class RentalsController < ApplicationController
     due_date_string = params[:due_date]
     due_date_var = Date.parse(due_date_string)
     rental = Rental.new(rental_params.merge(checkout_date: Date.today, due_date: due_date_var))
-    if rental.save
-      render(
-        json: rental.as_json(only: [:id]),
-        status: :ok
-      )
+    if rental.valid?
+      if Rental.available?(params[:movie_id])
+        rental.save
+        render(
+          json: rental.as_json(only: [:id]),
+          status: :ok
+        )
+      else
+        render(
+          json: {
+            "ok" => false,
+            "errors" => ["Requested movie is not in stock."]
+          },
+          status: :bad_request)
+      end
     else
       render(
         json: {
@@ -23,4 +33,5 @@ class RentalsController < ApplicationController
   def rental_params
     params.permit(:customer_id, :movie_id)
   end
+
 end
