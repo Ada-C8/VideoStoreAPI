@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   get '/zomg', to: 'movies#zomg'
 
-  resources :movies, only: [:index, :show]
+  resources :movies, only: [:index, :show, :create]
   resources :customers, only: [:index, :show]
 end
