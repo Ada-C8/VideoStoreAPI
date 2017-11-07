@@ -6,8 +6,8 @@ movie_one:
   release_date: December 25, 2013
   inventory: 1
 
-# movie_two:
-#   title: Movie
-#   overview: This movie is yellow
-#   release_date: December 25, 2013
-#   inventory: 5
+movie_two:
+  title: Movie
+  overview: This movie is yellow
+  release_date: December 25, 2013
+  inventory: 5
