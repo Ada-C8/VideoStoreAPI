@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
     movie = Movie.find_by(id: params[:id])
 
     if movie
-      render json: movie.as_json(except: [:created_at, :udpated_at]), status: :ok
+      render json: movie, status: :ok
     else
       render json: { ok: false }, status: :not_found
     end
@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     movie = Movie.create(movies_params)
 
     if movie.valid?
-      render json: movie.as_json(except: [:created_at, :updated_at]), status: :created
+      render json: movie, status: :created
     else
       render json: { errors: movie.errors.messages }, status: :bad_request
     end
