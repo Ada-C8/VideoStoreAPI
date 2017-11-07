@@ -38,4 +38,21 @@ describe Movie do
       invalid_movie.errors.messages.must_include :inventory
     end
   end
+
+  describe "relationship between movie and rentals" do
+    before do
+      @movie = (:movie_one)
+    end
+
+    it "movie responds to rentals" do
+      @movie.must_respond_to :rentals
+    end
+
+    it "lists rentals for a given movie"  do
+      movie = movies(:movie_one)
+      # movie.rentals.count.must_equal 1
+
+      movie.rentals[0].must_be_kind_of Rental
+      end
+    end
 end
