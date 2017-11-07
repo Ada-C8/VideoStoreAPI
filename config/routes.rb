@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :customers, only: [:index]
 
   # RENTALS!!
-  post '/rentals/check-out', to: 'rentals#checkout'
-  post '/rentals/check-in', to: 'rentals#checkin'
-  get '/rentals/overdue', to: 'rentals#overdue'
+  post '/rentals/check-out', to: 'rentals#checkout', as: 'checkout'
+  post '/rentals/check-in', to: 'rentals#checkin', as: 'checkin'
+  get '/rentals/overdue', to: 'rentals#overdue', as: 'overdue'
 end
