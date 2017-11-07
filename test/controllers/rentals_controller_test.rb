@@ -3,16 +3,19 @@ require "test_helper"
 describe RentalsController do
   describe 'check_out' do
     it "successfully removes a movie from available_inventory" do
-      post rentals_check_out_path(movies(:one).id)
+      customer = customers(:one)
+      movie = movies(:two)
 
-      before_count = available_inventory.count
-      must_respond_with :success
+      before_count = movie.available_inventory
+      post checkout_path, params: { movie_id: movie.id, customer_id: customer.id }
 
-      response.header('Content-Type').must_include 'json'
-      body = JSON.parse(respnse.body)
-      body.must_be_kind_of Array
+      # must_respond_with :success
 
-      available_inventory.must_equal before_count - 1
+      # response.header('Content-Type').must_include 'json'
+      # body = JSON.parse(respnse.body)
+      # body.must_be_kind_of Array
+      movie.reload
+      movie.available_inventory.must_equal before_count - 1
     end
 
     it "has a customer_id, movie_id, and due_date" do

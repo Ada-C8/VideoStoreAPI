@@ -8,12 +8,14 @@ one:
   title: Titanic
   overview: terrifying yet sexy and brutal
   release_date: early 2018
-  inventory: 1
+  inventory: 100
+  available_inventory: 100
 # column: value
 #
 two:
   title: Clueless
   overview: sexy and brutal
   release_date: late 2018
-  inventory: 10
+  inventory: 20
+  available_inventory: 20
 # column: value

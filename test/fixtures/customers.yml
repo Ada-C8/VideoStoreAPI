@@ -13,7 +13,8 @@ one:
   postal_code: 98880
   phone: 89234535
   account_credit: 34.34
-  
+  movies_checked_out_count: 0
+
 # column: value
 #
 two:
@@ -25,5 +26,5 @@ two:
     postal_code: 90210
     phone: 9999999
     account_credit: 30.34
-
+    movies_checked_out_count: 0
 # column: value
