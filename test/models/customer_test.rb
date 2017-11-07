@@ -4,12 +4,12 @@ describe Customer do
   let(:customer) { customers(:one) }
 
   describe "relations" do
-    it "a customer can have many movies" do
-      customer.must_respond_to :movies
-      # customer.movies.each do |movie|
-      #   movie.must_be_kind_of Movie
-      # end
-    end
+    # it "a customer can have many movies" do
+    #   customer.must_respond_to :movies
+    #   # customer.movies.each do |movie|
+    #   #   movie.must_be_kind_of Movie
+    #   # end
+    # end
   end
 
   describe "validations" do
