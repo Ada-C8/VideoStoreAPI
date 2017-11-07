@@ -2,11 +2,16 @@ require "test_helper"
 
 describe RentalsController do
   describe 'check_out' do
+    it "has a customer_id, movie_id, and due_date" do
+
+    end
+
     it "successfully removes a movie from available_inventory" do
       customer = customers(:one)
       movie = movies(:two)
 
-      before_count = movie.available_inventory
+      before_inventory = movie.available_inventory
+      before_checked_out = customer.movies_checked_out_count
       post checkout_path, params: { movie_id: movie.id, customer_id: customer.id }
 
       must_respond_with :success
@@ -16,11 +21,10 @@ describe RentalsController do
       body.must_be_kind_of Hash
 
       movie.reload
-      movie.available_inventory.must_equal before_count - 1
-    end
+      movie.available_inventory.must_equal before_inventory - 1
 
-    it "has a customer_id, movie_id, and due_date" do
-
+      customer.reload
+      customer.movies_checked_out_count.must_equal before_checked_out + 1
     end
 
     it "doesn't check out a movie if avialble_inventory is 0" do
