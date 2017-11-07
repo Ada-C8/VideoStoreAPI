@@ -332,7 +332,7 @@
   },
   "Unit Tests": {
     "coverage": {
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/customer.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/models/customer.rb": [
         1,
         1,
         null,
@@ -340,12 +340,12 @@
         1,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/application_record.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/test/models/movie_test.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/test/models/movie_test.rb": [
         1,
         null,
         1,
@@ -390,7 +390,7 @@
         null,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/movie.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/models/movie.rb": [
         1,
         1,
         null,
@@ -398,7 +398,7 @@
         1,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/test/models/rental_test.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/test/models/rental_test.rb": [
         1,
         null,
         1,
@@ -450,13 +450,13 @@
         null,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/rental.rb": [
+      "/Users/maria/Documents/Ada_C8/api/VideoStoreAPI/app/models/rental.rb": [
         1,
         1,
         1,
         null
       ]
     },
-    "timestamp": 1510089883
+    "timestamp": 1510090612
   }
 }
