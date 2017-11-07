@@ -42,7 +42,14 @@ describe Movie do
   end
 
   describe "available_inventory" do
+    let(:movie){movies(:two)}
+    let(:customer1){customers(:one)}
+    let(:customer2){customers(:two)}
     it "decreases a movie's available inventory with a new rental" do
+      starting_inventory = movie.available_inventory
+      Rental.create(customer: customer1, movie: movie)
+      Rental.create(customer: customer2, movie: movie)
+      movie.available_inventory.must_equal starting_inventory - 2
     end
   end
 end
