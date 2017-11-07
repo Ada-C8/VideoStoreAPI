@@ -8,4 +8,7 @@ class RentalsController < ApplicationController
       status: :ok
     )
   end
+
+  def checkout
+  end 
 end
