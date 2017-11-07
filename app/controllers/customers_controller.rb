@@ -16,6 +16,7 @@ class CustomersController < ApplicationController
     if customer
       render(
         json: customer,
+        # json: customer.as_json(except: [:created_at, :updated_at]),
         status: :ok
       )
     else
