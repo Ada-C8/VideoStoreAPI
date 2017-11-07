@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+psycho:
+  title: Psycho
+  overview: A movie description of a horror movie
+  release_date: 1960-06-16
+  inventory: 8
+  available_inventory: 8
+
+jaws:
+  title: Jaws
+  overview: An insatiable great white shark terrorizes the townspeople of Amity Island
+  release_date: 1975-06-19
+  inventory: 6
+  available_inventory: 6
