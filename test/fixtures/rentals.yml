@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  movie_id: 1
-  customer_id: 1
+  movie: one
+  customer: one
+  status: checked_out
   checkout_date: 2017-11-07
-  due_date: 2017-11-07
+  due_date: 2017-11-10
 
 two:
-  movie_id: 1
-  customer_id: 1
+  movie: one
+  customer: one
+  status: returned
   checkout_date: 2017-11-07
-  due_date: 2017-11-07
+  due_date: 2017-11-10
