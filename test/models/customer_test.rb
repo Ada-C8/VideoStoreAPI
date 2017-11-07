@@ -42,4 +42,35 @@ describe Customer do
     end
 
   end
+
+  describe "relationships" do
+    before do
+      @customer = customers(:customer_one)
+    end
+
+    describe "relationship between customers and movies" do
+
+      it "customer responds to movies" do
+        @customer.must_respond_to :movies
+      end
+
+      it "lists movies for a given customer"  do
+        @customer.movies.each do |movie|
+          movie.must_be_kind_of Movie
+        end
+      end
+    end
+
+    describe "relationship between customers and rentals" do
+      it "responds to rentals" do
+        @customer.must_respond_to :rentals
+      end
+
+      it "lists rentals for a given customer"  do
+        @customer.rentals.each do |rental|
+          rental.must_be_kind_of Rental
+        end
+      end
+    end
+  end
 end
