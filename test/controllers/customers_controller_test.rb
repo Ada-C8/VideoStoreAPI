@@ -54,15 +54,6 @@ describe CustomersController do
       body = JSON.parse(response.body)
       body.must_equal "nothing" => true
     end
-    # it "responds correctly when pet is not found" do
-    #   invalid_pet_id = Pet.all.last.id + 1
-    #   get pet_path(invalid_pet_id)
-    #
-    #   must_respond_with :not_found
-    #
-    #   body = JSON.parse(response.body)
-    #   body.must_equal "nothing" => true
-    # end
   end #show tests
 
 
