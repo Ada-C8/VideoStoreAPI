@@ -7,7 +7,7 @@ class Rental < ApplicationRecord
       { message: "Customer ID is required." },
     numericality:
       {only_integer: true, message: "Customer ID must be an integer."}
-  validates movie_id,
+  validates :movie_id,
     presence:
       { message: "Movie ID is required."},
     numericality:
