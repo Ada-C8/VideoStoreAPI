@@ -151,9 +151,9 @@ describe RentalsController do
 
     it "returns all overdue movies" do
       get overdue_path
-      #
-      # body = JSON.parse(response.body)
-      # body.length.must_equal Customer.count
+
+      body = JSON.parse(response.body)
+      body.length.must_equal  1
     end
 
     it "returns customers with exactly the required fields" do
