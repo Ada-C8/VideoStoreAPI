@@ -35,6 +35,16 @@ describe Rental do
     it "belongs to a customer" do
       rental1.customer.must_equal customers(:shelley)
     end
+
+    it "still exists if it's movie and/or customer is destroyed" do
+      customers(:shelley).destroy
+      rental1.customer.must_be_nil
+
+      movies(:psycho).destroy
+      rental1.movie.must_be_nil
+
+      rental1.must_be_instance_of Rental
+    end
   end #RELATIONS
 
 end
