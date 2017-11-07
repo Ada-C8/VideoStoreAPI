@@ -8,6 +8,7 @@ describe RentalsController do
     end
 
     it "decrements number of movies available in inventory" do
+      post checkout_path()
 
     end
 
