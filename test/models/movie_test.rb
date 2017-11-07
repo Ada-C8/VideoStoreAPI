@@ -26,4 +26,16 @@ describe Movie do
     end
 
   end #VALIDATIONS
+  describe "relationships" do
+    let(:psycho) {movies(:psycho)}
+    it "has many rentals" do
+      psycho.rentals.count.must_equal 2
+      psycho.rentals.each do |r|
+        r.must_be_instance_of Rental
+      end
+    end
+
+
+
+  end #relationships
 end
