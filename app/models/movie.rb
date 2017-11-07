@@ -6,7 +6,7 @@ class Movie < ApplicationRecord
   validates :release_date, presence: true, format: { with: /\d{4}-\d{2}-\d{2}/}
   validates :overview, presence: true
   validates :inventory, presence: true
-  validate :available_to_rent
+  validate :available_to_rent, :if => "!available_inventory.nil?"
 
   private
   def set_available_inventory
