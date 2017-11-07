@@ -8,7 +8,7 @@ averi:
   state: Wa
   postal_code: 98102
   phone: 2061234567
-  movies_checked_out_count: 0
+  movies_checked_out_count: 2
 
 gale:
   name: Gale
@@ -18,4 +18,4 @@ gale:
   state: Wa
   postal_code: 98144
   phone: 3601239876
-  movies_checked_out_count: 10
+  movies_checked_out_count: 0

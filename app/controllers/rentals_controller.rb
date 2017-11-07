@@ -11,7 +11,7 @@ class RentalsController < ApplicationController
       render json: rental.as_json(only: [:customer_id, :movie_id])
       rental.destroy
     else
-      render json: {errors: rental.errors.messages }, status: :not_found
+      render json: {errors: "rental not found" }, status: :not_found
     end
   end
 
@@ -36,6 +36,8 @@ class RentalsController < ApplicationController
   end
 
   def overdue
+    rentals = Rental.where("due_date < ?", Date.today())
+    render json: rentals, status: :ok
   end
 
   private
