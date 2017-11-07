@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     movies = Movie.all
 
     render(
-      json: movies, status: :ok
+      json: movies.as_json(only: [:id, :title, :release_date]), status: :ok
     )
   end
 

@@ -27,7 +27,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(available_inventory id inventory overview release_date title)
+      keys = %w(id release_date title)
       get movies_url
       body = JSON.parse(response.body)
       body.each do |movie|
@@ -64,7 +64,7 @@ describe MoviesController do
 
     it "Creates a new movie" do
       assert_difference "Movie.count", 1 do
-        post movies_url, params:  movie_data 
+        post movies_url, params:  movie_data
         assert_response :ok
       end
 
