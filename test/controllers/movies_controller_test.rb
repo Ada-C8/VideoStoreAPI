@@ -85,7 +85,7 @@ describe MoviesController do
 
     it "returns success if a movie is created" do
       proc {
-        post movies_path, params: { movie: movie_data }
+        post movies_path, params: movie_data
         }.must_change 'Movie.count', 1
 
       response.header['Content-Type'].must_include 'json'
@@ -93,14 +93,14 @@ describe MoviesController do
     end
 
     it "returns bad_request if the movie has invalid parameters" do
-      proc { post movies_path, params: { movie: invalid_data} }.wont_change 'Movie.count', 1
+      proc { post movies_path, params: invalid_data }.wont_change 'Movie.count', 1
 
       must_respond_with :bad_request
     end
   end
 
   describe "update" do
-    it "returns sucess if the movie is updated" do
+    it "returns success if the movie is updated" do
     end
   end
 end
