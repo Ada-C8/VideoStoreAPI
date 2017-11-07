@@ -57,4 +57,37 @@ describe CustomersController do
       body.must_equal "nothing" => true
     end
   end
+
+  describe "create" do
+    let(:customer_data) {
+      {
+        name: "New Customer",
+        registered_at: "Date",
+        address: "Address",
+        city: "City",
+        state: "State",
+        postal_code: "Zip",
+        phone: "Phone number",
+        account_credit: "Money"
+      }
+    }
+    it "create a new customer" do
+      start_count = Customer.count
+      post customers_path, params: { customer: customer_data }
+
+      must_respond_with :success
+      Customer.count.must_equal start_count + 1
+    end
+
+    it "won't create a new customer if data is missing" do
+      invalid_customer_data = {
+        name: "New Customer",
+      }
+      start_count = Customer.count
+      post customers_path, params: { customer: invalid_customer_data }
+
+      must_respond_with :bad_request
+      Customer.count.must_equal start_count
+    end
+  end
 end
