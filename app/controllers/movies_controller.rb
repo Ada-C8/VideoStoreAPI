@@ -3,8 +3,7 @@ class MoviesController < ApplicationController
     movies = Movie.all
 
     render(
-      json: movies.as_json(only: [:id, :title, :release_date]),
-      status: :ok
+      json: movies, status: :ok
     )
   end
 
@@ -13,7 +12,7 @@ class MoviesController < ApplicationController
 
     if movie
       render(
-        json: movie.as_json(only: [:title, :release_date, :overview, :inventory, :available_inventory]),status: :ok
+        json: movie, status: :ok
       )
     else
       render(
@@ -28,8 +27,7 @@ class MoviesController < ApplicationController
 
     if movie.valid?
       render(
-        json: movie.as_json(only: [:id, :title, :release_date, :overview, :inventory, :available_inventory]),
-        status: :ok
+        json: movie, status: :ok
       )
     else
       render(
