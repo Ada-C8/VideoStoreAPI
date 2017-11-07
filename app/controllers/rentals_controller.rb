@@ -10,12 +10,16 @@ class RentalsController < ApplicationController
 
   def checkin
     rental = Rental.find_by(movie_id: params[:movie_id], customer_id: params[:customer_id])
-    if rental && rental.status == 'checked_out'
-      rental.status = 'returned'
-      rental.save!
-      render json: {id: rental.status}
+    if rental
+      if rental.status == 'checked_out'
+        rental.status = 'returned'
+        rental.save!
+        render json: {status: rental.status}
+      else
+        render json: {:errors => {"rental" => "is already checked in"}}, status: :bad_request
+      end
     else
-      render json: {nothing: true}, status: :bad_request
+      render json: {nothing: true}, status: :not_found
     end
   end
 

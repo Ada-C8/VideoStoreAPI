@@ -42,11 +42,11 @@ describe RentalsController do
 
       Rental.find(rental_id).status.must_equal 'returned'
     end
-    it "returns a bad request if rental does not exist" do
+    it "returns not found if rental does not exist" do
       checkin_params['customer_id'] = invalid_customer_id
       post checkin_path, params: checkin_params
 
-      must_respond_with :bad_request
+      must_respond_with :not_found
     end
     it "returns a bad request if rental is already returned" do
       post checkin_path, params: checkin_params
