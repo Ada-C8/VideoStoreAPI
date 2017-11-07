@@ -5,9 +5,11 @@ magic:
   overview: Sandra bullock learns she is a witch
   release_date: 2001-01-01
   inventory: 10
+  available_inventory: 10
 
 dates:
   title: 50 first dates
   overview: girl can't remember anything
   release_date: 2005-10-10
   inventory: 1
+  available_inventory: 1
