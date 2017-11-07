@@ -23,7 +23,18 @@ describe Rental do
       rental.errors.must_include :checkout_date
       rental.errors.must_include :due_date
     end
+  end #VALIDATIONS
 
-  end
+  describe "RELATIONS" do
+    let(:rental1) {rentals(:rental1)}
+
+    it "belongs to a movie" do
+      rental1.movie.must_equal movies(:psycho)
+    end
+
+    it "belongs to a customer" do
+      rental1.customer.must_equal customers(:shelley)
+    end
+  end #RELATIONS
 
 end
