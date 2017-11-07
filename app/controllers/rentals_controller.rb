@@ -8,7 +8,7 @@ class RentalsController < ApplicationController
 
     if rental.checkout(params[:movie_id], params[:customer_id])
       # render json: Movie.find_by_id(params[:movie_id]), status: :created
-      render json: rental.as_json(only: [:id, :checkout_date, :due_date]), status: :created
+      render json: rental.as_json(only: [:id, :checkout_date, :due_date, :customer_id, :movie_id]), status: :created
     else
       render json: {ok: false, message: "Exceeded available inventory!"}, status: :bad_request
     end
