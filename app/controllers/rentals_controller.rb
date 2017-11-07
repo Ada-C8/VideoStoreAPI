@@ -9,5 +9,8 @@ class RentalsController < ApplicationController
   def overdue
   end
 
+  def create
+  end
+
 
 end

@@ -5,11 +5,11 @@ class Rental < ApplicationRecord
 
   private
   def format_checkout
-    checkout_date = Date.today.strftime('%Y-%m-%d')
+    self.checkout_date = Date.today.strftime('%Y-%m-%d')
   end
 
   def format_due_date
-    due_date = (Date.today + 10).strftime('%Y-%m-%d')
+    self.due_date = (Date.today + 10).strftime('%Y-%m-%d')
   end
 
 end
