@@ -57,6 +57,13 @@ describe MoviesController do
       get movie_path(movies(:magic).id)
       must_respond_with :not_found
     end
+    it "returns a movie with exactly the required fields" do
+      keys = %w(available_inventory inventory overview release_date title)
+      get movie_path(movies(:magic).id)
+
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+    end
   end
 
   describe "create" do
