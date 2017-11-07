@@ -35,11 +35,4 @@ describe CustomersController do
       end
     end
   end
-
-  describe "test" do
-    it "returns json" do
-      get test_path
-      response.header['Content-Type'].must_include 'json'
-    end
-  end
 end

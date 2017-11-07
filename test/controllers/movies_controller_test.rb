@@ -1,10 +1,6 @@
 require "test_helper"
 
 describe MoviesController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
-
   describe "index" do
     it "is a working route" do
       get movies_path
@@ -58,8 +54,6 @@ describe MoviesController do
     end
 
     it "returns movie with exactly the required fields" do
-
-
       keys = %w(available_inventory inventory overview release_date title)
 
       get movie_path(movies(:one).id)
