@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  before_create :set_available_inventory
   has_many :rentals, dependent: :destroy
 
   validates :title, presence: true
@@ -6,4 +7,8 @@ class Movie < ApplicationRecord
   validates :overview, presence: true
   validates :inventory, presence: true
 
+  private
+  def set_available_inventory
+    self.available_inventory = self.inventory
+  end
 end
