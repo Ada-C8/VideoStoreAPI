@@ -49,10 +49,9 @@ describe Movie do
     end
 
     it "lists rentals for a given movie"  do
-      movie = movies(:movie_one)
-      # movie.rentals.count.must_equal 1
+      @movie.rentals.count.must_equal 1
 
-      movie.rentals[0].must_be_kind_of Rental
+      @movie.rentals[0].must_be_kind_of Rental
       end
     end
 end
