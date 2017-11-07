@@ -84,6 +84,19 @@ describe MoviesController do
 
     it "can create a new movie" do
       proc {post create_movie_path, params: {title: "Raiders of the Lost Ark"}}.must_change "Movie.count", 1
+      must_respond_with :created
+      body = JSON.parse(response.body)
+      body["id"].must_be_instance_of Integer
+    end
+
+    it "cannot save a duplicate movie (same title)" do
+      proc {post create_movie_path, params: {title: "Raiders of the Lost Ark"}}.must_change "Movie.count", 1
+      proc {post create_movie_path, params: {title: "Raiders of the Lost Ark"}}.must_change "Movie.count", 0
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body["ok"].must_equal false
+      body["errors"].keys.must_include "title"
+      body["errors"]["title"].must_include "Movie title must be unique." 
     end
   end
 

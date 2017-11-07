@@ -33,10 +33,15 @@ class MoviesController < ApplicationController
     if movie.save
       render(
         json: movie.as_json(only: [:id]),
-        status: :ok
+        status: :created #201 response code
       )
     else
-
+      render(
+        json: {
+          "ok" => false,
+          "errors" => movie.errors.messages
+        },
+        status: :bad_request) #400 response code
     end
   end
 
