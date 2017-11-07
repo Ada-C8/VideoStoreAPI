@@ -8,16 +8,16 @@ describe Movie do
   end
 
   it "must have all required fields to be valid" do
-    new_movie = Movie.new( release_date: "something", overview: "something", inventory: 10)
+    new_movie = Movie.new( release_date: "2017-11-10", overview: "something", inventory: 10)
     new_movie.valid?.must_equal false
 
     new_movie = Movie.new( title: "something", overview: "something", inventory: 10)
     new_movie.valid?.must_equal false
 
-    new_movie = Movie.new( release_date: "something", title: "something", inventory: 10)
+    new_movie = Movie.new( release_date: "2017-11-10", title: "something", inventory: 10)
     new_movie.valid?.must_equal false
 
-    new_movie = Movie.new( release_date: "something", overview: "something", title: "something")
+    new_movie = Movie.new( release_date: "2017-11-10", overview: "something", title: "something")
     new_movie.valid?.must_equal false
 
 
