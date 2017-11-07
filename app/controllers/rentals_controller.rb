@@ -23,6 +23,10 @@ class RentalsController < ApplicationController
     end
   end
 
+  def overdue
+    render json: Rental.overdue.as_json
+  end
+
   private
   def rental_params
     params.permit(:movie_id, :customer_id, :due_date)

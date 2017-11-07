@@ -8,6 +8,12 @@ class Rental < ApplicationRecord
 
   after_initialize :set_defaults
 
+  def self.overdue
+    Rental.all.find_all do |rental|
+      Date.today > rental.due_date && rental.status == 'checked_out'
+    end
+  end
+
   private
 
   def set_defaults

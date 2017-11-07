@@ -57,6 +57,32 @@ describe RentalsController do
   end
 
   describe "overdue" do
+    it "is a working route" do
+      get overdue_path
+      must_respond_with :success
+    end
+    it "returns a list of overdue rentals" do
+      get overdue_path
+      body = JSON.parse(response.body)
+      body.length.must_equal Rental.overdue.count
+    end
+    it "overdue rentals list should be an array" do
+      get overdue_path
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+    end
+    it "returns a json" do
+      get overdue_path
+      response.header['Content-type'].must_include 'json'
+    end
+    it "returns empty array and status 200 if no overdue rental" do
+      Rental.destroy_all
 
+      get overdue_path
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+
+      body.must_be :empty?
+    end
   end
 end
