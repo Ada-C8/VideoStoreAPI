@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :movies, only: [:index, :show, :create] do
     post '/rentals/checkout', to: 'rentals#checkout', as: 'rental_checkout'
-    post '/rentals/checkin', to: 'rentals#checkin', as: 'rental_checkin'
+    patch '/rentals/checkin', to: 'rentals#checkin', as: 'rental_checkin'
   end
 
 
