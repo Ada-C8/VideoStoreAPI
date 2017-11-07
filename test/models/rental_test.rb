@@ -7,7 +7,7 @@ describe Rental do
     )
   }
 
-  describe 'checkout' do
+  describe 'validations' do
     it 'can be created if a customer checks out a movie (aka with valid data)' do
       rental.must_be :valid?
     end
