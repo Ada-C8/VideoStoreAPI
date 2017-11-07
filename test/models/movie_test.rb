@@ -84,13 +84,13 @@ describe Movie do
 
       movie = Movie.new(movie_data)
 
-      movie.inventory?.must_equal false
+      movie.check_inventory?.must_equal false
     end
 
     it "returns true if a movie has at least one in inventory" do
       movie = movies(:movie_one)
 
-      movie.inventory?.must_equal true
+      movie.check_inventory?.must_equal true
     end
   end
 

@@ -8,25 +8,24 @@ class Movie < ApplicationRecord
   validates :inventory, presence: true
 
 
-  def self.inventory?
-    # movie = Movie.find_by(id: params[:movie_id])
-    if movie.inventory < 1
-    # if inventory < 1
+  def check_inventory?
+
+    if self.inventory < 1
       return false
+    else
+      return true
     end
   end
 
-#TEST THIS - NOT YET IMPLEMENTED
-  def self.reduce_inventory
-    movie.inventory = movie.inventory - 1
+  def reduce_inventory
+    self.inventory = self.inventory - 1
 
-    movie.save
+    self.save
   end
 
-#TEST THIS - NOT YET IMPLEMENTED
-  def self.increase_inventory
-    movie.inventory = movie.inventory + 1
+  def increase_inventory
+    self.inventory = self.inventory + 1
 
-    movie.save
+    self.save
   end
 end
