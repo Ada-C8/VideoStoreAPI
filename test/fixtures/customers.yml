@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: Maria
   registered_at: MyString
   address: MyString
   city: MyString
@@ -11,11 +11,11 @@ one:
   account_credit: 9.99
 
 two:
-  name: MyString
+  name: Isaac
   registered_at: MyString
   address: MyString
   city: MyString
   state: MyString
   postal_code: MyString
   phone: MyString
-  account_credit: 9.99
+  account_credit: 0
