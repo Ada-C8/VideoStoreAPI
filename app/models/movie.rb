@@ -3,7 +3,6 @@ class Movie < ApplicationRecord
   validates :title, presence: true
 
   def available_inventory
-    # return Movie.find(:id).inventory
-    return
+    return self.inventory
   end
 end
