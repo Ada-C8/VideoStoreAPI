@@ -5,8 +5,8 @@ class CustomersController < ApplicationController
     customers = Customer.all
 
     render(
-      json: customers.as_json(except: [:created_at, :updated_at]),
-      # json: customers,
+      # json: customers.as_json(except: [:created_at, :updated_at]),
+      json: customers,
       status: :ok
     )
   end
@@ -15,8 +15,8 @@ class CustomersController < ApplicationController
     customer = Customer.find_by(id: params[:id])
     if customer
       render(
-        # json: customer,
-        json: customer.as_json(except: [:created_at, :updated_at]),
+        json: customer,
+        # json: customer.as_json(except: [:created_at, :updated_at]),
         status: :ok
       )
     else
