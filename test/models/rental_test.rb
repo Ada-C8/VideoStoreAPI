@@ -34,11 +34,5 @@ describe Rental do
       put checkin_path(rental.id)
       rental.readonly?.must_equal true
     end
-
-    it "must return an error message when attempting to update a returned rental" do
-      rental = rentals(:returned)
-      put checkin_path(rental.id)
-      must_respond_with :bad_request
-    end
   end
 end
