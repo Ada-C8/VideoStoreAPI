@@ -36,25 +36,8 @@ describe CustomersController do
         customer.keys.must_equal keys
       end
     end
-  end #index tests
 
-  describe "show" do
-    # This bit is up to you!
-    it "can get a customer" do
-      get customer_path(customers(:two).id)
-      must_respond_with :success
-    end
+    # Negative tests
+  end
 
-    it "responds correctly when a customer is not found" do
-      invalid_customer_id = Customer.last.id + 1
-      get customer_path(invalid_customer_id)
-
-      must_respond_with :not_found
-
-      body = JSON.parse(response.body)
-      body.must_equal "nothing" => true
-    end
-  end #show tests
-
-
-end #all tests
+end
