@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-  before_validation :set_available_inventory
+  before_create :set_available_inventory
   has_many :rentals, dependent: :destroy
 
   validates :title, presence: true
