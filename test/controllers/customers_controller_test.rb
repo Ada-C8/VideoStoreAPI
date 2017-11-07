@@ -83,14 +83,15 @@ describe CustomersController do
       must_respond_with :success
     end
 
+    #only testing one missing attribute; validation model testing covers some of this(I think...)
     it "won't change db if data is missing" do
       invalid_customer_data = {
         name: "name",
-        # registered_at: "registered at",
-        # address: "address",
-        # city: "city",
-        # state: "state",
-        # postal_code: "postal code"
+        registered_at: "registered at",
+        address: "address",
+        city: "city",
+        state: "state",
+        postal_code: "postal code"
       }
       proc {
         post customers_path, params: {customer: invalid_customer_data}
