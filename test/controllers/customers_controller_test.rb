@@ -46,7 +46,17 @@ describe CustomersController do
       body.must_be_kind_of Array
       body.must_be :empty?
     end
+  end
 
+  describe "show" do
+    it "is a real working route" do
+      first_id = Customer.first.id
+      binding.pry
+      get customers_path(first_id)
+      must_respond_with :success
+    end
 
   end
+
+
 end
