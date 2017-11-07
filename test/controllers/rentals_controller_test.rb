@@ -6,24 +6,16 @@ describe RentalsController do
     let(:movie_one) { movies :movie_one}
 
     it "is a working route" do
-      # valid_rental_info = {
-      #   customer_id: customer_one,
-      #   movie_id: movie_one,
-      #   due_date: "2019-11-14",
-      #   checkout_date: "2019-11-07",
-      # }
-      kim = customers(:customer_one)
-      jaws = movies(:movie_one)
-      rental_data = {
+      valid_rental_info = {
         rental: {
-          customer_id: kim.id,
-          movie_id: jaws.id,
+          customer_id: customer_one.id,
+          movie_id: movie_one.id,
           due_date: "2019-11-14",
-          checkout_date: "2019-11-14"
+          checkout_date: "2019-11-07",
         }
       }
 
-      post checkout_path, rental_params: rental_data[:rental]
+      post checkout_path(params: valid_rental_info)
       must_respond_with :success
     end
 

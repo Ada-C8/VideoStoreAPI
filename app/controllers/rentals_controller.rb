@@ -34,7 +34,6 @@ class RentalsController < ApplicationController
   private
 
   def rental_params
-    binding.pry
     params.require(:rental).permit(:customer_id, :movie_id, :checkout_date, :due_date)
   end
 
