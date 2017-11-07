@@ -5,9 +5,11 @@ one:
   movie_id: one
   due_date: 2017-11-10
   checkout_date: 2017-11-07
+  checkin_date:
 
 two:
   customer_id: two
   movie_id: two
   due_date: 2017-11-15
   checkout_date: 2017-11-07
+  checkin_date:

@@ -28,6 +28,25 @@ class RentalsController < ApplicationController
     end
   end
 
+  def update
+    rental = Rental.find_by(movie_id: params[:movie_id], customer_id: params[:customer_id])
+    if rental
+      rental.checkin_date = Date.today
+      rental.save
+      render(
+        json: rental.as_json(only: [:id]),
+        status: :ok
+      )
+    else
+      render(
+        json: {
+          "ok" => false,
+          "errors" => ["Rental does not exist."]
+        },
+        status: :bad_request)
+    end
+  end
+
   private
 
   def rental_params

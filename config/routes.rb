@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   post '/movies', to: 'movies#create', as: 'create_movie'
 
   post '/rentals/check-out', to: 'rentals#create', as: 'create_rental'
-
+  post '/rentals/check-in', to: 'rentals#update', as: 'update_rental'
 end
