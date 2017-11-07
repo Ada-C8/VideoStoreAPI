@@ -87,15 +87,17 @@ describe MoviesController do
 
     it "Won't change the database if data is missing" do
       invalid_movie_data = {
-        title: "Nada"
+        overview: "Nada",
+        release_date: "1984",
+        inventory: 5
       }
 
       proc {
         post movies_path, params: { movie: invalid_movie_data}
         }.wont_change 'Movie.count'
 
-      # body = JSON.parse(response.body)
-      # body.must_equal "errors" => {}
+      body = JSON.parse(response.body)
+      body.must_equal "errors"=>{"title"=>["can't be blank"]}
     end
 
   end
