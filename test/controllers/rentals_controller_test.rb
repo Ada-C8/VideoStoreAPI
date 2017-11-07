@@ -12,7 +12,10 @@ describe RentalsController do
 
       before_inventory = movie.available_inventory
       before_checked_out = customer.movies_checked_out_count
-      post checkout_path, params: { movie_id: movie.id, customer_id: customer.id }
+      post checkout_path, params: {
+        movie_id: movie.id,
+        customer_id: customer.id
+      }
 
       must_respond_with :success
 
@@ -27,18 +30,11 @@ describe RentalsController do
       customer.movies_checked_out_count.must_equal before_checked_out + 1
     end
 
-    it "doesn't check out a movie if avialble_inventory is 0" do
+    it "doesn't check out a movie if avialable_inventory is 0" do
 
     end
+
     it "doesn't check out a movie if customer doesn't exist" do
-    end
-    
-    it "doesn't check out a movie if movie doesn't exist" do
-      customer = customers(:one)
-      bad_inventory_data = Movie.all.last.id + 1
-
-      post checkout_path, params: { movie_id: bad_inventory_data, customer_id: customer.id }
-      must_respond_with :bad_request
     end
   end
 
