@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171107181635) do
+=======
+ActiveRecord::Schema.define(version: 20171107173425) do
+>>>>>>> MovieControllerTesting
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +40,7 @@ ActiveRecord::Schema.define(version: 20171107181635) do
     t.integer "inventory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "available_inventory"
   end
 
 end

@@ -27,8 +27,8 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
 
-    it "returns all movies with the requred fields" do
-      keys = ["id", "inventory", "overview", "release_date", "title"]
+    it "returns all movies with the required fields" do
+      keys = ["id", "release_date", "title"]
 
       get movies_path
 
@@ -38,13 +38,14 @@ describe MoviesController do
       end
     end
 
-    it "returns an array if there are no movies" do
+    it "returns an empty array if there are no movies" do
       Movie.destroy_all
 
       get movies_path
 
       body = JSON.parse(response.body)
       body.must_be :empty?
+      must_respond_with :success
     end
   end
 
@@ -62,6 +63,15 @@ describe MoviesController do
       body = JSON.parse(response.body)
       body.must_equal "nothing" => true
     end
+
+    it "returns a single movie with the required fields" do
+      keys = ["available_inventory", "inventory", "overview", "release_date", "title"]
+
+      get movie_path(movie.id)
+
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+    end
   end
 
   describe "create" do
@@ -70,7 +80,8 @@ describe MoviesController do
         title: "Harry Potter",
         overview: "A boy who lived with the scar",
         release_date: 2001-11-16,
-        inventory: 3
+        inventory: 3,
+        available_inventory: 3
       }
     }
 
@@ -78,7 +89,8 @@ describe MoviesController do
       {
         overview: "A boy who lived with the scar",
         release_date: 2001-11-16,
-        inventory: 3
+        inventory: 3,
+        available_inventory: 3
       }
     }
 
@@ -88,6 +100,8 @@ describe MoviesController do
         }.must_change 'Movie.count', 1
 
       response.header['Content-Type'].must_include 'json'
+      body = JSON.parse(response.body)
+      body.keys.must_equal ["id"]
       must_respond_with :success
     end
 
@@ -95,11 +109,6 @@ describe MoviesController do
       proc { post movies_path, params: invalid_data }.wont_change 'Movie.count', 1
 
       must_respond_with :bad_request
-    end
-  end
-
-  describe "update" do
-    it "returns success if the movie is updated" do
     end
   end
 end
