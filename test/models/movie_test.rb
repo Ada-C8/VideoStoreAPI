@@ -40,4 +40,9 @@ describe Movie do
     one.inventory = -1
     one.valid?.must_equal false
   end
+
+  describe "available_inventory" do
+    it "decreases a movie's available inventory with a new rental" do
+    end
+  end
 end
