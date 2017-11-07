@@ -35,6 +35,13 @@ describe Movie do
       end
     end
 
+    it "rental exists if the movie is deleted" do
+      proc {psycho.destroy}.must_change('Movie.count', -1)
+
+      rentals(:rental1).must_be_instance_of Rental
+      rentals(:rental2).must_be_instance_of Rental
+
+    end
 
 
   end #relationships
