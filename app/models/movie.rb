@@ -3,11 +3,16 @@ class Movie < ApplicationRecord
   has_many :customers, through: :rentals
 
   validates :title, presence: true
-  # validates :title, uniqueness: true, if: :same_year?
+  # validates :title, uniqueness: true, if: :uniq_year?
   #
-  # def same_year?
-  #   same_title = Movie.where(title: )
+  # def uniq_year?
+  #   movies_array = Movie.where(title: self.title)
+  #   return true if movies_array == []
   #
+  #   years = movies_array.map {|movie| movie.release_date[0..3]}
+  #
+  #   years.include? self.release_date[0..3] ?
+  #     false : true
   # end
 
 
