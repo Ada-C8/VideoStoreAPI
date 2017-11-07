@@ -65,5 +65,44 @@ describe CustomersController do
     end
   end
 
+  describe "create" do
+    it "Can create a new customer" do
+      customer_data = {
+        name: "name",
+        registered_at: "registered at",
+        address: "address",
+        city: "city",
+        state: "state",
+        postal_code: "postal code"
+      }
+
+      proc{
+        post customers_path, params: {customer: customer_data}
+      }.must_change 'Customer.count', 1
+      must_respond_with :success
+    end
+
+    it "won't change db if data is missing" do
+      invalid_customer_data = {
+        # name: "name",
+        # registered_at: "registered at",
+        # address: "address",
+        # city: "city",
+        # state: "state",
+        # postal_code: "postal code"
+        fake: "fake"
+      }
+      binding.pry
+
+      proc {
+        post customers_path, params: {customer: invalid_customer_data}
+      }.wont_change 'Customer.count'
+
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_equal errors:{"invalid data" => ["Missing needed information"]}
+    end
+  end
+
 
 end

@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get '/zomg', to: 'movies#zomg'
 
   resources :movies, only: [:index, :show]
-  resources :customers, only: [:index, :show]
+  resources :customers, only: [:index, :show, :create]
 end
