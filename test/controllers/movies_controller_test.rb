@@ -24,7 +24,7 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
     it 'it returns movies with the exact required fields' do
-      keys = %w(id title overview release_date inventory).sort
+      keys = %w(id title overview release_date inventory available_inventory).sort
       get movies_path
       body = JSON.parse(response.body)
 
@@ -64,7 +64,7 @@ describe MoviesController do
     end
 
     it 'returns movies with the exact required fields' do
-      keys = %w(id title overview release_date inventory).sort
+      keys = %w(id title overview release_date inventory available_inventory).sort
       get movie_path(valid_id)
       body = JSON.parse(response.body)
 
@@ -90,9 +90,9 @@ describe MoviesController do
       "inventory": 7
       }
   }
-    it "creates a movies" do
+    it "creates a movie" do
       proc {
-        post movies_path, params: {movie: movie_data}
+        post movies_path, params: movie_data
       }.must_change 'Movie.count', 1
 
       must_respond_with :success
@@ -105,14 +105,14 @@ describe MoviesController do
       }
 
       proc {
-        post movies_path, params: {movie: invalid_movie_data}
+        post movies_path, params: invalid_movie_data
       }.wont_change 'Movie.count'
 
       must_respond_with :bad_request
 
       body = JSON.parse(response.body)
-      body.must_equal "errors" => {"title" => ["can't be blank"]}
+      body["errors"].must_include "title" 
     end
-    
+
   end
 end
