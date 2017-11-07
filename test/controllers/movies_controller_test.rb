@@ -64,7 +64,7 @@ describe MoviesController do
         title: "Fake Movie",
         overview: "A stirring adventure",
         release_date: "1972-06-06",
-        invetory: 10
+        inventory: 10
       }
     }
 

@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
     customers = Customer.all
 
     render(
-      json: customers.as_json(only: [:name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit]),
+      json: customers.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit]),
       status: :ok
     )
   end
@@ -18,5 +18,11 @@ class CustomersController < ApplicationController
     else
       render json: {nothing: true}, status: :not_found
     end
+  end
+
+  private
+
+  def customer_params
+    params.require(:customer).permit(:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit)
   end
 end
