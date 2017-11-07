@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
     )
     else
       render json: {nothing: true}
-    end  
+    end
   end
 
   def show
