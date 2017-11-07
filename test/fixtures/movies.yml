@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+harry_sally:
+  title: "Harry Met Sally"
+  overview: "Classic"
+  release_date: "1632-08-19"
+  inventory: 5
+
+nacho_libre:
+  title: "Nacho Libre"
+  overview: "Another Classic"
+  release_date: "1890-03-22"
+  inventory: 10
