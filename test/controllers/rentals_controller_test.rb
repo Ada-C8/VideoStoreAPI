@@ -1,4 +1,5 @@
 require "test_helper"
+require 'date'
 
 describe RentalsController do
   # it "should get checkout" do
@@ -37,7 +38,10 @@ describe RentalsController do
       body =  JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "due_date"
-      p body 
+      # p body
+      body["checkout_date"].must_equal (Date.today).strftime('%Y-%m-%d')
+
+      Rental.find(body["id"]).customer_id.must_equal rental_data[:customer_id]
 
 
     end
