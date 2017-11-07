@@ -39,4 +39,21 @@ describe Customer do
       popo.id.must_equal her_id
     end
   end #VALIDATIONS
+
+  describe "RELATIONS" do
+    let(:shelley) {customers(:shelley)}
+
+    it "has many rentals" do
+      shelley.rentals.count.must_equal 1
+      shelley.rentals.each do |r|
+        r.must_be_instance_of Rental
+      end
+    end
+
+    it "Rentals still exist if Customer is deleted" do
+      proc {shelley.destroy}.must_change('Customer.count', -1)
+
+      rentals(:rental1).must_be_instance_of Rental
+    end
+  end # RELATIONS
 end
