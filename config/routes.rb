@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   get 'movies/index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :customers, only: [:index] do
-    get '/rentals/overdue', to: 'rentals#overdue', as: 'rental_overdue'
-  end
+  resources :customers, only: [:index]
 
-  resources :movies, only: [:index, :show, :create] do
-    post '/rentals/checkout', to: 'rentals#checkout', as: 'rental_checkout'
-    patch '/rentals/checkin', to: 'rentals#checkin', as: 'rental_checkin'
-  end
+  resources :movies, only: [:index, :show, :create]
+
+  post '/rentals/check-out', to: 'rentals#checkout', as: 'rental_checkout'
+  post '/rentals/check-in', to: 'rentals#checkin', as: 'rental_checkin'
+
+  get '/rentals/overdue', to: 'rentals#overdue', as: 'rental_overdue'
 
 
 
