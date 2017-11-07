@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20171107174636) do
     t.string "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_id"
+    t.integer "movie_id"
   end
 
 end
