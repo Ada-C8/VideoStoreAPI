@@ -33,7 +33,7 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
     it "returns movies with exactly the required fields" do
-      keys = %w(inventory overview release_date title)
+      keys = %w(available_inventory inventory overview release_date title)
       body = JSON.parse(response.body)
       body.each do |movie|
         movie.keys.sort.must_equal keys
@@ -63,7 +63,7 @@ describe MoviesController do
     end
 
     it "returns a movie with all of the required fields" do
-      keys = %w(inventory overview release_date title)
+      keys = %w(available_inventory inventory overview release_date title)
       get movie_path(movie.id)
       body = JSON.parse(response.body)
       body.keys.sort.must_equal keys
