@@ -40,7 +40,38 @@ describe Rental do
     end
 
   end
-  # it "must be valid" do
-  #   value(rental).must_be :valid?
-  # end
+
+  describe "valid" do
+    it "will return false without a customer id" do
+      rental_one.customer_id = nil
+      rental_one.wont_be :valid?
+    end
+
+    it "will return false if customer id is not a number" do
+      rental_one.customer_id = " "
+      rental_one.wont_be :valid?
+    end
+
+    it "will return false without a movie id" do
+      rental_one.movie_id = nil
+      rental_one.wont_be :valid?
+    end
+
+    it "will return false if movie id is not a number" do
+      rental_one.movie_id = " "
+      rental_one.wont_be :valid?
+    end
+
+    it "will return false without a checkout date" do
+      rental_two.checkout_date = nil
+      rental_two.wont_be :valid?
+    end
+
+    it "will return false without a due date" do
+      rental_three.due_date = nil
+      rental_three.wont_be :valid?
+    end
+
+
+  end
 end
