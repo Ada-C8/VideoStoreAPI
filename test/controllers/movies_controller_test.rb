@@ -68,12 +68,12 @@ describe MoviesController do
         assert_response :ok
       end
 
-      # body = JSON.parse(response.body)
-      # body.must_be_kind_of Hash
-      # body.must_include "id"
-      #
-      # # Check that the ID matches
-      # Movie.find(body["id"]).title.must_equal movie_data[:title]
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+
+      # Check that the ID matches
+      Movie.find(body["id"]).title.must_equal movie_data[:title]
     end
 
     it "Returns an error for an invalid movie" do
