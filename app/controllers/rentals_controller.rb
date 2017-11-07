@@ -20,11 +20,10 @@ class RentalsController < ApplicationController
       end
     else
       render(
-        json: { ok: false, message: "Insufficient inventory of select movie -- cannot checkout"},
+        json: { ok: false, message: "Insufficient inventory of selected movie -- cannot checkout"},
         status: :bad_request
       )
     end
-
 
   end
 
@@ -63,6 +62,16 @@ class RentalsController < ApplicationController
   end
 
   def overdue
+    rental = Rental.find_by(id: params[:id])
+
+    unless rental
+      render(
+        json: { errors: rental.errors.messages },
+        status: :not_found
+      )
+    end
+
+    rental.due_date_check
   end
 
   private

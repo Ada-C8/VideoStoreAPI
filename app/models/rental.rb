@@ -34,4 +34,10 @@ class Rental < ApplicationRecord
     end
   end
 
+
+  def due_date_check
+
+  end
+
+
 end

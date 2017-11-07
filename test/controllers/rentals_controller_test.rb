@@ -73,7 +73,7 @@ describe RentalsController do
       Rental.find(body["id"]).customer_id.must_equal rental_data[:customer_id]
     end
 
-    it "returns non found if movie does not have checkout date" do
+    it "returns not found if movie does not have checkout date" do
       post rental_checkout_path, params: rental_data
       rental = Rental.last
       rental.checkout_date = nil
