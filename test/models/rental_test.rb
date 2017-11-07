@@ -26,4 +26,19 @@ describe Rental do
       rental.customer.must_equal nil
     end
   end
+
+  describe "checkin" do
+    it "must turn the record to read-only after update" do
+      rental = rentals(:one)
+      rental.readonly?.must_equal false
+      put checkin_path(rental.id)
+      rental.readonly?.must_equal true
+    end
+
+    it "must return an error message when attempting to update a returned rental" do
+      rental = rentals(:returned)
+      put checkin_path(rental.id)
+      must_respond_with :bad_request
+    end
+  end
 end

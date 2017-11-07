@@ -4,8 +4,16 @@ one:
   movie: dune
   customer: sally
   due_date: 2017-11-06
+  returned: false
 
 two:
   movie: gremlins
   customer: harry
   due_date: 2017-11-08
+  returned: false
+
+returned:
+  movie: the neverending story
+  customer: harry
+  due_date: 2017-11-02
+  returned: true

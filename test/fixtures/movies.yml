@@ -11,3 +11,9 @@ gremlins:
   overview: MyText
   release_date: 1982-10-31
   inventory: 2
+
+tnes:
+  title: The Neverending Story
+  overview: Fantastical
+  release_date: 1985-04-30
+  inventory: 3
