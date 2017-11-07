@@ -33,11 +33,7 @@ class MoviesController < ApplicationController
   end
 
 private
-  #TODO: Possible refactoring method
-  # def limited_json
-  #   return self.as_json(only: [:title, :overview, :release_date, :inventory])
-  # end
-
+  
   def movie_params
     params.permit(:title, :overview, :release_date, :inventory)
   end
