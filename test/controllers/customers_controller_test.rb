@@ -28,7 +28,7 @@ describe CustomersController do
       get customers_path
       body = JSON.parse(response.body)
       body.each do |customer|
-        customer.keys.sort.must_equal ["account_credit", "address", "city", "id", "name", "phone", "postal_code", "registered_at", "state"]
+        customer.keys.sort.must_equal ["account_credit", "address", "city", "id", "movies_checked_out_count", "name", "phone", "postal_code", "registered_at", "state"]
       end
     end
 
@@ -111,7 +111,8 @@ describe CustomersController do
       patch customer_path(customer.id), params: customer_data
 
       must_respond_with :success
-      # customer.name.must_equal customer_data[:name]
+      customer.reload
+      customer.name.must_equal customer_data[:name]
     end
 
     it "won't update customer information if data is missing" do

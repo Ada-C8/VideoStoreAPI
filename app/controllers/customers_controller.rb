@@ -62,6 +62,6 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.permit(:name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit)
+    params.permit(:name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit, :movies_checked_out_count)
   end
 end
