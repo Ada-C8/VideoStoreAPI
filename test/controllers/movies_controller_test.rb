@@ -84,7 +84,7 @@ describe MoviesController do
 
     it "can create a new movie" do
       proc {post create_movie_path, params: {title: "Raiders of the Lost Ark"}}.must_change "Movie.count", 1
-      must_respond_with :created
+      must_respond_with :ok
       body = JSON.parse(response.body)
       body["id"].must_be_instance_of Integer
     end
@@ -96,7 +96,7 @@ describe MoviesController do
       body = JSON.parse(response.body)
       body["ok"].must_equal false
       body["errors"].keys.must_include "title"
-      body["errors"]["title"].must_include "Movie title must be unique." 
+      body["errors"]["title"].must_include "Movie title must be unique."
     end
   end
 
