@@ -1,22 +1,32 @@
 class RentalsController < ApplicationController
 
   def checkout
-    rental = Rental.create(rental_params)
+    rental = Rental.new(rental_params)
 
-    rental.checkout_date = rental.today
-
-    rental.save
-
-    if rental.valid?
-      render(
-        json: rental, status: :ok
-      )
+    if rental.remove_movie
+      # if sufficient inventory to remove the movie, set checkout date and save
+      rental.checkout_date = rental.today
+      rental.save
+      # if valid save, return ok status
+      if rental.valid?
+        render(
+          json: rental, status: :ok
+        )
+      else
+        render(
+          json: { errors: rental.errors.messages },
+          status: :bad_request
+        )
+      end
     else
       render(
-        json: { errors: rental.errors.messages },
+        json: { ok: false, message: "Insufficient inventory of select movie -- cannot checkout"},
         status: :bad_request
       )
+      return
     end
+
+
   end
 
   def checkin

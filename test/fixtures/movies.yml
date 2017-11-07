@@ -5,6 +5,7 @@ movie1:
   overview: MyString
   release_date: MyString
   inventory: 2
+  available_inventory: 2
 
 movie2:
   title: MyString

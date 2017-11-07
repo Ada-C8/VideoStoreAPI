@@ -44,9 +44,8 @@ describe RentalsController do
 
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
-      body.must_include "errors"
-      body["errors"].must_include "customer"
-      body["errors"].must_include "movie"
+      body.must_include "ok"
+      body["ok"].must_equal false
     end
 
 
