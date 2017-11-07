@@ -96,7 +96,7 @@ describe MoviesController do
       must_respond_with :bad_request
 
       body = JSON.parse(response.body)
-      body.must_equal "errors" => { "name" => ["can't be blank"]}
+      body.must_equal "errors" => { "title" => ["Movie must have a title"]}
     end
   end
 end

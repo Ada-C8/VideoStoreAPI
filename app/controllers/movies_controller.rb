@@ -36,12 +36,13 @@ class MoviesController < ApplicationController
       )
     else
       render(
-        json: { errors: pet.errors.messages },
+        json: { errors: movie.errors.messages },
         status: :bad_request
       )
     end
 
   end
+
 
   private
 
