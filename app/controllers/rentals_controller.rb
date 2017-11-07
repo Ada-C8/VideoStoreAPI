@@ -9,7 +9,7 @@ class RentalsController < ApplicationController
       rental = Rental.create(customer: customer, movie: movie, due_date: Date.today + 1.day)
     end
 
-    if rental.save
+    if movie.check_inventory
       render(
         json: { id: rental.id },
         status: :ok

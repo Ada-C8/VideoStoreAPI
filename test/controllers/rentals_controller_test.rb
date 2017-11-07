@@ -30,9 +30,15 @@ describe RentalsController do
     it "doesn't check out a movie if avialble_inventory is 0" do
 
     end
-
+    it "doesn't check out a movie if customer doesn't exist" do
+    end
+    
     it "doesn't check out a movie if movie doesn't exist" do
+      customer = customers(:one)
+      bad_inventory_data = Movie.all.last.id + 1
 
+      post checkout_path, params: { movie_id: bad_inventory_data, customer_id: customer.id }
+      must_respond_with :bad_request
     end
   end
 
