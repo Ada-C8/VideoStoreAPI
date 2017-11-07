@@ -5,11 +5,13 @@ class RentalsController < ApplicationController
     rental = Rental.new(rental_params)
 
     if rental.save
+      render json: { id: rental.id }, status: :ok
       # success
-      puts "save worked"
+      # puts "save worked"
     else
+      render json: { errors: rental.errors.messages }, status: :bad_request
       # failure
-      puts "save didn't work: #{rental.errors.messages}"
+      # puts "save didn't work: #{rental.errors.messages}"
     end
   end
 
@@ -20,11 +22,9 @@ class RentalsController < ApplicationController
   end
 
 
-private
+  private
 
-def rental_params
-  params.require(:rental).permit(:movie_id, :customer_id, :due_date)
-end
-
-
+  def rental_params
+    params.require(:rental).permit(:movie_id, :customer_id, :due_date)
+  end
 end
