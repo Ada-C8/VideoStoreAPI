@@ -5,8 +5,9 @@ describe RentalsController do
     let(:rental_data) {
       {
         movie_id: 1,
-        customer_id: 1,
-        due_date: Date.now + 4.days
+        customer_id: 1
+        # ,
+        # due_date: Date.today + 4.days
       }
     }
 

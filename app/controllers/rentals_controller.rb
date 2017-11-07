@@ -1,5 +1,7 @@
 class RentalsController < ApplicationController
   def checkout
+    # due_date = self.due_date
+    due_date = (Date.today + 4.days)
     rental = Rental.new(rental_params)
     rental.save
   end
@@ -14,11 +16,10 @@ class RentalsController < ApplicationController
 private
 
 def rental_params
-  due_date = self.due_date
+
   # puts due_date
   params.require(:rental).permit(:movie_id, :customer_id, :due_date)
 end
-
 
 
 end
