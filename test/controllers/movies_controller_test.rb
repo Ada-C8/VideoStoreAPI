@@ -47,6 +47,22 @@ describe MoviesController do
       body.must_be_kind_of Array
       body.must_be :empty?
     end
+  end
 
+  describe "show" do
+    it "is a working route" do
+      first_id = Movie.first.id
+      get movie_path(first_id)
+      must_respond_with :success
+    end
+
+    it "responds as expected when movie not found" do
+      first_id = Movie.first.id + 1
+      get movie_path(first_id)
+      must_respond_with :not_found
+
+      body = JSON.parse(response.body)
+      body.must_equal "id" => "Invalid Movie ID"
+    end
   end
 end
