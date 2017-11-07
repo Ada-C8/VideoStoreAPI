@@ -73,7 +73,7 @@ describe CustomersController do
     }
     it "create a new customer" do
       start_count = Customer.count
-      post customers_path, params: { customer: customer_data }
+      post customers_path, params: customer_data
 
       must_respond_with :success
       Customer.count.must_equal start_count + 1
@@ -84,7 +84,7 @@ describe CustomersController do
         name: "New Customer",
       }
       start_count = Customer.count
-      post customers_path, params: { customer: invalid_customer_data }
+      post customers_path, params: invalid_customer_data
 
       must_respond_with :bad_request
       Customer.count.must_equal start_count
