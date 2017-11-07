@@ -1,8 +1,5 @@
 class RentalsController < ApplicationController
   def create
-    puts "======================"
-    puts "in controller"
-    puts "======================"
     due_date_string = params[:due_date]
     due_date_var = Date.parse(due_date_string)
     rental = Rental.new(rental_params.merge(checkout_date: Date.today, due_date: due_date_var))

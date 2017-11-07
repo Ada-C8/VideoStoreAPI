@@ -16,7 +16,7 @@ describe MoviesController do
       end
     end
 
-    it "must return an empty arry if no movies exist" do
+    it "must return an empty array if no movies exist" do
       Movie.destroy_all
       get movies_path
       must_respond_with :success
