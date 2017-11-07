@@ -23,6 +23,12 @@ describe Movie do
     one.valid?.must_equal false
   end
 
+  it "must have an inventory to be vaild" do
+    one.valid?.must_equal true
+    one.inventory = nil
+    one.valid?.must_equal false
+  end
+
   it "must have an integer in inventory to be vaild" do
     one.valid?.must_equal true
     one.inventory = "zero"
@@ -32,12 +38,6 @@ describe Movie do
   it "inventory must be greater than or equal to zero to be vaild" do
     one.valid?.must_equal true
     one.inventory = -1
-    one.valid?.must_equal false
-  end
-
-  it "must have an integer in inventory to be vaild" do
-    one.valid?.must_equal true
-    one.inventory = nil
     one.valid?.must_equal false
   end
 end
