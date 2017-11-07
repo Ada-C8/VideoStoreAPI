@@ -15,3 +15,15 @@ rental_two:
   movie: movie_one
   checkout_date: "2017-11-07"
   due_date: "2017-11-14"
+
+rental_three:
+  customer: customer_one
+  movie: movie_two
+  checkout_date: "2017-11-07"
+  due_date: "2017-11-14"
+
+rental_four:
+  customer: customer_two
+  movie: movie_two
+  checkout_date: "2017-11-07"
+  due_date: "2017-11-14"
