@@ -70,4 +70,21 @@ describe Movie do
       end
     end
   end
+
+  describe "inventory" do
+    it "returns false if a movie does not have any inventory" do
+      movie_data =
+        {
+          title: "Jack",
+          overview: "Blahblah",
+          release_date: "1984",
+          inventory: 0
+        }
+
+
+      movie = Movie.new(movie_data)
+
+      movie.inventory?.must_equal false
+    end
+  end
 end
