@@ -29,7 +29,7 @@ describe MoviesController do
     end
 
     it "returns all movies with the requred fields" do
-      keys = ["inventory", "overview", "release_date", "title"]
+      keys = ["id", "inventory", "overview", "release_date", "title"]
 
       get movies_path
 
@@ -75,12 +75,27 @@ describe MoviesController do
       }
     }
 
+    let(:invalid_data) {
+      {
+        overview: "A boy who lived with the scar",
+        release_date: 2001-11-16,
+        inventory: 3
+      }
+    }
+
     it "returns success if a movie is created" do
       proc {
         post movies_path, params: { movie: movie_data }
         }.must_change 'Movie.count', 1
 
+      response.header['Content-Type'].must_include 'json'
       must_respond_with :success
+    end
+
+    it "returns bad_request if the movie has invalid parameters" do
+      proc { post movies_path, params: { movie: invalid_data} }.wont_change 'Movie.count', 1
+
+      must_respond_with :bad_request
     end
   end
 

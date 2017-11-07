@@ -1,8 +1,9 @@
 class MoviesController < ApplicationController
+
   def index
     movies = Movie.all
     render(
-      json: movies.as_json(only: [:title, :overview, :release_date, :inventory]), status: :ok
+      json: movies.as_json(only: [:id, :title, :overview, :release_date, :inventory]), status: :ok
     )
   end
 
@@ -10,7 +11,7 @@ class MoviesController < ApplicationController
     movie = Movie.find_by(id: params[:id])
     if movie
       render(
-        json: movie.as_json(only: [:title, :overview, :release_date, :inventory]), status: :ok
+        json: movie.as_json(only: [:id, :title, :overview, :release_date, :inventory]), status: :ok
       )
     else
       render(
@@ -21,7 +22,7 @@ class MoviesController < ApplicationController
 
   def create
     movie = Movie.new(movies_params)
-    if movie.save!
+    if movie.save
       # This is returning the new movie id as a json back to the user
       render json: { id: movie.id }, status: :ok
     else
