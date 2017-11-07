@@ -89,7 +89,7 @@ describe MoviesController do
 
     it "Creates a new movie" do
       assert_difference "Movie.count", 1 do
-        post movies_path, params: { movie: movie_data }
+        post movies_path, params: movie_data
         assert_response :success
       end
 
@@ -102,7 +102,7 @@ describe MoviesController do
     end
 
     it "Returns an error for an invalid movie" do
-      post movies_path, params: { movie: invalid_movie_data }
+      post movies_path, params: invalid_movie_data
       must_respond_with :bad_request
 
       body = JSON.parse(response.body)
