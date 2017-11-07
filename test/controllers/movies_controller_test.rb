@@ -69,16 +69,30 @@ describe MoviesController do
         release_date: "YYYY-MM-DD",
         inventory: 5}
       }
-      
+
       it "Creates a new Movie" do
-        #proc must change
+        proc {
+          post movies_path(movie: movie_data)
+        }.must_change('Movie.count', 1)
+        must_respond_with :created
+
       end
 
-      it "Returns the id of the created Movie" do
+      it "Returns json with just the id of the created Movie" do
+        post movies_path(movie: movie_data)
+        body = JSON.parse(response.body)
+        movie = Movie.find_by(title: "Pajama Game")
+        body["id"].must_equal movie.id
 
       end
 
       it "Returns an error for an invalid Movie" do
+        proc {
+          post movies_path(movie: {title: "BOGIES"})
+        }.must_change('Movie.count', 0)
+        body = JSON.parse(response.body)
+        body["ok"].must_equal false
+        must_respond_with :bad_request
 
       end
     end # CREATE
