@@ -19,7 +19,7 @@ describe Customer do
   describe "relationships" do
     it "must have a collection of rentals" do
       harry.must_respond_to :rentals
-      harry.rentals.length.must_equal 1
+      harry.rentals.length.must_equal 2
       harry.rentals[0].must_be_kind_of Rental
     end
 
