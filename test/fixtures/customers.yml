@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  registered_at: MyString
+customer_one:
+  name: Joseph
+  registered_at: Street Address
   address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
+  city: City Name
+  state: STATE
+  postal_code: 65432
+  phone: 111-111-1111
 
-two:
-  name: MyString
-  registered_at: MyString
-  address: MyString
-  city: MyString
-  state: MyString
-  postal_code: MyString
-  phone: MyString
+# customer_two:
+#   name: Gordon
+#   registered_at: MyString
+#   address: Street Address
+#   city: City Name
+#   state: STATE
+#   postal_code: 12345-6789
+#   phone: (888)777-4444
