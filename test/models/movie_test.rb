@@ -41,7 +41,7 @@ describe Movie do
 
   describe "relationship between movie and rentals" do
     before do
-      @movie = (:movie_one)
+      @movie = movies(:movie_one)
     end
 
     it "movie responds to rentals" do
@@ -49,9 +49,25 @@ describe Movie do
     end
 
     it "lists rentals for a given movie"  do
-      @movie.rentals.count.must_equal 1
-
-      @movie.rentals[0].must_be_kind_of Rental
+      @movie.rentals.each do |rental|
+        rental.must_be_kind_of Rental
       end
     end
+  end
+
+  describe "relationship between movies and customers" do
+    before do
+      @movie = movies(:movie_one)
+    end
+
+    it "movie responds to customers" do
+      @movie.must_respond_to :customers
+    end
+
+    it "lists customers for a given movie"  do
+      @movie.customers.each do |customer|
+        customer.must_be_kind_of Customer
+      end
+    end
+  end
 end
