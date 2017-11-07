@@ -68,7 +68,7 @@ describe MoviesController do
 
   describe "create" do
     it "can create a movie given the required params" do
-      movie_data = {movie: {title: "Space Jam", overview: "Great movie", release_date: "1994-01-01", inventory: 5}}
+      movie_data =  {title: "Space Jam", overview: "Great movie", release_date: "1994-01-01", inventory: 5}
 
       proc {
         post movies_path params: movie_data
@@ -81,7 +81,7 @@ describe MoviesController do
     end
 
     it "renders bad request given invalid data" do
-      movie_data = {movie: {title: nil, overview: "Great movie", release_date: "1994-01-01", inventory: 5}}
+      movie_data = {title: nil, overview: "Great movie", release_date: "1994-01-01", inventory: 5}
 
       proc {
         post movies_path params: movie_data
