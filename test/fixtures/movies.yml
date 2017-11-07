@@ -4,8 +4,20 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+movie_one:
+  title: "Gone with the Wind"
+  overview: "Lovely drama"
+  release_date: "1950"
+  inventory: 2
+
+movie_two:
+  title: "Hitchiker's Guide to the Galaxy"
+  overview: "Philosophical fiction"
+  release_date: "2000"
+  inventory: 3
+
+movie_three:
+  title: "Sharknato"
+  overview: "Just Because"
+  release_date: "1995"
+  inventory: 5
