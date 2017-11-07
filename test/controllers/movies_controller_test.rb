@@ -57,6 +57,17 @@ describe MoviesController do
       must_respond_with :success
     end
 
+    it "returns movie with exactly the required fields" do
+
+
+      keys = %w(available_inventory inventory overview release_date title)
+
+      get movie_path(movies(:one).id)
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+    end
+
+
     it "responds correctly when a movie is not found" do
       invalid_movie_id = Movie.all.last.id + 1
 
@@ -78,7 +89,7 @@ describe MoviesController do
     }
     it "create a movie" do
       proc {
-        post movies_path, params: { movie: movie_data}
+        post movies_path, params: ( movie_data)
       }.must_change 'Movie.count', 1
 
       must_respond_with :success
@@ -90,7 +101,7 @@ describe MoviesController do
       }
 
       proc {
-        post movies_path, params: { movie: invalid_movie_data }
+        post movies_path, params: ( invalid_movie_data )
       }.wont_change 'Movie.count'
 
       must_respond_with :bad_request
