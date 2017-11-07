@@ -3,9 +3,9 @@
 one:
   customer_id: 1
   movie_id: 1
-  due_date: MyString
+  due_date: 2017-01-02
 
 two:
   customer_id: 1
   movie_id: 1
-  due_date: MyString
+  due_date: 2017-01-08 
