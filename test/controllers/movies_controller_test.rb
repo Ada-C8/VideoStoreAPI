@@ -16,7 +16,6 @@ describe MoviesController do
 
     it "returns an array" do
       get movies_path
-      # This returns the body of all pets!
       body = JSON.parse(response.body)
       body.must_be_kind_of Array
     end

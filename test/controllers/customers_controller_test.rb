@@ -111,7 +111,8 @@ describe CustomersController do
       patch customer_path(customer.id), params: customer_data
 
       must_respond_with :success
-      # customer.name.must_equal customer_data[:name]
+      customer.reload
+      customer.name.must_equal customer_data[:name]
     end
 
     it "won't update customer information if data is missing" do
