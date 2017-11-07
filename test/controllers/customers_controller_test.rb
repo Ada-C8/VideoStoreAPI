@@ -8,7 +8,6 @@ describe CustomersController do
       end
 
       it "returns json" do
-        binding.pry
         get customers_url
         response.header['Content-Type'].must_include 'json'
       end
