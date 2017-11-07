@@ -70,7 +70,7 @@ describe MoviesController do
   end #end show
 
   describe "create" do
-    let(:moive_data) {
+    let(:movie_data) {
       {
         title: "The movie",
         release_date: "2012-12-21"
