@@ -1,6 +1,7 @@
 require "test_helper"
 describe RentalsController do
   describe "check_out" do
+
     it "succeeds" do
       post checkout_path
       must_respond_with :success
