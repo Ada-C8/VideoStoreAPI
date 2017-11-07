@@ -1,4 +1,5 @@
 class Customer < ApplicationRecord
+  has_many :rentals
 
   def self.index_customers
     customers = Customer.all
