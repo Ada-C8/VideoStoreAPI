@@ -95,7 +95,7 @@ describe MoviesController do
       #   post movies_path, params: new_movie_data
       # }.must_change "Movie.count", 1
 
-      post movies_path, params: {movie: new_movie_data}
+      post movies_path, params: new_movie_data
 
       Movie.count.must_equal count+1
 
