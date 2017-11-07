@@ -1,13 +1,5 @@
 require "test_helper"
 
-# validates :name, presence: true
-# validates :registered_at, presence: true
-# validates :address, presence: true
-# validates :city, presence: true
-# validates :state, presence: true
-# validates :postal_code, presence: true
-# validates :phone, presence: true
-
 describe Customer do
   let(:customer) { customers(:one) }
 
