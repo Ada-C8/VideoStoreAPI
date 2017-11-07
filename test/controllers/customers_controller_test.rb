@@ -51,11 +51,18 @@ describe CustomersController do
   describe "show" do
     it "is a real working route" do
       first_id = Customer.first.id
-      binding.pry
-      get customers_path(first_id)
+      get customer_path(first_id)
       must_respond_with :success
     end
 
+    it "responds correctly when the customer is not found" do
+      invalid_id = Customer.last.id + 1
+      get customer_path(invalid_id)
+      must_respond_with :not_found
+
+      body = JSON.parse(response.body)
+      body.must_equal "id" => "Invalid Customer ID"
+    end
   end
 
 
