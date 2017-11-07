@@ -33,7 +33,7 @@ class CustomersController < ApplicationController
       )
     else
       render(
-      json: {errors: customers.errors.messages}, status: :bad_request
+      json: {errors: customer.errors.messages}, status: :bad_request
       )
     end
   end

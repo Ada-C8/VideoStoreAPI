@@ -69,6 +69,7 @@ describe CustomersController do
     it "Can create a new customer" do
       customer_data = {
         name: "name",
+        phone: "phone",
         registered_at: "registered at",
         address: "address",
         city: "city",
@@ -84,23 +85,20 @@ describe CustomersController do
 
     it "won't change db if data is missing" do
       invalid_customer_data = {
-        # name: "name",
+        name: "name",
         # registered_at: "registered at",
         # address: "address",
         # city: "city",
         # state: "state",
         # postal_code: "postal code"
-        fake: "fake"
       }
-      binding.pry
-
       proc {
         post customers_path, params: {customer: invalid_customer_data}
       }.wont_change 'Customer.count'
 
       must_respond_with :bad_request
       body = JSON.parse(response.body)
-      body.must_equal errors:{"invalid data" => ["Missing needed information"]}
+      body.must_equal "errors" => {"phone" => ["can't be blank"]}
     end
   end
 
