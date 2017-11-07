@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
   has_many :rentals, dependent: :nullify
 
-  validates :title, presence: true
-  validates :release_date, presence: true
+  validates_presence_of :title, :release_date
+
 end
