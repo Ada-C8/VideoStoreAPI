@@ -6,13 +6,8 @@ class Rental < ApplicationRecord
   def checkout(movie_id, customer_id)
     movie = Movie.find_by_id(movie_id)
     customer = Customer.find_by_id(customer_id)
-
     if customer && movie && movie.available_inventory > 0
-      puts movie.title
-      puts customer.name
-      puts movie.available_inventory
       movie.available_inventory -= 1
-      puts movie.available_inventory
       movie.save
       customer.movies_checked_out_count += 1
       customer.save
@@ -22,7 +17,19 @@ class Rental < ApplicationRecord
     end
   end
 
-
+def checkin(movie_id, customer_id)
+  movie = Movie.find_by_id(movie_id)
+  customer = Customer.find_by_id(customer_id)
+  if customer && movie && customer.movies_checked_out_count > 0
+    movie.available_inventory += 1
+    movie.save
+    customer.movies_checked_out_count -= 1
+    customer.save
+    return true
+  else
+    return false
+  end
+end
 
 
   private
