@@ -56,6 +56,34 @@ describe MoviesController do
       movies(:magic).destroy
       get movie_path(movies(:magic).id)
       must_respond_with :not_found
+    end
   end
+
+  describe "create" do
+    it "can create a movie given the required params" do
+      movie_data = {movie: {title: "Space Jam", overview: "Great movie", release_date: "1994-01-01", inventory: 5}}
+
+      proc {
+        post movies_path params: movie_data
+        must_respond_with :success
+      }.must_change "Movie.count", 1
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "id"
+    end
+
+    it "renders bad request given invalid data" do
+      movie_data = {movie: {title: nil, overview: "Great movie", release_date: "1994-01-01", inventory: 5}}
+
+      proc {
+        post movies_path params: movie_data
+        must_respond_with :bad_request
+      }.wont_change "Movie.count"
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+    end
   end
 end
