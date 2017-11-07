@@ -40,5 +40,10 @@ describe Movie do
     movie.valid?.must_equal true
   end
 
+  it "won't create a movie if a movie with the same title and same release year already exists" do
+    not_uniq_movie = movie.clone()
+    not_uniq_movie.valid?.must_equal false
+  end
+
 
 end
