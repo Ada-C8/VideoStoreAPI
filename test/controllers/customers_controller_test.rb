@@ -22,7 +22,7 @@ describe CustomersController do
       body.length.must_equal Customer.count
     end
     it 'it returns customers with the exact required fields' do
-      keys = %w(account_credit address city id name phone postal_code registered_at state).sort
+      keys = %w(account_credit address city id name phone postal_code registered_at state movies_checked_out_count).sort
       get customers_path
       body = JSON.parse(response.body)
 
