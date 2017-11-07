@@ -86,5 +86,29 @@ describe Movie do
 
       movie.inventory?.must_equal false
     end
+
+    it "returns true if a movie has at least one in inventory" do
+      movie = movies(:movie_one)
+
+      movie.inventory?.must_equal true
+    end
+  end
+
+  describe "reduce inventory" do
+    it "will reduce the inventory of a movie by one" do
+      movie = movies(:movie_one)
+      start_inventory = movie.inventory
+      movie.reduce_inventory
+      movie.inventory.must_equal start_inventory - 1
+    end
+  end
+
+  describe "increase inventory" do
+    it "will reduce the inventory of a movie by one" do
+      movie = movies(:movie_one)
+      start_inventory = movie.inventory
+      movie.increase_inventory
+      movie.inventory.must_equal start_inventory + 1
+    end
   end
 end

@@ -17,16 +17,16 @@ class Movie < ApplicationRecord
   end
 
 #TEST THIS - NOT YET IMPLEMENTED
-  def self.reduce_inventory(rental)
-    rental.movie.inventory = movie.inventory - 1
+  def self.reduce_inventory
+    movie.inventory = movie.inventory - 1
 
-    rental.movie.save
+    movie.save
   end
 
 #TEST THIS - NOT YET IMPLEMENTED
-  def self.increase_inventory(rental)
-    rental.movie.inventory = movie.inventory + 1
+  def self.increase_inventory
+    movie.inventory = movie.inventory + 1
 
-    rental.movie.save
+    movie.save
   end
 end
