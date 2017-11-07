@@ -7,6 +7,14 @@ class Movie < ApplicationRecord
   validates :inventory, numericality: {only_integer: true, greater_than: 0 }
 
   def available_inventory
-    return 0
+    unavailable = Rental.where(movie_id: self.id, returned: false).count
+
+    available = self.inventory - unavailable
+
+    return available
+  end
+
+  def available?
+    return self.available_inventory > 0
   end
 end
