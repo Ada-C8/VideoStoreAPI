@@ -9,11 +9,12 @@ describe RentalsController do
       before_count = movie.available_inventory
       post checkout_path, params: { movie_id: movie.id, customer_id: customer.id }
 
-      # must_respond_with :success
+      must_respond_with :success
 
-      # response.header('Content-Type').must_include 'json'
-      # body = JSON.parse(respnse.body)
-      # body.must_be_kind_of Array
+      response.header['Content-Type'].must_include 'json'
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+
       movie.reload
       movie.available_inventory.must_equal before_count - 1
     end

@@ -8,6 +8,18 @@ class RentalsController < ApplicationController
     # if @movie.check_inventory
     rental = Rental.create(customer: customer, movie: movie, due_date: Date.today + 1.day)
 
+    if rental.save
+      render(
+        json: { id: rental.id },
+        status: :ok
+      )
+    else
+      render(
+        json: { errors: movie.errors.messages },
+        status: :bad_request
+      )
+    end
+
     movie.update(available_inventory: movie.available_inventory - 1)
     customer.update(movies_checked_out_count: customer.movies_checked_out_count + 1)
     # end
