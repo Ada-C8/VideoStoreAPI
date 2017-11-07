@@ -28,8 +28,8 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
 
-    it "returns all movies with the requred fields" do
-      keys = ["id", "inventory", "overview", "release_date", "title"]
+    it "returns all movies with the required fields" do
+      keys = ["id", "release_date", "title"]
 
       get movies_path
 
@@ -39,13 +39,14 @@ describe MoviesController do
       end
     end
 
-    it "returns an array if there are no movies" do
+    it "returns an empty array if there are no movies" do
       Movie.destroy_all
 
       get movies_path
 
       body = JSON.parse(response.body)
       body.must_be :empty?
+      must_respond_with :success
     end
   end
 
