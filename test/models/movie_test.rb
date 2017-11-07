@@ -34,4 +34,18 @@ describe Movie do
       gremlins.customers[0].must_be_instance_of Customer
     end
   end
+
+  describe "available_inventory" do
+    it "should be decremented when a copy is checked out (rental creation)" do
+
+    end
+
+    it "should increment when a copy is checked back in" do
+
+    end
+
+    it "should not allow a rental to be created when available_inventory is 0" do
+
+    end
+  end
 end

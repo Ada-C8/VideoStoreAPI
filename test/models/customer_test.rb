@@ -28,4 +28,11 @@ describe Customer do
       sally.movies[0].must_be_instance_of Movie
     end
   end
+
+  describe "movies_checked_out_count" do
+    # edit once this method is built out
+    it "must return 0" do
+      sally.movies_checked_out_count.must_equal 0
+    end
+  end
 end
