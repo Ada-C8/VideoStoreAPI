@@ -3,10 +3,14 @@ class MoviesController < ApplicationController
   def index
     movies = Movie.all
 
+    if movies.count > 0
     render(
       json: movies.as_json(only: [:id, :title, :release_date]),
       status: :ok
     )
+    else
+      render json: {nothing: true}
+    end  
   end
 
   def show

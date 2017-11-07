@@ -37,22 +37,22 @@ describe CustomersController do
       end
     end
 
-      describe "show" do
-        # This bit is up to you!
-        it "can get a customer" do
-          get customer_path(customers(:two).id)
-          must_respond_with :success
-        end
+    describe "show" do
+      # This bit is up to you!
+      it "can get a customer" do
+        get customer_path(customers(:two).id)
+        must_respond_with :success
+      end
 
-        it "responds correctly when a customer is not found" do
-          invalid_customer_id = Customer.last.id + 1
-          get customer_path(invalid_customer_id)
+      it "responds correctly when a customer is not found" do
+        invalid_customer_id = Customer.last.id + 1
+        get customer_path(invalid_customer_id)
 
-          must_respond_with :not_found
+        must_respond_with :not_found
 
-          body = JSON.parse(response.body)
-          body.must_equal "nothing" => true
-        end
-      end #show tests
-    end 
+        body = JSON.parse(response.body)
+        body.must_equal "nothing" => true
+      end
+    end #show tests
+  end
 end

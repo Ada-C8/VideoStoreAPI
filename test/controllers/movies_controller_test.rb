@@ -37,6 +37,15 @@ describe MoviesController do
         movie.keys.must_equal keys
       end
     end
+
+    # This test passes when yml fixture data is commented out; cannot run test with other tests.
+    # it "returns a message when list of movies is empty" do
+    #   get movies_path
+    #   must_respond_with :success
+    #
+    #   body = JSON.parse(response.body)
+    #   body.must_equal "nothing" => true
+    # end
   end #index tests
 
   describe "show" do
@@ -56,7 +65,6 @@ describe MoviesController do
       body.must_equal "nothing" => true
     end
   end #show tests
-
 
   describe "create movie" do
     let(:movie_data) {
