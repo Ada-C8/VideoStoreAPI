@@ -48,6 +48,7 @@ group :development do
 end
 
 group :test do
+  gem 'pry-rails'
   gem 'minitest-rails'
   gem 'minitest-reporters'
 end
