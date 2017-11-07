@@ -1,6 +1,7 @@
 require "test_helper"
 
 describe MoviesController do
+  let(:psycho) {movies(:psycho)}
   describe "INDEX" do
     it "successfully returns json as an Array" do
       get movies_path
@@ -36,5 +37,28 @@ describe MoviesController do
       body.must_be :empty?
     end
   end
+
+  describe "SHOW" do
+    it "Can get a single Movie" do
+      get movie_path(psycho.id)
+      must_respond_with :success
+    end
+
+    it "Returns json that includes title, overview, release_date and inventory(total)" do
+      keys = %w(title overview release_date inventory)
+      get movie_path(psycho.id)
+
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys.sort
+    end
+    
+    it "Returns an error for an invalid id" do
+      psycho.destroy
+      get movie_path(psycho.id)
+      must_respond_with :not_found
+      body = JSON.parse(response.body)
+      body["ok"].must_equal false
+    end
+  end # SHOW
 
 end
