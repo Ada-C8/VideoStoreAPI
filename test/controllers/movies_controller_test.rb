@@ -69,4 +69,22 @@ describe MoviesController do
     end
   end
 
+  describe "create" do
+    it "must respond with JSON" do
+      post create_movie_path, params: {title: "Raiders of the Lost Ark"}
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it "returns only the required fields" do
+      key = ['id']
+      post create_movie_path, params: {title: "Raiders of the Lost Ark"}
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal key
+    end
+
+    it "can create a new movie" do
+      proc {post create_movie_path, params: {title: "Raiders of the Lost Ark"}}.must_change "Movie.count", 1
+    end
+  end
+
 end
