@@ -39,5 +39,9 @@ describe Rental do
 
       rental.due_date.must_equal (Date.today + 7)
     end
+
+    it "status defaults to checked out" do
+      rental.status.must_equal "checked_out"
+    end
   end
 end

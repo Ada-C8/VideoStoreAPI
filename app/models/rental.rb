@@ -13,5 +13,6 @@ class Rental < ApplicationRecord
   def set_defaults
     self.checkout_date = Date.today
     (self.due_date = Date.today + 3) unless self.due_date
+    self.status = "checked_out"
   end
 end
