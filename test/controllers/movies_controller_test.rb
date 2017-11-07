@@ -51,7 +51,7 @@ describe MoviesController do
       body = JSON.parse(response.body)
       body.keys.sort.must_equal keys.sort
     end
-    
+
     it "Returns an error for an invalid id" do
       psycho.destroy
       get movie_path(psycho.id)
@@ -61,4 +61,25 @@ describe MoviesController do
     end
   end # SHOW
 
+
+    describe "CREATE" do
+      let(:movie_data) {
+        {title: "Pajama Game",
+        overview: "A musical about a pajama factory and the hunt for a communist?",
+        release_date: "YYYY-MM-DD",
+        inventory: 5}
+      }
+      
+      it "Creates a new Movie" do
+        #proc must change
+      end
+
+      it "Returns the id of the created Movie" do
+
+      end
+
+      it "Returns an error for an invalid Movie" do
+
+      end
+    end # CREATE
 end
