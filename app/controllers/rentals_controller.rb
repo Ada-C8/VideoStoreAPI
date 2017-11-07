@@ -23,7 +23,6 @@ class RentalsController < ApplicationController
         json: { ok: false, message: "Insufficient inventory of select movie -- cannot checkout"},
         status: :bad_request
       )
-      return
     end
 
 

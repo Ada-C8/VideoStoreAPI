@@ -7,3 +7,8 @@
 rental1:
   customer: bill
   movie: movie1
+  checkout_date: 2017-11-11
+
+rental2:
+  customer: bill
+  movie: movie2

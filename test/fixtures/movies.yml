@@ -11,4 +11,5 @@ movie2:
   title: MyString
   overview: MyString
   release_date: MyString
-  inventory: 1
+  inventory: 0
+  available_inventory: 0
