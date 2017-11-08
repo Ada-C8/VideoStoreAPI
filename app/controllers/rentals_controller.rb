@@ -3,11 +3,12 @@ class RentalsController < ApplicationController
   def checkout
     rental = Rental.new(rental_params)
     rental.set_checkout
-    p rental.checkout_date
-    p rental.due_date
-    p rental.movie
-    p rental.customer
-    rental.save
+
+    if rental.save
+      render json: rental.as_json(only: [:id]), status: :ok
+    else
+      render json: {ok: false}, status: :bad_request
+    end
   end
 
   private
