@@ -26,4 +26,21 @@ describe Customer do
     end
 
   end
+
+
+  describe "methods" do
+    it "adds to checkout count" do
+      customer = customers(:one)
+      count = customer.movies_checked_out_count
+      customer.add_checkout_count
+      customer.movies_checked_out_count.must_equal count + 1
+    end
+
+    it "decreases checkout count" do
+      customer = customers(:one)
+      count = customer.movies_checked_out_count
+      customer.decrease_checkout_count
+      customer.movies_checked_out_count.must_equal count - 1
+    end
+  end
 end

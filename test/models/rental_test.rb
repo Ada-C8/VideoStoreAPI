@@ -7,8 +7,6 @@ describe Rental do
   describe "relationships" do
 
     it "belongs to movie" do
-      puts "ZZZZZZZZZZZZZZ"
-      puts rental
       rental.must_respond_to :movie
     end
 
@@ -16,7 +14,7 @@ describe Rental do
       rental.must_respond_to :customer
     end
   end
-  
+
 
 
 end

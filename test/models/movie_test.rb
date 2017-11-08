@@ -29,10 +29,32 @@ describe Movie do
 
   describe "methods" do
     it "checks inventory" do
-      #####FILL IN###########
+      movie = movies(:one)
+      movie.check_inventory.must_equal true
     end
+
+    it "doesn't check inventory if a movie doesn't exist" do
+      movie = movies(:three)
+      movie.check_inventory.must_equal false
+    end
+
     it "decreases inventory" do
-      #####FILL IN###########
+      movie = movies(:one)
+      inventory_count = movie.available_inventory
+      movie.decrease_inventory
+      movie.available_inventory.must_equal inventory_count - 1
+    end
+
+    it "checks if checked out" do
+      movie = movies(:four)
+      movie.check_if_checked_out.must_equal true
+    end
+
+    it "increases inventory" do
+      movie = movies(:one)
+      inventory_count = movie.available_inventory
+      movie.increase_inventory
+      movie.available_inventory.must_equal inventory_count + 1
     end
   end
 end

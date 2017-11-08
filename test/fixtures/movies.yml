@@ -26,3 +26,10 @@ three:
   release_date: late 2018
   inventory: 0
   available_inventory: 0
+
+four:
+  title: Clueless
+  overview: sexy and brutal
+  release_date: late 2018
+  inventory: 20
+  available_inventory: 19
