@@ -36,7 +36,22 @@ class RentalsController < ApplicationController
   end
 
   def overdue
-    rentals = Rental.where("due_date < ?", Date.today())
+    accepted_params = %w(title name checkout_date due_date)
+    if accepted_params.include?(params[:sort])
+      if params[:sort] == 'title'
+        rentals = Rental.joins(:movie).order("movies.title").where("due_date < ?", Date.today())
+      elsif params[:sort] == 'name'
+        rentals = Rental.joins(:customer).order("customers.name").where("due_date < ?", Date.today())
+      elsif params[:sort] == 'checkout_date'
+        rentals = Rental.joins(:movie).joins(:customer).where("due_date < ?", Date.today()).order(:created_at)
+      else
+        rentals = Rental.joins(:movie).joins(:customer).where("due_date < ?", Date.today()).order(:due_date)
+      end
+    else
+      rentals = Rental.where("due_date < ?", Date.today())
+      # rentals = Rental.joins(:movie).order("movies.title")
+
+    end
     render json: rentals, status: :ok
   end
 
