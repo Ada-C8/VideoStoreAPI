@@ -104,21 +104,37 @@ describe RentalsController do
 
 
   describe "overdue" do
+    let(:rental_data) {
+      {
+        movie_id: Movie.first.id,
+        customer_id: Customer.first.id
+      }
+    }
 
-    # let(:rental_data) {
-    #   {
-    #     movie_id: Movie[1].id
-    #     customer_id: Movie[1].id
-    #   }
-    # }
+    let(:more_rental_data) {
+      {
+        movie_id: Movie.last.id,
+        customer_id: Customer.last.id
+      }
+    }
+
+    before do
+      Rental.destroy_all
+      post checkout_url(rental_data)
+      rental = Rental.first
+      rental.due_date = "2017-10-10"
+      rental.save
+
+      post checkout_url(more_rental_data)
+    end
 
     it "succeeds" do
       get overdue_path
       must_respond_with :success
     end
 
-    it "returns list  of all customers with overdue movies" do
-      keys = ["id", "customer_id", "movie_id", "due_date", "checkout_date"]
+    it "returns overdue rental with all required fields" do
+      keys = ["title", "customer_id", "name", "postal_code", "checkout_date", "due_date"]
       get overdue_path
       body = JSON.parse(response.body)
       body.keys.must_equal keys
