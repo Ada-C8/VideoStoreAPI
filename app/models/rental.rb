@@ -4,7 +4,7 @@ class Rental < ApplicationRecord
   belongs_to :movie
   belongs_to :customer
 
-  def self.pretty_date
+  def pretty_date
     d = Date.parse(self.due_date)
     return d.strftime('%a %d %b %Y')
   end

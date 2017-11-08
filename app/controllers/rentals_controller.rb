@@ -17,11 +17,12 @@ class RentalsController < ApplicationController
       movie.save
       customer.movies_checked_out += 1
       customer.save
-      # render json: rental.as_json(only: [:movie_id, :customer_id, :pretty_date]), status: :ok
-      render json: rental, status: :created
+      rental.due_date = rental.pretty_date
+      render json: rental.as_json(only: [:movie_id, :customer_id, :due_date]), status: :created
     else
       render json: { ok: false, errors: rental.errors }.as_json, status: :bad_request
     end
+
 
   end
 
@@ -70,6 +71,7 @@ class RentalsController < ApplicationController
   def rental_params
     params.permit(:movie_id, :customer_id)
   end
+
 
 
 end
