@@ -1,0 +1,507 @@
+{
+	"id": "c4e949e2-ca19-4e6d-b1ca-56e5db774480",
+	"name": "VideoStoreAPI",
+	"allTests": [],
+	"timestamp": "2017-11-08T00:14:30.167Z",
+	"collection_id": "a496b9e6-1927-53ae-3118-7aa5d8d0969d",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "1878813c-7313-1fa1-0ce1-0c17d8f260e1",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "a496b9e6-1927-53ae-3118-7aa5d8d0969d",
+		"name": "VideoStoreAPI",
+		"description": "",
+		"order": [
+			"427c8d71-0ae3-2d78-7f6a-666734839fc0",
+			"3da7fe6e-fd2d-9f7b-3294-18d0dda55869",
+			"727828f0-51a2-426d-a9d6-81f3ba214463",
+			"6a6b2324-6601-8e4e-2a30-ba5f294546c0",
+			"0da64998-5b7e-a34a-883c-5b05d60a66c4"
+		],
+		"folders": [],
+		"folders_order": [],
+		"timestamp": 0,
+		"synced": true,
+		"remote_id": 0,
+		"owner": 0,
+		"sharedWithTeam": false,
+		"subscribed": false,
+		"remoteLink": "",
+		"remoteLinkUpdatedAt": null,
+		"public": false,
+		"createdAt": 1510013970981,
+		"updatedAt": 1510013970981,
+		"write": true,
+		"published": false,
+		"favorite": false,
+		"permissions": {},
+		"syncedPermissions": {}
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "List Customers",
+			"id": "427c8d71-0ae3-2d78-7f6a-666734839fc0",
+			"url": "http://localhost:3000/customers",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Content-Type is present": true,
+				"Content-Type is application/json": true,
+				"Data is an array": true,
+				"Many customers were sent": true,
+				"All customers have id": true,
+				"All customers have name": true,
+				"All customers have registered_at": true,
+				"All customers have postal_code": true,
+				"All customers have phone": true,
+				"All customers have movies_checked_out_count": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Many customers were sent": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have registered_at": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have postal_code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have phone": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have movies_checked_out_count": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"480"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Content-Type is present": true,
+					"Content-Type is application/json": true,
+					"Data is an array": true,
+					"Many customers were sent": true,
+					"All customers have id": true,
+					"All customers have name": true,
+					"All customers have registered_at": true,
+					"All customers have postal_code": true,
+					"All customers have phone": true,
+					"All customers have movies_checked_out_count": false
+				}
+			],
+			"time": "480",
+			"totalRequestTime": "480",
+			"iterationResults": {}
+		},
+		{
+			"name": "List Movies",
+			"id": "3da7fe6e-fd2d-9f7b-3294-18d0dda55869",
+			"url": "http://localhost:3000/movies",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Content-Type is present": true,
+				"Content-Type is application/json": true,
+				"Data is an array": true,
+				"Many movies were sent": true,
+				"All movies have id": true,
+				"All movies have title": true,
+				"All movies have release_date": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Many movies were sent": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All movies have id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All movies have title": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All movies have release_date": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"70"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Content-Type is present": true,
+					"Content-Type is application/json": true,
+					"Data is an array": true,
+					"Many movies were sent": true,
+					"All movies have id": true,
+					"All movies have title": true,
+					"All movies have release_date": true
+				}
+			],
+			"time": "70",
+			"totalRequestTime": "70",
+			"iterationResults": {}
+		},
+		{
+			"name": "Show Movie from List",
+			"id": "727828f0-51a2-426d-a9d6-81f3ba214463",
+			"url": "http://localhost:3000/movies/2",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Content-Type is present": true,
+				"Content-Type is application/json": true,
+				"Data is not an array": true,
+				"Movie has title": true,
+				"Movie has overview": true,
+				"Movie has release_date": true,
+				"Movie has inventory": true,
+				"Movie has available_inventory": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data is not an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has title": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has overview": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has release_date": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has inventory": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has available_inventory": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"20"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Content-Type is present": true,
+					"Content-Type is application/json": true,
+					"Data is not an array": true,
+					"Movie has title": true,
+					"Movie has overview": true,
+					"Movie has release_date": true,
+					"Movie has inventory": true,
+					"Movie has available_inventory": false
+				}
+			],
+			"time": "20",
+			"totalRequestTime": "20",
+			"iterationResults": {}
+		},
+		{
+			"name": "Create Movie",
+			"id": "6a6b2324-6601-8e4e-2a30-ba5f294546c0",
+			"url": "http://localhost:3000/movies",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				"27"
+			],
+			"allTests": [
+				{}
+			],
+			"time": "27",
+			"totalRequestTime": "27",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 26,
+	"totalFail": 2,
+	"totalTime": 597,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "List Customers",
+			"id": "427c8d71-0ae3-2d78-7f6a-666734839fc0",
+			"url": "http://localhost:3000/customers",
+			"time": "2017-11-08T00:14:30.167Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Many customers were sent": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have name": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have registered_at": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have postal_code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have phone": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All customers have movies_checked_out_count": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "List Movies",
+			"id": "3da7fe6e-fd2d-9f7b-3294-18d0dda55869",
+			"url": "http://localhost:3000/movies",
+			"time": "2017-11-08T00:14:30.167Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Many movies were sent": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All movies have id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All movies have title": {
+					"pass": 1,
+					"fail": 0
+				},
+				"All movies have release_date": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Show Movie from List",
+			"id": "727828f0-51a2-426d-a9d6-81f3ba214463",
+			"url": "http://localhost:3000/movies/2",
+			"time": "2017-11-08T00:14:30.167Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data is not an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has title": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has overview": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has release_date": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has inventory": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Movie has available_inventory": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Create Movie",
+			"id": "6a6b2324-6601-8e4e-2a30-ba5f294546c0",
+			"url": "http://localhost:3000/movies",
+			"time": "2017-11-08T00:14:30.167Z",
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": {
+					"name": "Bad Request",
+					"detail": "The request cannot be fulfilled due to bad syntax."
+				}
+			},
+			"testPassFailCounts": {}
+		}
+	],
+	"synced": false
+}
