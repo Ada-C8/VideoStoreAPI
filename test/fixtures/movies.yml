@@ -3,17 +3,17 @@
 one:
   title: Twilight
   overview: Some movie, it has vampires??
-  release_date: idk
+  release_date: 1234-12-03
   inventory: 3
 
 two:
   title: Mary Poppins
   overview: There's penguins?
-  release_date: 1980
+  release_date: 1980-09-09
   inventory: 4
 
 three:
   title: Sold Out Movie
   overview: It's so good, it's always sold out
-  release_date: 1940
+  release_date: 1940-03-12
   inventory: 0

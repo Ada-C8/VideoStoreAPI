@@ -23,6 +23,14 @@ describe Movie do
     one.valid?.must_equal false
   end
 
+  it "must have a release date with a valid date in YYYY-MM-DD format" do
+    one.valid?.must_equal true
+    one.release_date = "cow"
+    one.valid?.must_equal false
+    one.release_date = "2017-02-50"
+    one.valid?.must_equal false
+  end
+
   it "must have an inventory to be vaild" do
     one.valid?.must_equal true
     one.inventory = nil
