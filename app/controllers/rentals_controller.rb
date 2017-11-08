@@ -17,7 +17,7 @@ class RentalsController < ApplicationController
 
   def checkout
     rental = Rental.new rental_params
-    rental.due_date = (Date.today() + 4).to_s
+    rental.due_date = Date.parse(params[:due_date]).to_s
     if rental.save
       customer = Customer.find_by(id: params[:customer_id])
       customer.movies_checked_out_count += 1

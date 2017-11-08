@@ -7,7 +7,7 @@ describe RentalsController do
   describe "Check Out" do
     it "can check-out a movie" do
       proc {
-        post checkout_path params: {customer_id: averi.id, movie_id: magic.id}
+        post checkout_path params: {customer_id: averi.id, movie_id: magic.id, due_date: (Date.today()+7).to_s}
       }.must_change "Rental.count", 1
 
       body = JSON.parse(response.body)
@@ -20,7 +20,7 @@ describe RentalsController do
 
     it "will increase checkout count" do
       start = averi.movies_checked_out_count
-      post checkout_path params: {customer_id: averi.id, movie_id: magic.id}
+      post checkout_path params: {customer_id: averi.id, movie_id: magic.id, due_date: (Date.today()+7).to_s}
       averi.reload
       averi.movies_checked_out_count.must_equal start + 1
 
@@ -28,14 +28,14 @@ describe RentalsController do
 
     it "will decrease available inventory" do
       start = magic.available_inventory
-      post checkout_path params: {customer_id: averi.id, movie_id: magic.id}
+      post checkout_path params: {customer_id: averi.id, movie_id: magic.id, due_date: (Date.today()+7).to_s}
       magic.reload.available_inventory
       magic.available_inventory.must_equal start - 1
     end
 
     it "won't check-out a movie with bogus customer data" do
       proc {
-        post checkout_path params: {customer_id: 0, movie_id: magic.id}
+        post checkout_path params: {customer_id: 0, movie_id: magic.id, due_date: (Date.today()+7).to_s}
       }.wont_change "Rental.count"
 
       body = JSON.parse(response.body)
@@ -47,7 +47,7 @@ describe RentalsController do
     it "won't check-out a movie with bogus movie data" do
       magic.destroy
       proc {
-        post checkout_path params: {customer_id: averi.id, movie_id: movies(:magic).id}
+        post checkout_path params: {customer_id: averi.id, movie_id: movies(:magic).id, due_date: (Date.today()+7).to_s}
       }.wont_change "Rental.count"
 
       body = JSON.parse(response.body)
@@ -57,9 +57,9 @@ describe RentalsController do
     end
 
     it "won't create a rental if the available inventory is zero" do
-      post checkout_path params:  {customer_id: averi.id, movie_id: movies(:dates).id}
+      post checkout_path params:  {customer_id: averi.id, movie_id: movies(:dates).id, due_date: (Date.today()+7).to_s}
 
-      post checkout_path params:  {customer_id: customers(:gale).id, movie_id: movies(:dates).id}
+      post checkout_path params:  {customer_id: customers(:gale).id, movie_id: movies(:dates).id, due_date: (Date.today()+7).to_s}
 
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
@@ -70,7 +70,7 @@ describe RentalsController do
     it "won't change available inventory or customer checkout count if rental is bogus" do
       start = averi.movies_checked_out_count
       magic.destroy
-      post checkout_path params: {customer_id: averi.id, movie_id: movies(:magic).id}
+      post checkout_path params: {customer_id: averi.id, movie_id: movies(:magic).id, due_date: (Date.today()+7).to_s}
       averi.reload
       averi.movies_checked_out_count.must_equal start
     end
