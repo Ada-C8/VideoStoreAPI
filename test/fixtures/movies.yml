@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+movie1:
+  title: Sleeping Beauty
+  overview: MyString
+  release_date: MyString
+  inventory: 2
+  available_inventory: 2
+
+movie2:
+  title: MyString
+  overview: MyString
+  release_date: MyString
+  inventory: 0
+  available_inventory: 0
