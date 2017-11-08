@@ -9,6 +9,7 @@ class Customer < ApplicationRecord
   private
 
   def set_defaults
+    self.account_credit ||=  0.0
     self.movies_checked_out_count ||= 0
   end
 end

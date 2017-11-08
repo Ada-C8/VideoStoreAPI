@@ -8,8 +8,7 @@ describe Customer do
     "city": "Hillsboro",
     "state": "OR",
     "postal_code": "24309",
-    "phone": "(322) 510-8695",
-    "account_credit": 13.15)
+    "phone": "(322) 510-8695")
   }
 
   describe 'validations' do
@@ -67,6 +66,22 @@ describe Customer do
 
       customer.wont_be :valid?
       customer.errors.must_include :account_credit
+    end
+
+    it 'defaults account credit to 0' do
+      customer.account_credit.must_equal 0.0
+    end
+
+    it 'can have phone number' do
+      customer.must_respond_to :phone
+    end
+
+    it 'has movies_checked_out_count' do
+      customer.must_respond_to :movies_checked_out_count
+    end
+
+    it 'defaults movies_checked_out_count to 0' do
+      customer.movies_checked_out_count.must_equal 0
     end
   end
 end

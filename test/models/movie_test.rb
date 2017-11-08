@@ -25,7 +25,6 @@ describe Movie do
 
       movie.wont_be :valid?
       movie.errors.must_include :inventory
-
     end
 
     it 'validates numericality of inventory' do
@@ -33,7 +32,22 @@ describe Movie do
 
       movie.wont_be :valid?
       movie.errors.must_include :inventory
+    end
 
+    it 'can have overview' do
+      movie.must_respond_to :overview
+    end
+
+    it 'can have release date' do
+      movie.must_respond_to :release_date
+    end
+
+    it 'has available_inventory' do
+      movie.must_respond_to :available_inventory
+    end
+
+    it 'defaults available_inventory to match inventory' do
+      movie.available_inventory.must_equal movie.inventory
     end
   end
 end
