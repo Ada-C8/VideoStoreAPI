@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+harry:
+  name: Harry Henderson
+  phone: (999) 999-9999
+  address: 123 Main St
+  city: Seattle
+  state: WA
+  postal_code: 98144
+  registered_at: 2017-11-05 22:19:39.093509
+
+sally:
+  name: Sally Field
+  phone: (123) 456-7890
+  address: 224 Peach St
+  city: Seattle
+  state: WA
+  postal_code: 98122
+  registered_at: 2017-11-06 22:19:39.102487
