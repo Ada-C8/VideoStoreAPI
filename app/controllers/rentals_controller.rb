@@ -24,9 +24,9 @@ class RentalsController < ApplicationController
       rental.save
       rental.checkin
       if rental.checkin
-        render json: rental.as_json(only: [:id, :checkout_date, :due_date]), status: :created
+        render json: rental.as_json(only: [:id, :checkout_date, :due_date, :customer_id, :movie_id]), status: :created
       else
-        render json: rental.as_json(errors: "Customer has not checked out this movie yet."), status: :bad_request
+        render json: {ok: false, errors: "Customer has not checked out this movie yet."}, status: :bad_request
       end
     end
   end

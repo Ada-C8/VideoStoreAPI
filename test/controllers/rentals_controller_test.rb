@@ -51,7 +51,11 @@ describe RentalsController do
     }
 
     it "is a valid route" do
-      post checkin_path(rentals(:not_overdue).id)
+      post checkout_url(rental_data)
+      body = JSON.parse(response.body)
+      id = body['id']
+
+      post checkin_path(id)
       must_respond_with :created
     end
 
@@ -76,8 +80,12 @@ describe RentalsController do
     end
 
     it "returns rental with exactly the required fields" do
-      keys = %w(id checkout_date due_date customer_id movie_id)
-      post checkin_path(rentals(:not_overdue).id)
+      post checkout_url(rental_data)
+      body = JSON.parse(response.body)
+      id = body['id']
+
+      keys = ["id", "customer_id", "movie_id", "due_date", "checkout_date"]
+      post checkin_path(id)
       body = JSON.parse(response.body)
       body.keys.must_equal keys
     end
