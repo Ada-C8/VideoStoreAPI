@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   def index
     movies = Movie.all
-    render json: movies, status: :ok
+    render :json => movies, :each_serializer => CustomSerializerSerializer
   end
 
   def show
@@ -30,6 +30,6 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:id, :title, :overview, :release_date, :inventory)
+    params.permit(:id, :title, :overview, :release_date, :inventory)
   end
 end
