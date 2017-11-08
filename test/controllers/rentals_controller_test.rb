@@ -127,7 +127,7 @@ describe RentalsController do
     it "if no overdue movies, status is no_content 204" do
       Rental.destroy_all
       get overdue_path
-      must_respond_with :success
+      must_respond_with :no_content
     end
 
     it "succeeds wether there are any overdue customers with 2XX response" do
