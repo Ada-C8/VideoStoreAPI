@@ -64,7 +64,7 @@ describe MoviesController do
     end
 
     it "returns a movie with exactly the required fields" do
-      keys = %w(available_inventory inventory overview release_date title)
+      keys = %w(available_inventory id inventory overview release_date title)
 
       get movie_path(movie.id)
 
