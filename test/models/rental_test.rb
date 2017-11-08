@@ -31,7 +31,7 @@ describe Rental do
     it "must turn the record to read-only after update" do
       rental = rentals(:one)
       rental.readonly?.must_equal false
-      put checkin_path(rental.id)
+      rental.checkin.must_equal true
       rental.readonly?.must_equal true
     end
   end
