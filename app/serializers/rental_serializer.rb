@@ -1,3 +1,3 @@
 class RentalSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :movie_id, :customer_id, :pretty_date
 end
