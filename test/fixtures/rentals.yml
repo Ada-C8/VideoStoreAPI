@@ -3,9 +3,9 @@
 not_overdue:
   customer_id: one
   movie_id: one
-  due_date: "11/25/2017"
+  due_date: "25/11/2017"
 
 overdue:
   customer_id: two
   movie_id: two
-  due_date: "11/05/2017"
+  due_date: "05/11/2017"
