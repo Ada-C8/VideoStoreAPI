@@ -98,7 +98,7 @@ describe Movie do
     it "will reduce the inventory of a movie by one" do
       movie = movies(:movie_one)
       start_inventory = movie.inventory
-      movie.reduce_inventory
+      movie.reduce_inventory!
       movie.inventory.must_equal start_inventory - 1
     end
   end
@@ -107,7 +107,7 @@ describe Movie do
     it "will reduce the inventory of a movie by one" do
       movie = movies(:movie_one)
       start_inventory = movie.inventory
-      movie.increase_inventory
+      movie.increase_inventory!
       movie.inventory.must_equal start_inventory + 1
     end
   end

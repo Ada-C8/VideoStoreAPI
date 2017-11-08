@@ -20,69 +20,126 @@ describe RentalsController do
     end
 
     it "return json" do
-      skip
-      post checkout_path
+      valid_rental_info = {
+        rental: {
+          customer_id: customer_one.id,
+          movie_id: movie_one.id,
+          due_date: "2019-11-14",
+          checkout_date: "2019-11-07",
+        }
+      }
+      post checkout_path(params: valid_rental_info)
       response.header['Content-Type'].must_include 'json'
     end
 
     it "returns an Array" do
-      skip
-      post checkout_path
+      valid_rental_info = {
+        rental: {
+          customer_id: customer_one.id,
+          movie_id: movie_one.id,
+          due_date: "2019-11-14",
+          checkout_date: "2019-11-07",
+        }
+      }
+      post checkout_path(params: valid_rental_info)
 
       body = JSON.parse(response.body)
-      body.must_be_kind_of Array
+      body.must_be_kind_of Hash
     end
 
     it "increases the number of rentals in db" do
-      skip
       rental_count = Rental.count
-      post checkout_path
+
+      valid_rental_info = {
+        rental: {
+          customer_id: customer_one.id,
+          movie_id: movie_one.id,
+          due_date: "2019-11-14",
+          checkout_date: "2019-11-07",
+        }
+      }
+      post checkout_path(params: valid_rental_info)
 
       Rental.count.must_equal (rental_count + 1)
     end
 
-    it "returns cust id, movie id and due date" do
-      skip
-      keys = %w(customer_id due_date movie_id)
-
-      post checkout_path
-      body = JSON.parse(response.body)
-      body.each do |checkout|
-        checkout.keys.sort.must_equal keys
-      end
-    end
-
-
-    it "returns an error message if not enough inventory" do
-      skip
-    end
-
-
-    it "returns an error message if the input is incorrect" do
-      skip
-    end
-
-    it "won't change db if data is missing" do
-      skip
-      let(:customer_one) { customers :customer_one}
-      let(:movie_one) { movies :movie_one}
-
-      invalid_rental_info = {
-        customer_id: customer_one,
-        movie_id: movie_one,
-        due_date: "2017-11-14",
-        # checkout_date: "2017-11-07",
+    it "returns rental id" do
+      valid_rental_info = {
+        rental: {
+          customer_id: customer_one.id,
+          movie_id: movie_one.id,
+          due_date: "2019-11-14",
+          checkout_date: "2019-11-07",
+        }
       }
+      post checkout_path(params: valid_rental_info)
 
-      proc {
-        post checkout_path, params: {rental: invalid_rental_info}
-      }.wont_change 'Rental.count'
-
-      must_respond_with :bad_request
       body = JSON.parse(response.body)
-      #this error message could change but just a sample of what we might want to output
-      body.must_equal "errors" => {"checkout_date" => ["can't be blank"]}
+      body.must_include "id"
+
     end
+  end
+
+  it "returns an error message if not enough inventory" do
+    movie = Movie.create(title: "title", overview: "Great story", inventory: 0, release_date: "2017-4-17")
+
+    rental_info = {
+      rental: {
+        customer_id: customer_one.id,
+        movie_id: movie.id,
+        due_date: "2019-11-14",
+        checkout_date: "2019-11-07"
+      }
+    }
+
+    post checkout_path(params: rental_info)
+
+    must_respond_with :bad_request
+
+    body = JSON.parse(response.body)
+    body.must_equal "errors" => ["Not enough inventory"]
 
   end
+
+  it "returns an error message if the input is incorrect" do
+    invalid_rental_info = {
+      rental: {
+        customer_id: customer_one.id,
+        movie_id: 44444444444,
+        due_date: "2019-11-14",
+        checkout_date: "2019-11-07",
+      }
+    }
+
+    post checkout_path(params: invalid_rental_info)
+
+    must_respond_with :bad_request
+
+    body = JSON.parse(response.body)
+    body.must_equal "errors" => ["Movie does not exist"]
+  end
+
+  let(:customer_one) { customers :customer_one}
+  let(:movie_one) { movies :movie_one}
+
+  it "won't change db if data is missing" do
+    invalid_rental_info = {
+      rental: {
+        customer_id: customer_one.id,
+        movie_id: movie_one.id,
+        due_date: "2019-11-14",
+        # checkout_date: "2019-11-07",
+      }
+    }
+
+    proc {
+      post checkout_path(params: invalid_rental_info)
+    }.wont_change 'Rental.count'
+
+    must_respond_with :bad_request
+    body = JSON.parse(response.body)
+    #this error message could change but just a sample of what we might want to output
+    body.must_equal "errors" => {"checkout_date" => ["can't be blank"]}
+  end
+
 end

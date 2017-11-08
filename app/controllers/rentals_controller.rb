@@ -11,16 +11,26 @@ class RentalsController < ApplicationController
 
   def checkout
     rental = Rental.new(rental_params)
-    # movie = Movie.find_by(id: params[:movie_id])
-    # unless movie.check_inventory?
-    #   render(
-    #     json: {inventory: "Not enough inventory"},
-    #     status: :bad_request
-    #   )
-    #   return
-    # end
+    movie = rental.movie
+
+    if movie.nil?
+      render(
+      json: {errors: ["Movie does not exist"]},
+      status: :bad_request
+      )
+      return
+    end
+
+    unless movie.check_inventory?
+      render(
+        json: {errors: ["Not enough inventory"]},
+        status: :bad_request
+      )
+      return
+    end
 
     if rental.save
+      movie.reduce_inventory!
       render(
         json: {id: rental.id}, status: :ok
       )
@@ -30,6 +40,33 @@ class RentalsController < ApplicationController
       )
     end
   end
+
+  def check_in
+    # find the rental instance
+    rental = Rental.where(customer_id: params[:customer_id], movie_id: params[:movie_id]).order(due_date: :asc).first
+
+    if rental.nil?
+      render(
+      json: {errors: ["Rental not found"]},
+      status: :not_found
+      )
+      return
+    else
+      rental.checkin_date = Date.today
+      rental.save
+
+      rental.movie.increase_inventory!
+
+      render(
+        json: { }
+      )
+    end
+  end
+
+  def overdue
+
+  end
+
 
   private
 

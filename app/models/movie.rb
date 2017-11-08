@@ -17,13 +17,13 @@ class Movie < ApplicationRecord
     end
   end
 
-  def reduce_inventory
+  def reduce_inventory!
     self.inventory = self.inventory - 1
 
     self.save
   end
 
-  def increase_inventory
+  def increase_inventory!
     self.inventory = self.inventory + 1
 
     self.save
