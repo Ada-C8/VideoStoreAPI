@@ -38,13 +38,8 @@ describe MoviesController do
     end
 
     it "returns an empty array if there are no movies" do
-      # Arrange
       Movie.destroy_all
-
-      # Act
       get movies_path
-
-      # Assert
       must_respond_with :success
       body = JSON.parse(response.body)
       body.must_be_kind_of Array
