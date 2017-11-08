@@ -37,15 +37,22 @@ describe Movie do
 
   describe "available_inventory" do
     it "should be decremented when a copy is checked out (rental creation)" do
+      rented = movies(:tnes)
+      start_count = rented.available_inventory
 
+      Rental.create!(movie: rented, customer: (customers(:sally)))
+
+      rented.available_inventory.must_equal start_count - 1
     end
 
     it "should increment when a copy is checked back in" do
+      rented = movies(:gremlins)
+      start_count = rented.available_inventory
 
+      Rental.find_by(movie_id: rented.id).checkin
+
+      rented.available_inventory.must_equal start_count + 1
     end
 
-    it "should not allow a rental to be created when available_inventory is 0" do
-
-    end
   end
 end
