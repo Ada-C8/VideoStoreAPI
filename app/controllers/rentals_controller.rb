@@ -47,7 +47,7 @@ class RentalsController < ApplicationController
       rental = rental[0]
     end
 
-    p rental
+    #p rental
     if rental.checkout_date == nil
       render(
         json: { errors: rental.errors.messages },
@@ -74,6 +74,7 @@ class RentalsController < ApplicationController
   def overdue
     rentals = Rental.all
     overdue_rentals = []
+    
     rentals.each do |rental|
       if rental.is_overdue?
         overdue_rentals << rental

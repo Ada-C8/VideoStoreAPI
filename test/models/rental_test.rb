@@ -3,6 +3,8 @@ require "test_helper"
 describe Rental do
   let(:rental) { rentals(:rental1)}
   let(:rental2) { rentals(:rental2)}
+  let(:rental3) { rentals(:rental3)}
+
   let(:movie1) { movies(:movie1)}
   let(:unavailable_movie) { movies(:movie2)}
   let(:bill) { customers(:bill)}
@@ -77,5 +79,15 @@ describe Rental do
       Customer.find_by(id: rental2.customer_id).movies_checked_out_count.must_equal customer_count
     end
 
+    describe "is_overdue?" do
+      it "returns true if movie is overdue" do
+        rental2.is_overdue?.must_equal true
+
+      end
+
+      it "returns false if movie is not overdue" do
+        rental3.is_overdue?.must_equal false
+      end
+    end
   end
 end

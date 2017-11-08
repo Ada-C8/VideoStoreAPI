@@ -46,9 +46,9 @@ class Rental < ApplicationRecord
 
 
   def is_overdue?
-    due_date_object = self.due_date.parse
+    due_date_object = Date.parse(self.due_date)
     if Date.today > due_date_object
-      return true 
+      return true
     else
       return false
     end

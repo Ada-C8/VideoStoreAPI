@@ -12,3 +12,10 @@ rental1:
 rental2:
   customer: bill
   movie: movie2
+  due_date: 2017-11-7
+
+rental3:
+  customer: bill
+  movie: movie1
+  due_date: 2017-11-30
+  checkout_date: 2017-11-1
