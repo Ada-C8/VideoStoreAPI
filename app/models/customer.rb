@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
   validates :phone, presence: true
 
   def movies_checked_out_count
-    return 0
+    return Rental.where(customer_id: self.id, returned: false).count
   end
 
 end

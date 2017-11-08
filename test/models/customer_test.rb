@@ -31,8 +31,14 @@ describe Customer do
 
   describe "movies_checked_out_count" do
     # edit once this method is built out
-    it "must return 0" do
-      sally.movies_checked_out_count.must_equal 0
+    it "must return the number of movies currently checked out" do
+      sally.movies_checked_out_count.must_equal 1
+    end
+
+    it "will return 0 if no movies are checked out" do
+      rentals(:two).checkin
+
+      harry.movies_checked_out_count.must_equal 0
     end
   end
 end
