@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  movie: one
+  due_date: <%= (Date.today - 2).to_s %>
+  checkout_date: <%= (Date.today - 9).to_s %>
+  checkin_date:
+
+two:
+  customer: two
+  movie: two
+  due_date: <%= (Date.today + 7).to_s %>
+  checkout_date: <%= (Date.today).to_s %>
+  checkin_date:
+
+checked_in:
+  customer: one
+  movie: one
+  due_date: <%= (Date.today - 2).to_s %>
+  checkout_date: <%= (Date.today - 9).to_s %>
+  checkin_date: <%= (Date.today - 2).to_s %>
