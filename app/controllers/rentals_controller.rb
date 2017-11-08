@@ -17,7 +17,7 @@ class RentalsController < ApplicationController
       movie.save
       customer.movies_checked_out += 1
       customer.save
-      rental.due_date = rental.pretty_date
+      rental.due_date = pretty_date(rental.due_date)
       render json: rental.as_json(only: [:movie_id, :customer_id, :due_date]), status: :created
     else
       render json: { ok: false, errors: rental.errors }.as_json, status: :bad_request
@@ -60,10 +60,6 @@ class RentalsController < ApplicationController
           return oldest_copy.errors
         end
     end
-  end
-
-  def overdue
-
   end
 
   private
