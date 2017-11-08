@@ -417,11 +417,10 @@
         null,
         null,
         null,
-        null,
-        null,
         1,
         1,
         null,
+        1,
         1,
         1,
         null,
@@ -462,24 +461,22 @@
         null,
         null,
         1,
-        null,
+        1,
+        1,
         1,
         1,
         null,
-        1,
-        1,
         null,
         null,
-        null,
-        null,
+        0,
         0,
         null,
         null,
         null,
         1,
         null,
-        null,
-        null,
+        1,
+        1,
         null,
         null
       ],
@@ -508,7 +505,7 @@
         1,
         null,
         1,
-        3,
+        2,
         null,
         null
       ],
@@ -528,7 +525,7 @@
         null,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/serializers/movie_serializer.rb": [
+      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/serializers/customer_serializer.rb": [
         1,
         1,
         null
@@ -538,12 +535,17 @@
         1,
         null
       ],
-      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/serializers/customer_serializer.rb": [
+      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/serializers/movie_serializer.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/serializers/create_movie_serializer.rb": [
         1,
         1,
         null
       ]
     },
-    "timestamp": 1510164187
+    "timestamp": 1510167969
   }
 }

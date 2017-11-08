@@ -64,18 +64,17 @@ describe MoviesController do
 
   describe "create" do
     movie_data = {
-      movie: {
-        title: "Jack and The Beanstalk",
-        overview: "The giant falls from the beanstalk. I think he's alive?",
-        release_date: "1000-01-01",
-        inventory: 2
-      }
+      title: "Jack and The Beanstalk",
+      overview: "The giant falls from the beanstalk. I think he's alive?",
+      release_date: "1000-01-01",
+      inventory: 2
     }
 
     it "creates a movie" do
       start_count = Movie.count
 
       post movies_path, params: movie_data
+      must_respond_with :success
       Movie.count.must_equal start_count + 1
 
       body = JSON.parse(response.body)
@@ -83,7 +82,7 @@ describe MoviesController do
       body.must_be_kind_of Hash
       body.must_include "id"
 
-      Movie.find(body["id"]).title.must_equal movie_data[:movie][:title]
+      Movie.find(body["id"]).title.must_equal movie_data[:title]
     end
 
     # it "returns an error for an invalid movie" do

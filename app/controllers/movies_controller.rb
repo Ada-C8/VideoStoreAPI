@@ -8,30 +8,28 @@ class MoviesController < ApplicationController
     movie = Movie.find_by(id: params[:id])
 
     if movie
-      render json: movie, status: :ok
+      render json: movie, :serializer => MovieSerializer, status: :ok
     else
       render json: { ok: false }, status: :not_found
     end
   end
 
   def create
-    # movie = Movie.create(movie_params)
-    movie = Movie.create(title: params[:movie][:title], overview: params[:movie][:overview], release_date: params[:movie][:release_date], inventory: params[:movie][:inventory])
-    puts "IN MOVIE CONTROLLER: #{movie} | #{movie.valid?}"
-
+    movie = Movie.create(movie_params)
     if movie.valid?
+      puts "Movie is valid! In create"
       render(
-        json: movie,
-        status: :created
+        json: movie, :serializer => CreateMovieSerializer, status: :ok
       )
     else
+      puts "Movie is NOT valid! In create"
       render json: {errors: movie.errors.messages}, status: :bad_request
     end
   end
 
   private
 
-  # def movie_params
-  #   params.require(:movie).permit(:id, :title, :overview, :release_date, :inventory)
-  # end
+  def movie_params
+    params.permit(:title, :overview, :release_date, :inventory)
+  end
 end
