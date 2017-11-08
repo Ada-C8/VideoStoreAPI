@@ -5,9 +5,11 @@ psycho:
   overview: When larcenous real estate clerk Marion Crane goes on the lam with a wad of cash and hopes of starting a new life, she ends up at the notorious Bates Motel, where manager Norman Bates cares for his housebound mother. The place seems quirky, but fine… until Marion decides to take a shower.
   release_date: 1960-06-16
   inventory: 8
+  out: 0
 
 robin_hood:
   title: The Adventures of Robin Hood
   overview: Robin Hood (Errol Flynn) fights nobly for justice against the evil Sir Guy of Gisbourne (Basil Rathbone) while striving to win the hand of the beautiful Maid Marian (Olivia de Havilland).
   release_date: 1938-05-14
   inventory: 3
+  out: 0

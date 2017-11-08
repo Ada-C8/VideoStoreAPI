@@ -4,7 +4,9 @@ class RentalsController < ApplicationController
     rental = Rental.new(rental_params)
     rental.set_checkout
 
-    if rental.save
+    if rental.valid? && rental.movie.rent
+      rental.save
+      rental.movie.save
       render json: rental.as_json(only: [:id]), status: :ok
     else
       render json: {ok: false}, status: :bad_request
