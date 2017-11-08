@@ -26,34 +26,39 @@ class RentalsController < ApplicationController
   end
 
   def check_in
+    #updates existing Rental
     movie = Movie.find_by_id(params[:movie_id])
-
     customer = Customer.find_by_id(params[:customer_id])
 
-    customers_movies = customer.movies.where(id: movie.id)
+    matching_rentals = Rental.where("movie_id = ? AND customer_id = ?", movie.id, customer.id)
 
-    if customers_movies.count < 1
-      #return error
-    elsif customers_movies.count == 1
-      Rental.where("movie_id = ? AND customer_id = ?", movie.id, customer.id)
-      #right movie, find the corresponding Rental, check this one in
-    else
-      #get the first corresponding that isn't checked in already
+    if matching_rentals.empty?
+      render json: { ok: false, message: "No copy of #{movie.title} for #{customer.name} found" }, status: :not_found
     end
 
+    checked_out = matching_rentals.where.not(due_date: nil)
 
-    # customer_checked_out = customer.movies.where(due_date: nil)
+    if checked_out.empty?
+      render json: { ok: false, message: "No checked out copy of #{movie.title} for #{customer.name} found" }, status: :not_found
+    end
 
+    if checked_out.count > 0
+      oldest_copy = checked_out.first
+      oldest_copy.due_date = nil
+        if oldest_copy.save
+          movie.available_inventory += 1
+          movie.save
+          #error handling if movie doesn't save
 
+          customer.movies_checked_out -= 1
+          customer.save
+          render json: { ok: true, message: " #{customer.name}'s copy of #{movie.title} has been checked in" }, status: :ok
+          #error handling if customer doesn't save
 
-    #check that a customer has this movie (through rental)
-    # if customer.movies.where()
-    #   #checking_in is the movie to be checked in
-    #   checking_in = customer.movies.find_by(id: params[:movie_id])
-    #   if checking_in
-    #     checking_in.
-    #   end
-    # end
+        else
+          return oldest_copy.errors
+        end
+    end
   end
 
   def overdue
