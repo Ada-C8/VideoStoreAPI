@@ -1,11 +1,11 @@
 require 'date'
 
 class Rental < ApplicationRecord
-
   before_create :format_checkout, :format_due_date
+  # belongs_to :customer
+  # belongs_to :movie
 
   def checkout(movie_id, customer_id)
-
     movie = Movie.find_by_id(movie_id)
     customer = Customer.find_by_id(customer_id)
 
@@ -24,6 +24,7 @@ class Rental < ApplicationRecord
 def checkin
   customer = Customer.find_by_id(self.customer_id)
   movie = Movie.find_by_id(self.movie_id)
+
   if customer && movie && customer.movies_checked_out_count > 0
     movie.available_inventory += 1
     movie.save
@@ -34,6 +35,17 @@ def checkin
     return false
   end
 end
+
+def self.find_overdue
+  overdue_rentals = []
+  Rental.all.each do |rental|
+    if Date.parse(rental.due_date) < Date.today
+      overdue_rentals << rental
+    end
+  end
+  return overdue_rentals
+end
+
 
   private
 

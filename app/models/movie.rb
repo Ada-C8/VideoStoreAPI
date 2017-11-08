@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
   validates :title, presence: true
-
   before_create :set_default_avaiable_inventory
+  has_many :rentals
 
   private
 

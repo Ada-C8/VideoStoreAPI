@@ -5,7 +5,7 @@ one:
   overview: A movie about pets
   release_date: 12/27/2016
   inventory: 8
-  available_inventory: 8
+  available_inventory: 4
 
 two:
   title: Baby Driver

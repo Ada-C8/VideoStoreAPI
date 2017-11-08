@@ -33,14 +33,8 @@ class RentalsController < ApplicationController
   end
 
   def overdue
-    overdue_rentals = []
-    Rental.all.each do |rental|
-      if Date.parse(rental.due_date) < Date.today
-        overdue_rentals << rental
-      end
-    end
-    if overdue_rentals.count != 0
-      overdue_rentals.each do |rental|
+    if Rental.find_overdue.count != 0
+      Rental.find_overdue.each do |rental|
         render json: {
           "title" => Movie.find_by_id(rental.movie_id).title, "customer_id" => rental.customer_id, "name" => Customer.find_by_id(rental.customer_id).name, "postal_code" => Customer.find_by_id(rental.customer_id).postal_code, "checkout_date" => rental.checkout_date, "due_date" => rental.due_date
           },
