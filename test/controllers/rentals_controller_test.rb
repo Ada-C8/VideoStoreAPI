@@ -66,12 +66,12 @@ describe RentalsController do
       rental.check_in.must_equal Date.today.strftime("%Y-%m-%d")
     end
 
-    # it "returns the movie" do
-    #   movie = movies(:psycho)
-    #   before = movie.out
-    #   post check_in_path(rental_data)
-    #   movie.reload
-    #   movie.out.must_equal (before - 1)
-    # end
+    it "returns the movie" do
+      movie = movies(:psycho)
+      before = movie.out
+      post check_in_path(customer_id: rental.customer.id, movie_id: rental.movie.id)
+      movie.reload
+      movie.out.must_equal (before - 1)
+    end
   end
 end

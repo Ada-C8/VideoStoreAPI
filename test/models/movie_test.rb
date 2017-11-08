@@ -79,6 +79,7 @@ describe Movie do
     end
 
     it "returns false if inventory is full" do
+      psycho.out = 0
       psycho.return.must_equal false
     end
   end # return
