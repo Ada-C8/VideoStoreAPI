@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one:
+  title: Titanic
+  overview: terrifying yet sexy and brutal
+  release_date: early 2018
+  inventory: 100
+  available_inventory: 100
+# column: value
+#
+two:
+  title: Clueless
+  overview: sexy and brutal
+  release_date: late 2018
+  inventory: 20
+  available_inventory: 20
+# column: value
+
+three:
+  title: Psycho
+  overview: sexy thriller
+  release_date: late 2018
+  inventory: 0
+  available_inventory: 0
+
+four:
+  title: Clueless
+  overview: sexy and brutal
+  release_date: late 2018
+  inventory: 20
+  available_inventory: 19
