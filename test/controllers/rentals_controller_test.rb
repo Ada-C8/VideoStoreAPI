@@ -47,9 +47,20 @@ describe RentalsController do
   describe "check_in" do
     it "has a customer_id and movie_id" do
       customer = customers(:one)
-      movie = movies(:two)
+      movie = movies(:one)
+      # rental = rentals(:one)
+      # customer = rental.customer
+      # movie = rental.movie
+
       before_inventory = movie.available_inventory
+
       before_check_in = customer.movies_checked_out_count
+
+      post checkout_path, params: {
+        movie_id: movie.id,
+        customer_id: customer.id
+      }
+
       post checkin_path, params: {
         movie_id: movie.id,
         customer_id: customer.id
@@ -60,17 +71,21 @@ describe RentalsController do
       body.must_be_kind_of Hash
 
       movie.reload
-      movie.available_inventory.must_equal before_inventory + 1
+      movie.available_inventory.must_equal before_inventory
 
       customer.reload
-      customer.movies_checked_out_count.must_equal before_check_in - 1
-    end
-
-    it "adds one to the available_inventory" do
+      customer.movies_checked_out_count.must_equal before_check_in
     end
 
     it "fails if available_inventory is the same as inventory" do
+      movie = movies(:one)
+      customer = customers(:one)
 
+      post checkin_path, params: {
+        movie_id: movie.id,
+        customer_id: customer.id
+      }
+      must_respond_with :bad_request
     end
 
   end

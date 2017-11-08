@@ -11,9 +11,23 @@ class Movie < ApplicationRecord
     return false
   end
 
-  def decrease_inventory(quantity)
-    self.available_inventory -= quantity
+  def check_if_checked_out
+    if self.available_inventory < self.inventory
+      return true
+    else
+      return false
+    end 
+  end
+
+  def decrease_inventory
+    self.available_inventory -= 1
     self.save
   end
+
+  def increase_inventory
+    self.available_inventory += 1
+    self.save
+  end
+
 
 end
