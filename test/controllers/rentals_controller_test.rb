@@ -140,6 +140,12 @@ describe RentalsController do
       body.keys.must_equal keys
     end
 
+    it "returns list  of all customers with overdue movies" do
+      get overdue_path
+      body = JSON.parse(response.body)
+      body["due_date"].must_equal "2017-10-10"
+    end
+
     it "if no overdue movies, status is no_content 204" do
       Rental.destroy_all
       get overdue_path
