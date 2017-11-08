@@ -13,6 +13,7 @@ customer_one:
   postal_code: "12345"
   phone: "12345678"
   account_credit: 12.34
+  movies_checked_out_count: 0
 
 customer_two:
   name: Betsy
@@ -23,3 +24,4 @@ customer_two:
   postal_code: "12345"
   phone: "56789043"
   account_credit: 12.34
+  movies_checked_out_count: 0

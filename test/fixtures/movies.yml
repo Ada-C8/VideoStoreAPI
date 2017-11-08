@@ -9,15 +9,18 @@ movie_one:
   overview: "Lovely drama"
   release_date: "1950"
   inventory: 2
+  available_inventory: 2
 
 movie_two:
   title: "Hitchiker's Guide to the Galaxy"
   overview: "Philosophical fiction"
   release_date: "2000"
   inventory: 3
+  available_inventory: 3
 
 movie_three:
   title: "Sharknato"
   overview: "Just Because"
   release_date: "1995"
   inventory: 5
+  available_inventory: 5
