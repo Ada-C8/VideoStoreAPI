@@ -62,16 +62,14 @@ class RentalsController < ApplicationController
   end
 
   def overdue
-    rental = Rental.find_by(id: params[:id])
-
-    unless rental
-      render(
-        json: { errors: rental.errors.messages },
-        status: :not_found
-      )
+    rentals = Rental.all
+    overdue_rentals = []
+    rentals.each do |rental|
+      if rental.is_overdue?
+        overdue_rentals << rental
+      end
     end
-
-    rental.due_date_check
+    return overdue_rentals
   end
 
   private
