@@ -11,4 +11,9 @@ class Customer < ApplicationRecord
     return customers_array
   end
 
+  def checkout_count
+    rentals = Rental.where(customer_id: self.id, checkin_date: nil)
+    return rentals.length
+  end
+
 end

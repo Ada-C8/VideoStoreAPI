@@ -28,7 +28,6 @@ class Rental < ApplicationRecord
   end
 
   def self.currently_rented(movie_id)
-    return Rental.where(movie_id: movie_id.to_i).where('checkout_date <= ?', Date.today).where('due_date >= ?', Date.today)
-
+    return Rental.where(movie_id: movie_id.to_i, checkin_date: nil)
   end
 end
