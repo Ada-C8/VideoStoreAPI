@@ -17,6 +17,9 @@ describe MoviesController do
     end
 
     it "must return an empty array if no movies exist" do
+      #avoid foreign key constraint
+      Rental.destroy_all
+      #test
       Movie.destroy_all
       get movies_path
       must_respond_with :success

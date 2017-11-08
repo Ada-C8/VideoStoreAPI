@@ -34,6 +34,7 @@ describe RentalsController do
     end
 
     it "cannot check out more movies than inventory allows" do
+      Rental.destroy_all
       movie_one.inventory = 1
       movie_one.save.must_equal true
       create_rental
@@ -103,8 +104,8 @@ describe RentalsController do
       before_return = rental.checkin_date
       before_return.must_equal nil
       update_rental
-      rental = Rental.find_by(customer_id: customer_one.id, movie_id: movie_one.id)
-      after_rental = rental.checkin_date
+      updated_rental = Rental.find_by(id: rental.id)
+      after_rental = updated_rental.checkin_date
       after_rental.must_equal Date.today
 
       must_respond_with :ok
@@ -126,5 +127,5 @@ describe RentalsController do
     end
   end
 
-  
+
 end

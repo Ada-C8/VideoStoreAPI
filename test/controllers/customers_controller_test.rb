@@ -16,7 +16,10 @@ describe CustomersController do
       end
     end
 
-    it "must return an empty arry if no customers exist" do
+    it "must return an empty array if no customers exist" do
+      #avoid foreign key constraint
+      Rental.destroy_all
+      #test
       Customer.destroy_all
       get customers_path
       must_respond_with :success
