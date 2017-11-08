@@ -4,7 +4,11 @@ class Movie < ApplicationRecord
   validates_presence_of :title, :release_date
 
   def available_inventory
-    self.inventory - self.out
+    if self.out
+      self.inventory - self.out
+    else
+      self.inventory
+    end 
   end
 
   def rent

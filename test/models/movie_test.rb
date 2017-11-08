@@ -51,6 +51,12 @@ describe Movie do
 
       psycho.available_inventory.must_equal 1
     end
+
+    it "returns inventory if out is nil" do
+      psycho.out = nil
+
+      psycho.available_inventory.must_equal psycho.inventory
+    end
   end #available_inventory
 
   describe "rent" do
