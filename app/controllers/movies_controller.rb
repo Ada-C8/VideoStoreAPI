@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
     if movie
       render json: movie.as_json(only: [:title, :overview, :release_date, :inventory, :available_inventory]), status: :ok
     else
-      render json: {ok: false, message: "No Movie with that ID"}, status: :not_found
+      render json: {ok: false, error: "No Movie with that ID"}, status: :not_found
     end
 
   end
@@ -24,9 +24,6 @@ class MoviesController < ApplicationController
       status: :bad_request
     end
   end
-
-
-
 
   private
 

@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Customer do
   let(:customer_one) { customers(:customer_one)}
-  let(:customer) {Customer.new}
+  let(:customer) { Customer.new }
 
   it "must be valid" do
     customer_one.save

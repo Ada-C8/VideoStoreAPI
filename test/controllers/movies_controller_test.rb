@@ -77,7 +77,6 @@ describe MoviesController do
         post movies_path, params: { movie: bad_data }
         assert_response :bad_request
       end
-
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "errors"
