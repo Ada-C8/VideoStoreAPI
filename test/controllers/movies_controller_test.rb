@@ -45,7 +45,7 @@ describe MoviesController do
     end
 
     it "Returns json that includes title, overview, release_date and inventory(total)" do
-      keys = %w(title overview release_date inventory)
+      keys = %w(title overview release_date inventory available_inventory)
       get movie_path(psycho.id)
 
       body = JSON.parse(response.body)
@@ -72,14 +72,14 @@ describe MoviesController do
 
       it "Creates a new Movie" do
         proc {
-          post movies_path(movie_data)
+          post movies_path(movie: movie_data)
         }.must_change('Movie.count', 1)
-        must_respond_with :ok
+        must_respond_with :created
 
       end
 
       it "Returns json with just the id of the created Movie" do
-        post movies_path(movie_data)
+        post movies_path(movie: movie_data)
         body = JSON.parse(response.body)
         movie = Movie.find_by(title: "Pajama Game")
         body["id"].must_equal movie.id
@@ -88,7 +88,7 @@ describe MoviesController do
 
       it "Returns an error for an invalid Movie" do
         proc {
-          post movies_path(title: "BOGIES")
+          post movies_path(movie: {title: "BOGIES"})
         }.must_change('Movie.count', 0)
         body = JSON.parse(response.body)
         body["ok"].must_equal false
