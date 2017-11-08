@@ -85,6 +85,7 @@ describe MoviesController do
       Movie.find(body["id"]).title.must_equal movie_data[:title]
     end
 
+<<<<<<< HEAD
     # it "returns an error for an invalid movie" do
     #   bad_movie = movie_data.clone()
     #   bad_movie.delete(:title)
@@ -93,5 +94,15 @@ describe MoviesController do
     #     assert_response :bad_request
     #   end
     # end
+=======
+    it "returns an error for an invalid movie" do
+      bad_movie = movie_data.clone()
+      bad_movie.delete(:title)
+      assert_no_difference "Movie.count" do
+        post movies_path, params: { movie: bad_movie }
+        assert_response :bad_request
+      end
+    end
+>>>>>>> movie-controller-tests
   end
 end

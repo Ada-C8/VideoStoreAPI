@@ -1,5 +1,5 @@
 {
-  "MiniTest": {
+  "Unit Tests": {
     "coverage": {
       "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/controllers/customers_controller.rb": [
         1,
@@ -147,6 +147,7 @@
         null,
         null
       ],
+<<<<<<< HEAD
       "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/test/models/customer_test.rb": [
         1,
         null,
@@ -223,6 +224,8 @@
         null,
         null
       ],
+=======
+>>>>>>> movie-controller-tests
       "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/customer.rb": [
         1,
         1,
@@ -236,6 +239,7 @@
         1,
         null
       ],
+<<<<<<< HEAD
       "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/test/models/movie_test.rb": [
         1,
         null,
@@ -281,6 +285,8 @@
         null,
         null
       ],
+=======
+>>>>>>> movie-controller-tests
       "/Users/IsaacDelRosario/Desktop/Ada Lectures/Projects/VideoStoreAPI/app/models/movie.rb": [
         1,
         1,
@@ -328,6 +334,7 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1510089152
   },
   "Unit Tests": {
@@ -547,5 +554,8 @@
       ]
     },
     "timestamp": 1510167969
+=======
+    "timestamp": 1510168466
+>>>>>>> movie-controller-tests
   }
 }
