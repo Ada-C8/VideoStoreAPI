@@ -47,6 +47,14 @@ class RentalsController < ApplicationController
     end
   end
 
+  def overdue
+    overdue_rentals = Rental.overdue
+    render(
+      json: overdue_rentals.as_json,
+      status: :ok
+    )
+  end
+
   private
 
   def rental_params

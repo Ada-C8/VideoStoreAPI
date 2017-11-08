@@ -127,5 +127,23 @@ describe RentalsController do
     end
   end
 
+  describe 'overdue' do
+    it "must respond with JSON" do
+      get overdue_rentals_path
+      response.header['Content-Type'].must_include 'json'
+    end
+
+    it "returns only the required fields" do
+      get overdue_rentals_path
+      body = JSON.parse(response.body)
+      body.must_be_instance_of Array
+      keys = ["title", "customer_id", "name", "postal_code", "checkout_date", "due_date"].sort
+      body.each do |hash|
+        hash.must_be_instance_of Hash
+        hash.keys.sort.must_equal keys
+      end
+    end
+  end
+
 
 end
