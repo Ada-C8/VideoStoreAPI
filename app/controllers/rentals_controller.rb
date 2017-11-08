@@ -1,13 +1,13 @@
 class RentalsController < ApplicationController
 
-  def index
-    rentals = Rental.all
-
-    render(
-      :json => rentals.as_json(only: [:customer_id, :movie_id, :checkout_id, :due_date]),
-      status: :ok
-    )
-  end
+  # def index
+  #   rentals = Rental.all
+  #
+  #   render(
+  #   :json => rentals.as_json(only: [:customer_id, :movie_id, :checkout_id, :due_date]),
+  #   status: :ok
+  #   )
+  # end
 
   def checkout
     rental = Rental.new(rental_params)
@@ -23,8 +23,8 @@ class RentalsController < ApplicationController
 
     unless movie.check_inventory?
       render(
-        json: {errors: ["Not enough inventory"]},
-        status: :bad_request
+      json: {errors: ["Not enough inventory"]},
+      status: :bad_request
       )
       return
     end
@@ -32,17 +32,16 @@ class RentalsController < ApplicationController
     if rental.save
       movie.reduce_inventory!
       render(
-        json: {id: rental.id}, status: :ok
+      json: {id: rental.id}, status: :ok
       )
     else
       render(
-        json: {errors: rental.errors.messages}, status: :bad_request
+      json: {errors: rental.errors.messages}, status: :bad_request
       )
     end
   end
 
-  def check_in
-    # find the rental instance
+  def checkin
     rental = Rental.where(customer_id: params[:customer_id], movie_id: params[:movie_id]).order(due_date: :asc).first
 
     if rental.nil?
@@ -54,18 +53,19 @@ class RentalsController < ApplicationController
     else
       rental.checkin_date = Date.today
 
-        if rental.save
+      if rental.save
 
-          rental.movie.increase_inventory!
-
-          render(
-            json: {id: rental.id}, status: :ok
-          )
-        else
-          render(
-            json: {errors: rental.error.messages}, status: :bad_request
-          )
-        end
+        rental.movie.increase_inventory!
+        render(
+        json: {id: rental.id},
+        status: :ok
+        )
+      else
+        render(
+        json: {errors: rental.error.messages},
+        status: :bad_request
+        )
+      end
     end
   end
 
@@ -73,7 +73,7 @@ class RentalsController < ApplicationController
     # overdue_rentals = Rental.find_overdue
 
     render(
-      json: Rental.find_overdue.as_json, status: :ok
+    json: Rental.find_overdue.as_json, status: :ok
     )
   end
 
