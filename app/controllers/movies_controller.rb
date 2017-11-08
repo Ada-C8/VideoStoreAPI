@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
 
     if movies.count > 0
     render(
-      json: movies.as_json(only: [:id, :title, :release_date]),
+      json: movies.as_json(only: [:id, :title, :release_date, :available_inventory]),
       status: :ok
     )
     else
@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
 
     if movie
       render(
-        json: movie.as_json(only: [:title, :overview, :release_date, :inventory]),
+        json: movie.as_json(only: [:title, :overview, :release_date, :inventory, :available_inventory]),
         status: :ok
       )
     else

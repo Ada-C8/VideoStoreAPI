@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
     customers = Customer.all
 
     render(
-      json: customers.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit]),
+      json: customers.as_json(only: [:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit, :movies_checked_out_count]),
       status: :ok
     )
   end
@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
     customer = Customer.find_by(id: params[:id])
     if customer
       render(
-        json: customer.as_json(only: [:name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit]),
+        json: customer.as_json(only: [:name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit, :movies_checked_out_count]),
         status: :ok
       )
     else
@@ -23,6 +23,6 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit)
+    params.require(:customer).permit(:id, :name, :registered_at, :address, :city, :state, :postal_code, :phone, :account_credit, :movies_checked_out_count)
   end
 end
