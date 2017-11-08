@@ -45,4 +45,29 @@ describe Rental do
       @invalid_rental.errors.messages[:checkout_date].must_include "Checkout date is required."
     end
   end
+
+  describe 'overdue' do
+    it "returns an array of hashes" do
+      overdue_rentals = Rental.overdue
+      overdue_rentals.must_be_instance_of Array
+      overdue_rentals.each do |rental|
+        rental.must_be_instance_of Hash
+      end
+    end
+
+    it "returns an empty array if no rentals are overdue" do
+      rentals(:one).destroy
+      overdue_rentals = Rental.overdue
+      overdue_rentals.must_equal []
+    end
+
+    it "provides the requested rental data" do
+      keys = ["title", "customer_id", "name", "postal_code", "checkout_date", "due_date"].sort
+      overdue_rentals = Rental.overdue
+      overdue_rentals.each do |rental|
+        rental.keys.sort.must_equal keys
+      end
+
+    end
+  end
 end

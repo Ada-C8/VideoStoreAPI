@@ -30,4 +30,19 @@ class Rental < ApplicationRecord
   def self.currently_rented(movie_id)
     return Rental.where(movie_id: movie_id.to_i, checkin_date: nil)
   end
+
+  def self.overdue
+    overdue_rentals = Rental.where(checkin_date: nil).where('due_date < ?', Date.today)
+    overdue = overdue_rentals.map { |rental|
+      {
+        "title" => rental.movie.title,
+        "customer_id" => rental.customer_id,
+        "name" => rental.customer.name,
+        "postal_code" => rental.customer.postal_code,
+        "checkout_date" => rental.checkout_date,
+        "due_date" => rental.due_date
+      }
+    }
+    return overdue
+  end
 end
