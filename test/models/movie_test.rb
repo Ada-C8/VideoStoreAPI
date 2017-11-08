@@ -78,7 +78,8 @@ describe Movie do
           title: "Jack",
           overview: "Blahblah",
           release_date: "1984",
-          inventory: 0
+          inventory: 0,
+          available_inventory: 0
         }
 
 
@@ -97,18 +98,18 @@ describe Movie do
   describe "reduce inventory" do
     it "will reduce the inventory of a movie by one" do
       movie = movies(:movie_one)
-      start_inventory = movie.inventory
+      start_inventory = movie.available_inventory
       movie.reduce_inventory!
-      movie.inventory.must_equal start_inventory - 1
+      movie.available_inventory.must_equal start_inventory - 1
     end
   end
 
   describe "increase inventory" do
     it "will reduce the inventory of a movie by one" do
       movie = movies(:movie_one)
-      start_inventory = movie.inventory
+      start_inventory = movie.available_inventory
       movie.increase_inventory!
-      movie.inventory.must_equal start_inventory + 1
+      movie.available_inventory.must_equal start_inventory + 1
     end
   end
 end

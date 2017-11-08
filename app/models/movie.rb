@@ -9,8 +9,7 @@ class Movie < ApplicationRecord
 
 
   def check_inventory?
-
-    if self.inventory < 1
+    if self.available_inventory < 1
       return false
     else
       return true
@@ -18,13 +17,13 @@ class Movie < ApplicationRecord
   end
 
   def reduce_inventory!
-    self.inventory = self.inventory - 1
+    self.available_inventory = self.available_inventory - 1
 
     self.save
   end
 
   def increase_inventory!
-    self.inventory = self.inventory + 1
+    self.available_inventory = self.available_inventory + 1
 
     self.save
   end

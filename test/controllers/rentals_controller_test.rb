@@ -81,7 +81,7 @@ describe RentalsController do
   end
 
   it "returns an error message if not enough inventory" do
-    movie = Movie.create(title: "title", overview: "Great story", inventory: 0, release_date: "2017-4-17")
+    movie = Movie.create(title: "title", overview: "Great story", inventory: 0, available_inventory: 0, release_date: "2017-4-17")
 
     rental_info = {
       rental: {
