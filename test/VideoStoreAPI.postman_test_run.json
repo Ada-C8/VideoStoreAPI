@@ -1,8 +1,8 @@
 {
-	"id": "7a476fe2-1d39-4361-9943-bea0a703af04",
+	"id": "c4e949e2-ca19-4e6d-b1ca-56e5db774480",
 	"name": "VideoStoreAPI",
 	"allTests": [],
-	"timestamp": "2017-11-07T00:29:36.809Z",
+	"timestamp": "2017-11-08T00:14:30.167Z",
 	"collection_id": "a496b9e6-1927-53ae-3118-7aa5d8d0969d",
 	"folder_id": 0,
 	"target_type": "collection",
@@ -63,7 +63,7 @@
 				"Content-Type is application/json": true,
 				"Data is an array": true,
 				"Many customers were sent": true,
-				"All customers have id": false,
+				"All customers have id": true,
 				"All customers have name": true,
 				"All customers have registered_at": true,
 				"All customers have postal_code": true,
@@ -92,8 +92,8 @@
 					"fail": 0
 				},
 				"All customers have id": {
-					"pass": 0,
-					"fail": 1
+					"pass": 1,
+					"fail": 0
 				},
 				"All customers have name": {
 					"pass": 1,
@@ -117,7 +117,7 @@
 				}
 			},
 			"times": [
-				"469"
+				"480"
 			],
 			"allTests": [
 				{
@@ -126,7 +126,7 @@
 					"Content-Type is application/json": true,
 					"Data is an array": true,
 					"Many customers were sent": true,
-					"All customers have id": false,
+					"All customers have id": true,
 					"All customers have name": true,
 					"All customers have registered_at": true,
 					"All customers have postal_code": true,
@@ -134,8 +134,8 @@
 					"All customers have movies_checked_out_count": false
 				}
 			],
-			"time": "469",
-			"totalRequestTime": "469",
+			"time": "480",
+			"totalRequestTime": "480",
 			"iterationResults": {}
 		},
 		{
@@ -196,7 +196,7 @@
 				}
 			},
 			"times": [
-				"62"
+				"70"
 			],
 			"allTests": [
 				{
@@ -210,14 +210,14 @@
 					"All movies have release_date": true
 				}
 			],
-			"time": "62",
-			"totalRequestTime": "62",
+			"time": "70",
+			"totalRequestTime": "70",
 			"iterationResults": {}
 		},
 		{
 			"name": "Show Movie from List",
 			"id": "727828f0-51a2-426d-a9d6-81f3ba214463",
-			"url": "http://localhost:3000/movies/1",
+			"url": "http://localhost:3000/movies/2",
 			"totalTime": 0,
 			"responseCode": {
 				"code": 200,
@@ -277,7 +277,7 @@
 				}
 			},
 			"times": [
-				"15"
+				"20"
 			],
 			"allTests": [
 				{
@@ -292,8 +292,8 @@
 					"Movie has available_inventory": false
 				}
 			],
-			"time": "15",
-			"totalRequestTime": "15",
+			"time": "20",
+			"totalRequestTime": "20",
 			"iterationResults": {}
 		},
 		{
@@ -312,26 +312,26 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				"23"
+				"27"
 			],
 			"allTests": [
 				{}
 			],
-			"time": "23",
-			"totalRequestTime": "23",
+			"time": "27",
+			"totalRequestTime": "27",
 			"iterationResults": {}
 		}
 	],
-	"totalPass": 25,
-	"totalFail": 3,
-	"totalTime": 569,
+	"totalPass": 26,
+	"totalFail": 2,
+	"totalTime": 597,
 	"lifecycle": "done",
 	"requests": [
 		{
 			"name": "List Customers",
 			"id": "427c8d71-0ae3-2d78-7f6a-666734839fc0",
 			"url": "http://localhost:3000/customers",
-			"time": "2017-11-07T00:29:36.809Z",
+			"time": "2017-11-08T00:14:30.167Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -362,8 +362,8 @@
 					"fail": 0
 				},
 				"All customers have id": {
-					"pass": 0,
-					"fail": 1
+					"pass": 1,
+					"fail": 0
 				},
 				"All customers have name": {
 					"pass": 1,
@@ -391,7 +391,7 @@
 			"name": "List Movies",
 			"id": "3da7fe6e-fd2d-9f7b-3294-18d0dda55869",
 			"url": "http://localhost:3000/movies",
-			"time": "2017-11-07T00:29:36.809Z",
+			"time": "2017-11-08T00:14:30.167Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -438,8 +438,8 @@
 		{
 			"name": "Show Movie from List",
 			"id": "727828f0-51a2-426d-a9d6-81f3ba214463",
-			"url": "http://localhost:3000/movies/1",
-			"time": "2017-11-07T00:29:36.809Z",
+			"url": "http://localhost:3000/movies/2",
+			"time": "2017-11-08T00:14:30.167Z",
 			"responseCode": {
 				"code": 200,
 				"name": "OK",
@@ -491,7 +491,7 @@
 			"name": "Create Movie",
 			"id": "6a6b2324-6601-8e4e-2a30-ba5f294546c0",
 			"url": "http://localhost:3000/movies",
-			"time": "2017-11-07T00:29:36.809Z",
+			"time": "2017-11-08T00:14:30.167Z",
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request",
