@@ -93,13 +93,34 @@ describe RentalsController do
       post rental_checkin_path(rental.id)
 
       assert_response :not_found
-      body =  JSON.parse(response.body)
+      body = JSON.parse(response.body)
       body.must_be_kind_of Hash
     end
 
   end
 
   describe "overdue" do
+    let(:rental_data) {
+      {
+        movie_id: movie.id,
+        customer_id: customer.id,
+        due_date: "2017-11-7"
+      }
+    }
+    it "returns a list of rentals that are overdue" do
+      post rental_checkout_path, params: rental_data
+      get rental_overdue_path
+      assert_response :success
+
+      body = JSON.parse(response.body)
+      p body
+      # body.must_be_kind_of Array
+      body.each do |rental|
+        rental.must_be_kind_of Hash
+      end
+      body.count.must_equal 2
+
+    end
 
   end
 end

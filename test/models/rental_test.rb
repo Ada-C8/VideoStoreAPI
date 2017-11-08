@@ -4,7 +4,7 @@ describe Rental do
   let(:rental) { rentals(:rental1)}
   let(:rental2) { rentals(:rental2)}
   let(:rental3) { rentals(:rental3)}
-
+  let(:rental22) { rentals(:rental22)}
   let(:movie1) { movies(:movie1)}
   let(:unavailable_movie) { movies(:movie2)}
   let(:bill) { customers(:bill)}
@@ -81,7 +81,7 @@ describe Rental do
 
     describe "is_overdue?" do
       it "returns true if movie is overdue" do
-        rental2.is_overdue?.must_equal true
+        rental22.is_overdue?.must_equal true
 
       end
 

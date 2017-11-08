@@ -74,13 +74,15 @@ class RentalsController < ApplicationController
   def overdue
     rentals = Rental.all
     overdue_rentals = []
-    
+
     rentals.each do |rental|
       if rental.is_overdue?
         overdue_rentals << rental
       end
     end
-    return overdue_rentals
+    render(
+      json: overdue_rentals, status: :ok
+    )
   end
 
   private
