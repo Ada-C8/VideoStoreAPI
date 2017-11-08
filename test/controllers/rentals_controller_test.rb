@@ -31,6 +31,11 @@ describe RentalsController do
         post checkout_path, params: params
       }.wont_change 'Rental.count'
     end
+    it "it decrements available_inventory by 1" do
+      proc {
+        post checkout_path, params: params
+      }.must_change 'Rental.last.movie.available_inventory', -1
+    end
   end
 
   describe "checkin" do
@@ -53,6 +58,11 @@ describe RentalsController do
       post checkin_path, params: checkin_params
 
       must_respond_with :bad_request
+    end
+    it "it increments available_inventory by 1" do
+      proc {
+        post checkin_path, params: checkin_params
+      }.must_change 'Rental.last.movie.available_inventory', 1
     end
   end
 
