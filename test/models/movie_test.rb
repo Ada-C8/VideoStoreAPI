@@ -6,8 +6,6 @@ describe Movie do
 
   it "must be valid" do
     jaws.valid?.must_equal true
-    jaws.title = nil
-    jaws.valid?.must_equal false
   end
 
   it "must have a title" do
