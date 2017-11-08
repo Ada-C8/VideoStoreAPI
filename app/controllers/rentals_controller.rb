@@ -1,3 +1,4 @@
+require 'date'
 class RentalsController < ApplicationController
 
   def check_out
@@ -32,17 +33,18 @@ class RentalsController < ApplicationController
   end
 
   def overdue
-    #     while due_date < today
-    #       overdue is false
-    #
-    #     if today > due_date
-    #       movie's due_date is < today
-    #       movie that is in the rental
-    #       return
-    #     render json: rental.as_json(only: [:title, :customer_id, :name, :postal_code, :checkout_date, :due_date ]), status: :created
-    # else
-    #   return []
-    # end
-    #     List all customers with overdue movies
+    overdue_rentals = []
+    Rental.all.each do |rental|
+      if Date.parse(rental.due_date) < Date.today
+        overdue_rentals << rental
+      end
+    end
+    if overdue_rentals.count != 0
+      overdue_rentals.each do |rental|
+        render json: rental.as_json(only: [:title, :customer_id, :name, :postal_code, :checkout_date, :due_date ]), status: :ok
+      end
+    else
+      render json: {ok: false, errors: "There are no overdue rentals to show."}, status: :no_content
+    end
   end
 end

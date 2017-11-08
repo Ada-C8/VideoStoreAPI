@@ -1,4 +1,5 @@
 require "test_helper"
+require 'date'
 describe RentalsController do
 
   describe "checkout" do
@@ -43,6 +44,7 @@ describe RentalsController do
   end
 
   describe 'checkin' do
+
     let(:rental_data) {
       {
         movie_id: Movie.first.id,
@@ -89,11 +91,26 @@ describe RentalsController do
       body = JSON.parse(response.body)
       body.keys.must_equal keys
     end
+
+    it "will not check in a movie that hasn't been checked out" do
+      post checkin_path(rentals(:not_overdue).id)
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["ok"].must_equal false
+    end
   end
 
 
 
   describe "overdue" do
+
+    # let(:rental_data) {
+    #   {
+    #     movie_id: Movie[1].id
+    #     customer_id: Movie[1].id
+    #   }
+    # }
 
     it "succeeds" do
       get overdue_path
@@ -101,15 +118,22 @@ describe RentalsController do
     end
 
     it "returns list  of all customers with overdue movies" do
-
+      keys = ["id", "customer_id", "movie_id", "due_date", "checkout_date"]
+      get overdue_path
+      body = JSON.parse(response.body)
+      body.keys.must_equal keys
     end
 
-    it "returns empty array if no customers with overdue movies" do
-
+    it "if no overdue movies, status is no_content 204" do
+      Rental.destroy_all
+      get overdue_path
+      must_respond_with :success
     end
 
-    it "succeeds wether there are any overdue customers" do
-
+    it "succeeds wether there are any overdue customers with 2XX response" do
+      Rental.destroy_all
+      get overdue_path
+      must_respond_with :success
     end
   end
 
