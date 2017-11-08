@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/rentals/check-in', to: 'rentals#check_in', as:
   'checkin' #checkin_path
 
-  get '/rentals/overdue', to: 'rentals#overdue', as: 'overdue' #overdue_path
+  get '/rentals/overdue', to: 'customers#overdue', as: 'overdue' #overdue_path
 
   get '/zomg', to: 'movies#check', as: 'zomg' #zomg_path
 end
