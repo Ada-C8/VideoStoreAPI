@@ -2,6 +2,9 @@ class RentalsController < ApplicationController
   def checkout
     rental = Rental.new(rental_params)
     if rental.save
+      movie = rental.movie
+      movie.available_inventory -= 1
+      movie.save
       render json: {id: rental.id}
     else
       render json: {errors: rental.errors.messages}, status: :bad_request
@@ -13,7 +16,10 @@ class RentalsController < ApplicationController
     if rental
       if rental.status == 'checked_out'
         rental.status = 'returned'
-        rental.save!
+        rental.save
+        movie = rental.movie
+        movie.available_inventory += 1
+        movie.save
         render json: {status: rental.status}
       else
         render json: {:errors => {"rental" => "is already checked in"}}, status: :bad_request
