@@ -70,7 +70,7 @@ describe CustomersController do
       customer_data = {
         name: "name",
         phone: "phone",
-        registered_at: "registered at",
+        registered_at: Date.today,
         address: "address",
         city: "city",
         state: "state",
@@ -87,7 +87,7 @@ describe CustomersController do
     it "won't change db if data is missing" do
       invalid_customer_data = {
         name: "name",
-        registered_at: "registered at",
+        registered_at: Date.today,
         address: "address",
         city: "city",
         state: "state",
