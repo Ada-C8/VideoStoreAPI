@@ -1,4 +1,5 @@
 require "test_helper"
+require 'awesome_print'
 
 describe RentalsController do
   describe "checkout" do
@@ -24,8 +25,47 @@ describe RentalsController do
 
     it "will not create a rental record and will return an error message if the available_inventory is 0" do
       movie = movies(:dune)
-      # movie.available_inventory = 0
+
+      movie.inventory = 1
+      movie.save
+
       post checkout_path params: {movie: movie.id, customer: customers(:sally).id}
+
+      must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "inventory"
+    end
+
+    it "will respond with not found if trying to rent a movie that doesn't exist" do
+      movie = movies(:gremlins)
+      movie.destroy
+
+      post checkout_path params: { movie: movie.id, customer: customers(:sally).id }
+
+      must_respond_with :not_found
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "id"
+    end
+
+    it "will respond with not found if trying to rent a movie for a customer that doesn't exist" do
+
+      sally = customers(:sally)
+      sally.destroy
+
+      post checkout_path params: { movie: movies(:gremlins).id, customer: sally.id }
+
+      must_respond_with :not_found
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "id"
     end
   end
 
@@ -48,6 +88,47 @@ describe RentalsController do
       rental = rentals(:returned)
       put checkin_path(rental.id)
       must_respond_with :bad_request
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
     end
+
+    it "must return an error message if given invalid rental id" do
+      rental = rentals(:one)
+      rental.destroy
+
+      put checkin_path(rental.id)
+      must_respond_with :not_found
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "id"
+    end
+  end
+
+  describe "overdue" do
+    it "returns the list of overdue movies" do
+      get rentals_path
+
+      must_respond_with :success
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+    end
+
+    it "returns empty array if there are no overdue movies" do
+      Rental.destroy_all
+
+      get rentals_path
+
+      must_respond_with :success
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+      body.must_be :empty?
+    end
+
   end
 end
