@@ -15,7 +15,9 @@ class MoviesController < ApplicationController
   end
 
   def create
-    movie = Movie.create(movie_params)
+    # movie = Movie.create(movie_params)
+    movie = Movie.create(title: params[:movie][:title], overview: params[:movie][:overview], release_date: params[:movie][:release_date], inventory: params[:movie][:inventory])
+    puts "IN MOVIE CONTROLLER: #{movie} | #{movie.valid?}"
 
     if movie.valid?
       render(
@@ -29,7 +31,7 @@ class MoviesController < ApplicationController
 
   private
 
-  def movie_params
-    params.permit(:id, :title, :overview, :release_date, :inventory)
-  end
+  # def movie_params
+  #   params.require(:movie).permit(:id, :title, :overview, :release_date, :inventory)
+  # end
 end

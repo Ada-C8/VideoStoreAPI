@@ -79,11 +79,11 @@ describe MoviesController do
       Movie.count.must_equal start_count + 1
 
       body = JSON.parse(response.body)
-      puts body
+      puts "Print Body: #{body}"
       body.must_be_kind_of Hash
       body.must_include "id"
 
-      Movie.find(body["id"]).title.must_equal movie_data[:title]
+      Movie.find(body["id"]).title.must_equal movie_data[:movie][:title]
     end
 
     # it "returns an error for an invalid movie" do
