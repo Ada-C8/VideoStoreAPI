@@ -47,7 +47,7 @@ describe Movie do
     it "returns the number available to rent" do
 
     end
-  end
+  end #available_inventory
 
   describe "rent" do
     it "increases movies out if available" do
@@ -59,8 +59,19 @@ describe Movie do
     it "returns false if movie is unavailable" do
       psycho.inventory = 0
       psycho.rent.must_equal false
+    end
+  end # rent
 
+  describe "return" do
+    it "decreases movies out if inventory isn't surpassed" do
+      psycho.rent
+      proc {
+        psycho.return
+      }.must_change('psycho.out', -1)
     end
 
-  end
+    it "returns false if inventory is full" do
+      psycho.return.must_equal false
+    end
+  end # rent
 end
