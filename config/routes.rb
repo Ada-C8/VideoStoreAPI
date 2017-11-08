@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :customers, only: :index
 
+  get '/customers', to: 'customers#query', as: 'query' #query_path
+
   post '/rentals/check-out', to: 'rentals#check_out', as: 'checkout' #checkout_path
 
   post '/rentals/check-in', to: 'rentals#check_in', as:
