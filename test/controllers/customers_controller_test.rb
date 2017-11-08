@@ -33,7 +33,7 @@ describe CustomersController do
     end
 
     it "returns Customers with exactly the required fields" do
-      keys = %w(account_credit address city id name phone postal_code registered_at state)
+      keys = %w(id movies_checked_out_count name phone postal_code registered_at)
       get customers_path
       body = JSON.parse(response.body)
       body.each do | customer |

@@ -10,12 +10,13 @@ class MoviesController < ApplicationController
     if movie
       render json: movie, status: :ok
     else
-      render json: { ok: false}, status: :not_found
+      render json: { ok: false }, status: :not_found
     end
   end
 
   def create
     movie = Movie.create(movie_params)
+
     if movie.valid?
       render(
         json: movie,
@@ -24,7 +25,6 @@ class MoviesController < ApplicationController
     else
       render json: {errors: movie.errors.messages}, status: :bad_request
     end
-
   end
 
   private

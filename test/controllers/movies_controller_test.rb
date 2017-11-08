@@ -33,7 +33,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(id inventory overview release_date title)
+      keys = %w(id release_date title)
       get movies_path
       body = JSON.parse(response.body)
       body.each do |movie|
@@ -55,7 +55,7 @@ describe MoviesController do
     end
 
     it "returns movies with exactly the required fields" do
-      keys = %w(id inventory overview release_date title)
+      keys = %w(available_inventory inventory overview release_date title)
       get movie_path(movies(:one))
       body = JSON.parse(response.body)
       body.keys.sort.must_equal keys
@@ -63,8 +63,8 @@ describe MoviesController do
   end
 
   describe "create" do
-    let(:movie_data) {
-      {
+    movie_data = {
+      movie: {
         title: "Jack and The Beanstalk",
         overview: "The giant falls from the beanstalk. I think he's alive?",
         release_date: "1000-01-01",
@@ -72,24 +72,27 @@ describe MoviesController do
       }
     }
 
-    it "can create a movie" do
-      assert_difference "Movie.count", 1 do
-        post movies_path, params:{ movie: movie_data }
-      end
+    it "creates a movie" do
+      start_count = Movie.count
+
+      post movies_path, params: movie_data
+      Movie.count.must_equal start_count + 1
+
       body = JSON.parse(response.body)
+      puts body
       body.must_be_kind_of Hash
       body.must_include "id"
 
       Movie.find(body["id"]).title.must_equal movie_data[:title]
     end
 
-    it "returns an error for an invalid moive" do
-      bad_movie = movie_data.clone()
-      bad_movie.delete(:title)
-      assert_no_difference "Movie.count" do
-        post movies_path, params: { movie: bad_movie }
-        assert_response :bad_request
-      end
-    end
+    # it "returns an error for an invalid movie" do
+    #   bad_movie = movie_data.clone()
+    #   bad_movie.delete(:title)
+    #   assert_no_difference "Movie.count" do
+    #     post movies_path, params: { movie: bad_movie }
+    #     assert_response :bad_request
+    #   end
+    # end
   end
 end
