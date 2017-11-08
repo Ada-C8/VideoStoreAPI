@@ -49,8 +49,9 @@ class RentalsController < ApplicationController
       end
     else
       rentals = Rental.where("due_date < ?", Date.today())
-      # rentals = Rental.joins(:movie).order("movies.title")
-
+    end
+    if params[:n]
+      rentals = rentals.paginate(:page => params[:p], :per_page => params[:n])
     end
     render json: rentals, status: :ok
   end

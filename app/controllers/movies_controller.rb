@@ -6,6 +6,9 @@ class MoviesController < ApplicationController
     else
       movies = Movie.all.order(:id)
     end
+    if params[:n]
+      movies = movies.paginate(:page => params[:p], :per_page => params[:n])
+    end
     render json: movies.as_json(only: [:id, :title, :release_date]), status: :ok
   end
 

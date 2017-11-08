@@ -6,6 +6,9 @@ class CustomersController < ApplicationController
     else
       customers = Customer.all.order(:id)
     end
+    if params[:n]
+      customers = customers.paginate(:page => params[:p], :per_page => params[:n])
+    end
     render json: customers.as_json(only: [:id, :name, :registered_at, :postal_code, :phone, :movies_checked_out_count]), status: :ok
   end
 end
