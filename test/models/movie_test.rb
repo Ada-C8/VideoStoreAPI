@@ -3,6 +3,7 @@ require "test_helper"
 describe Movie do
   let(:movie) { Movie.new }
   let(:movie2) {Movie.new(title: "The II", release_date: "Mon, 06 Nov 2017 14:32:26 -0800")}
+  let(:psycho) {movies(:psycho)}
 
   describe "VALIDATIONS" do
     it "Can be created" do
@@ -27,7 +28,6 @@ describe Movie do
 
   end #VALIDATIONS
   describe "relationships" do
-    let(:psycho) {movies(:psycho)}
     it "has many rentals" do
       psycho.rentals.count.must_equal 2
       psycho.rentals.each do |r|
@@ -40,9 +40,27 @@ describe Movie do
 
       rentals(:rental1).must_be_instance_of Rental
       rentals(:rental2).must_be_instance_of Rental
+    end
+  end #relationships
+
+  describe "available_inventory" do
+    it "returns the number available to rent" do
+
+    end
+  end
+
+  describe "rent" do
+    it "increases movies out if available" do
+      proc {
+        psycho.rent
+      }.must_change('psycho.out', +1)
+    end
+
+    it "returns false if movie is unavailable" do
+      psycho.inventory = 0
+      psycho.rent.must_equal false
 
     end
 
-
-  end #relationships
+  end
 end
