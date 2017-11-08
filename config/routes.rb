@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 
   post 'rentals/checkout', to: 'rentals#checkout', as: 'checkout'
 
+  get 'rentals/overdue', to: 'rentals#overdue', as: 'overdue'
+
 end

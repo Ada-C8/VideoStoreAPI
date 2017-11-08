@@ -53,18 +53,28 @@ class RentalsController < ApplicationController
       return
     else
       rental.checkin_date = Date.today
-      rental.save
 
-      rental.movie.increase_inventory!
+        if rental.save
 
-      render(
-        json: { }
-      )
+          rental.movie.increase_inventory!
+
+          render(
+            json: {id: rental.id}, status: :ok
+          )
+        else
+          render(
+            json: {errors: rental.error.messages}, status: :bad_request
+          )
+        end
     end
   end
 
   def overdue
+    # overdue_rentals = Rental.find_overdue
 
+    render(
+      json: Rental.find_overdue.as_json, status: :ok
+    )
   end
 
 
