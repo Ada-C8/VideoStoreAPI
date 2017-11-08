@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show, :create]
 
   post '/rentals/check-out', to: 'rentals#checkout', as: 'rental_checkout'
-  post '/rentals/:id/check-in', to: 'rentals#checkin', as: 'rental_checkin'
+  post '/rentals/check-in', to: 'rentals#checkin', as: 'rental_checkin'
 
   get '/rentals/overdue', to: 'rentals#overdue', as: 'rental_overdue'
 

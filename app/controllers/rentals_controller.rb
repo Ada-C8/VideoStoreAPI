@@ -28,13 +28,23 @@ class RentalsController < ApplicationController
   end
 
   def checkin
-    rental = Rental.find_by(id: params[:id])
+    rental = Rental.where(["customer_id = ? and movie_id = ?", params[:customer_id], params[:movie_id]])
 
-    unless rental
+    if rental.count == 0
       render(
-        json: { errors: rental.errors.messages },
+        json: { errors: "No rental found" },
         status: :not_found
       )
+      return
+    elsif rental.count > 1
+      rental.each do |elem|
+        if elem.checkin_date == nil
+          rental = elem
+          break
+        else
+          rental = rental[0]
+        end
+      end
     end
 
     if rental.checkout_date == nil

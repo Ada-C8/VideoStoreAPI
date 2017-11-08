@@ -56,16 +56,29 @@ describe RentalsController do
       {
         movie_id: movie.id,
         customer_id: customer.id,
-        due_date: "2017-12-24"
+        due_date: "2017-12-24",
+        checkout_date: nil,
+        checkin_date: nil
       }
     }
 # let(:rental1) {rentals(:rental1)}
     it "can successfully checkin" do
       post rental_checkout_path, params: rental_data
-      post rental_checkin_path(Rental.last.id)
+      rental2 = Rental.last
+
+      rental_data2 = {
+        movie_id: rental2.movie_id,
+        customer_id: rental2.customer_id,
+        due_date: rental2.due_date,
+        checkout_date: rental2.checkout_date,
+        checkin_date: rental2.checkin_date
+      }
+
+      post rental_checkin_path, params: rental_data2
       assert_response :success
 
       body = JSON.parse(response.body)
+      p body
       body.must_be_kind_of Hash
       body.must_include "checkin_date"
       body["checkin_date"].must_equal (Date.today).strftime('%Y-%m-%d')
