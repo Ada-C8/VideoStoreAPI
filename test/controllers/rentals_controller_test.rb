@@ -3,8 +3,8 @@ require "test_helper"
 describe RentalsController do
   describe "check-out" do
     let(:rental_data) {
-       {customer_id: customers(:shelley).id, movie_id: movies(:robin_hood).id}
-     }
+      {customer_id: customers(:shelley).id, movie_id: movies(:robin_hood).id}
+    }
 
     it "creates a new rental" do
       proc{post checkout_path(rental_data)}.must_change('Rental.count', 1)
@@ -52,6 +52,26 @@ describe RentalsController do
 
       proc{post checkout_path(rental_data)}.must_change('Rental.count', 0)
     end
+  end # checkout
 
+  describe "check_in" do
+    # let(:rental_data) {
+    #   {customer_id: customers(:shelley).id, movie_id: movies(:psycho).id}
+    # }
+    let(:rental) {rentals(:rental1)}
+
+    it "checks in a rental" do
+      post check_in_path(customer_id: rental.customer.id, movie_id: rental.movie.id)
+      rental.reload
+      rental.check_in.must_equal Date.today.strftime("%Y-%m-%d")
+    end
+
+    # it "returns the movie" do
+    #   movie = movies(:psycho)
+    #   before = movie.out
+    #   post check_in_path(rental_data)
+    #   movie.reload
+    #   movie.out.must_equal (before - 1)
+    # end
   end
 end

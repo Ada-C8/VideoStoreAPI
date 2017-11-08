@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   post 'movies', to: 'movies#create'
 
   post 'rentals/checkout', to: 'rentals#checkout', as: 'checkout'
+  post 'rentals/check_in', to: 'rentals#check_in', as: 'check_in'
+
 end

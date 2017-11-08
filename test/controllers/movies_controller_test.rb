@@ -67,19 +67,20 @@ describe MoviesController do
         {title: "Pajama Game",
         overview: "A musical about a pajama factory and the hunt for a communist?",
         release_date: "YYYY-MM-DD",
-        inventory: 5}
+        inventory: 5,
+        out: 0}
       }
 
       it "Creates a new Movie" do
         proc {
-          post movies_path(movie: movie_data)
+          post movies_path(movie_data)
         }.must_change('Movie.count', 1)
-        must_respond_with :created
+        must_respond_with :ok
 
       end
 
       it "Returns json with just the id of the created Movie" do
-        post movies_path(movie: movie_data)
+        post movies_path(movie_data)
         body = JSON.parse(response.body)
         movie = Movie.find_by(title: "Pajama Game")
         body["id"].must_equal movie.id
@@ -88,7 +89,7 @@ describe MoviesController do
 
       it "Returns an error for an invalid Movie" do
         proc {
-          post movies_path(movie: {title: "BOGIES"})
+          post movies_path({title: "BOGIES"})
         }.must_change('Movie.count', 0)
         body = JSON.parse(response.body)
         body["ok"].must_equal false

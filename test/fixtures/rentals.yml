@@ -5,6 +5,7 @@ rental1:
   due_date: 2017-10-22
   customer: shelley
   movie: psycho
+  check_in:
 
 
 rental2:
@@ -12,3 +13,4 @@ rental2:
   due_date: 2017-11-6
   customer: kane
   movie: psycho
+  check_in:

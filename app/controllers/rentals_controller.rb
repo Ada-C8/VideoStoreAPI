@@ -13,8 +13,15 @@ class RentalsController < ApplicationController
     end
   end
 
-  private
+  def check_in
+    rental = Rental.where(rental_params, check_in: nil).first
+    rental.set_check_in
+    rental.movie.return
+    rental.save
+    rental.movie.save
+  end
 
+  private
   def rental_params
     params.permit(:customer_id, :movie_id)
   end

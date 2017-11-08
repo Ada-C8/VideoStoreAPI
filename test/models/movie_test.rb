@@ -45,8 +45,6 @@ describe Movie do
 
   describe "available_inventory" do
     it "returns the number available to rent" do
-      psycho.available_inventory.must_equal psycho.inventory
-
       psycho.out = psycho.inventory - 1
 
       psycho.available_inventory.must_equal 1

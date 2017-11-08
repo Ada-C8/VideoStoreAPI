@@ -14,6 +14,13 @@ describe Rental do
       rental.set_checkout
       rental.due_date.must_equal (Date.today + 3).strftime( "%Y-%m-%d")
     end
+  end #set_checkout
 
-  end
+  describe "set_check_in" do
+    it "sets the check in date for the rental to today" do
+      rental = Rental.new
+      rental.set_check_in
+      rental.check_in.must_equal Date.today.strftime( "%Y-%m-%d")
+    end
+  end #set_checkout
 end

@@ -10,4 +10,8 @@ class Rental < ApplicationRecord
     self.checkout_date = Date.today.strftime( "%Y-%m-%d")
     self.due_date = (Date.today + RENTAL_PERIOD).strftime( "%Y-%m-%d" )
   end
+
+  def set_check_in
+    self.check_in = Date.today.strftime( "%Y-%m-%d")
+  end
 end
