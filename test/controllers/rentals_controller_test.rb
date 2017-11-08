@@ -78,7 +78,6 @@ describe RentalsController do
       assert_response :success
 
       body = JSON.parse(response.body)
-      p body
       body.must_be_kind_of Hash
       body.must_include "checkin_date"
       body["checkin_date"].must_equal (Date.today).strftime('%Y-%m-%d')

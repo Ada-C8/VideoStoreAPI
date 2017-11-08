@@ -41,12 +41,13 @@ class RentalsController < ApplicationController
         if elem.checkin_date == nil
           rental = elem
           break
-        else
-          rental = rental[0]
         end
       end
+    else
+      rental = rental[0]
     end
 
+    p rental
     if rental.checkout_date == nil
       render(
         json: { errors: rental.errors.messages },
@@ -55,10 +56,9 @@ class RentalsController < ApplicationController
     else
 
       rental.checkin_date = rental.today
+      rental.return_movie
 
-      rental.save
-
-      if rental.valid?
+      if rental.save
         render(
           json: rental, status: :ok
         )
