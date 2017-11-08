@@ -3,7 +3,7 @@ require "test_helper"
 describe Rental do
 
   let (:rental) { rentals(:one) }
-  
+
   describe "relationships" do
 
     it "belongs to movie" do
@@ -16,6 +16,7 @@ describe Rental do
       rental.must_respond_to :customer
     end
   end
+  
 
 
 end

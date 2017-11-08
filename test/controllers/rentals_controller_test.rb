@@ -46,7 +46,24 @@ describe RentalsController do
 
   describe "check_in" do
     it "has a customer_id and movie_id" do
+      customer = customers(:one)
+      movie = movies(:two)
+      before_inventory = movie.available_inventory
+      before_check_in = customer.movies_checked_out_count
+      post checkin_path, params: {
+        movie_id: movie.id,
+        customer_id: customer.id
+      }
+      must_respond_with :success
+      response.header['Content-Type'].must_include 'json'
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
 
+      movie.reload
+      movie.available_inventory.must_equal before_inventory + 1
+
+      customer.reload
+      customer.movies_checked_out_count.must_equal before_check_in - 1
     end
 
     it "adds one to the available_inventory" do
