@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: thor
+  overview: MyString
+  release_date: 1993-02-02
+  inventory: 1
+  available_inventory: 1
+
+two:
+  title: avatar
+  overview: MyString
+  release_date: 2013-01-01
+  inventory: 1
+  available_inventory: 1
