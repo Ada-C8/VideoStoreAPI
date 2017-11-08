@@ -70,7 +70,7 @@ describe MoviesController do
 
   describe "create" do
     let(:movie_data) {
-      { title: "Nightamre before Xmas",
+      { title: "Nightmare before Xmas",
         overview: "Xmas movie",
         release_date: Date.new(1997-12-25),
         inventory: 12
@@ -78,7 +78,7 @@ describe MoviesController do
     }
 
     it "creates a new movie" do
-      proc { post movies_path, params: { movie: movie_data } }.must_change 'Movie.count', 1
+      proc { post movies_path, params: movie_data }.must_change 'Movie.count', 1
 
       must_respond_with :success
 
