@@ -5,7 +5,7 @@ class Movie < ApplicationRecord
   validates :inventory, presence: true
 
   def check_inventory
-    if self.inventory >= 1
+    if self.available_inventory >= 1
       return true
     end
     return false

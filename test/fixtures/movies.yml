@@ -19,3 +19,10 @@ two:
   inventory: 20
   available_inventory: 20
 # column: value
+
+three:
+  title: Psycho
+  overview: sexy thriller
+  release_date: late 2018
+  inventory: 0
+  available_inventory: 0

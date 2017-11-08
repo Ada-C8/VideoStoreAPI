@@ -2,9 +2,9 @@ require "test_helper"
 
 describe RentalsController do
   describe 'check_out' do
-    it "has a customer_id, movie_id, and due_date" do
-
-    end
+    # it "has a customer_id, movie_id, and due_date" do
+    #
+    # end
 
     it "successfully removes a movie from available_inventory" do
       customer = customers(:one)
@@ -31,11 +31,17 @@ describe RentalsController do
     end
 
     it "doesn't check out a movie if avialable_inventory is 0" do
-
+      customer = customers(:one)
+      movie = movies(:three)
+      post checkout_path, params: {
+        movie_id: movie.id,
+        customer_id: customer.id
+      }
+      must_respond_with :bad_request
     end
 
-    it "doesn't check out a movie if customer doesn't exist" do
-    end
+    # it "doesn't check out a movie if customer doesn't exist" do
+    # end
   end
 
   describe "check_in" do
