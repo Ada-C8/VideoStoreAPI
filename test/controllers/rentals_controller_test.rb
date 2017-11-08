@@ -38,9 +38,9 @@ describe RentalsController do
       post checkin_path, params: checkin_params
 
       must_respond_with :success
-      rental_id = rental.id
+      rental.reload
 
-      Rental.find(rental_id).status.must_equal 'returned'
+      rental.status.must_equal 'returned'
     end
     it "returns not found if rental does not exist" do
       checkin_params['customer_id'] = invalid_customer_id
