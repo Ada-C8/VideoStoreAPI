@@ -125,4 +125,6 @@ describe RentalsController do
       body["errors"].must_include "Rental does not exist."
     end
   end
+
+  
 end

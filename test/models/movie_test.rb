@@ -7,5 +7,9 @@ describe Movie do
     movie.save.must_equal true
   end
 
+  it "can return the available inventory for a given movie" do
+    movies(:one).available_inventory.must_equal 4
+
+  end
 
 end

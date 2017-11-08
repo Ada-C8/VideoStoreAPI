@@ -22,8 +22,13 @@ class Rental < ApplicationRecord
 
   def self.available?(movie_id)
     inventory = Movie.find_by(id: movie_id.to_i).inventory
-    currently_rented = Rental.where(movie_id: movie_id.to_i).where('checkout_date <= ?', Date.today).where('due_date >= ?', Date.today)
+    currently_rented = Rental.currently_rented(movie_id.to_i)
     return true if currently_rented.length < inventory
     return false
+  end
+
+  def self.currently_rented(movie_id)
+    return Rental.where(movie_id: movie_id.to_i).where('checkout_date <= ?', Date.today).where('due_date >= ?', Date.today)
+
   end
 end

@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
     movie = Movie.find_by(id: params[:id])
     if movie
       render(
-        json: movie.as_json(only: [:title, :overview, :release_date, :inventory]).merge("available_inventory" => movie.inventory),
+        json: movie.as_json(only: [:title, :overview, :release_date, :inventory]).merge("available_inventory" => movie.available_inventory),
         status: :ok
       )
     else
