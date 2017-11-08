@@ -8,6 +8,7 @@ one:
   state: WA
   postal_code: "12345"
   phone: 123-456-789
+  movies_checked_out_count: 3
 
 two:
   name: Kimberley
@@ -17,3 +18,4 @@ two:
   state: WA
   postal_code: "12346"
   phone: 234-567-890
+  movies_checked_out_count: 4

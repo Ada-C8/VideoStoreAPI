@@ -27,9 +27,7 @@ describe RentalsController do
     end
 
     it 'returns an hash even if no data' do
-      Movie.destroy_all
-
-      post checkout_path(Movie.first.id, Customer.first.id)
+      post checkout_path(Movie.last.id + 1, Customer.first.id + 1)
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "errors"
@@ -37,12 +35,10 @@ describe RentalsController do
     end
 
     it "returns rental with exactly the required fields" do
-      keys = %w(id checkout_date due_date customer_id movie_id)
+      keys = %w(id customer_id movie_id due_date checkout_date)
       post checkout_path(Movie.first.id, Customer.first.id)
       body = JSON.parse(response.body)
-      body.each do |rental|
-        rental.keys.must_equal keys
-      end
+      body.keys.must_equal keys
     end
   end
 
@@ -66,27 +62,24 @@ describe RentalsController do
 
     it 'returns an hash' do
       post checkin_path(rentals(:not_overdue).id)
+
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
     end
 
     it 'returns an hash even if no data' do
-      Movie.destroy_all
 
-      post checkin_path(rentals(:not_overdue).id)
+      post checkin_path(999)
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "errors"
-      body["errors"].must_include "Customer has not checked out this movie yet."
     end
 
     it "returns rental with exactly the required fields" do
       keys = %w(id checkout_date due_date customer_id movie_id)
       post checkin_path(rentals(:not_overdue).id)
       body = JSON.parse(response.body)
-      body.each do |rental|
-        rental.keys.must_equal keys
-      end
+      body.keys.must_equal keys
     end
   end
 
