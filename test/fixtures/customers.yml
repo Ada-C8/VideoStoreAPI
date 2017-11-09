@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+shelley:
+  name: "Shelley Rocha"
+  registered_at: "Wed, 29 Apr 2015 07:54:14 -0700"
+  address: "Ap #292-5216 Ipsum Rd."
+  city: "Hillsboro"
+  state: "OR"
+  postal_code: "24309"
+  phone: "(322) 510-8695"
+  account_credit: 0.1315e2
+
+kane:
+  name: "Kane Johnston"
+  registered_at: "Fri, 22 May 2015 09:56:42 -0700"
+  address: "P.O. Box 940, 1583 At, Street"
+  city: "Austin"
+  state: "Texas"
+  postal_code: "94282"
+  phone: "(270) 219-2853"
+  account_credit: 0.627e2

@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+rental1:
+  checkout_date: 2017-10-12
+  due_date: 2017-10-22
+  customer: shelley
+  movie: psycho
+  check_in:
+
+
+rental2:
+  checkout_date: 2017-11-1
+  due_date: 2017-11-6
+  customer: kane
+  movie: psycho
+  check_in:
