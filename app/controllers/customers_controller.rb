@@ -34,4 +34,26 @@ class CustomersController < ApplicationController
     render json: overdue_customers_array.as_json, status: :ok
 
   end
+
+  def query(sort: params[:sort], n: params[:n], p: params[:p])
+    # sort: params[:sort], n: params[:n], p: params[:p]
+
+
+    # if sort = not recognise
+      # return error
+    # end
+
+    case sort
+    when nil
+      # Customer.all
+    when "name"
+      # Customer.sort_by(:name)
+    when "registered_at"
+      # Customer.sort_by(:registered_at)
+    when "postal_code"
+      # Customer.sort_by(:postal_code)
+    end
+
+
+  end
 end
