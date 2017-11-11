@@ -1,16 +1,16 @@
 class RentalsController < ApplicationController
 
-def create
+def checkout
   rental = Rental.create(rental_params)
   if rental.save
-    render json: movie, status: :created
+    render json: movie, status: :ok #keep ok status to prevent smoke fail
   else
-    render json: { errors: movie.errors.messages },
+    render json: { errors: rental.errors.messages },
     status: :bad_request
   end
 end
 
-def update
+def checkin
 
 end
 
@@ -21,7 +21,7 @@ end
 private
 
 def rental_params
-  params.require(:rental).permit(:due_date, :movie_id, :customer_id)
+  params.permit(:due_date, :movie_id, :customer_id)
 end
 
 end
