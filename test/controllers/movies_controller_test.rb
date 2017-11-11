@@ -28,7 +28,7 @@ describe MoviesController do
    end
 
    it "returns movies with the required keys" do
-     keys = %w(available_inventory created_at id inventory overview release_date title updated_at)
+     keys = %w(id release_date title)
      get movies_path
      body = JSON.parse(response.body)
       body.each do |movie|
