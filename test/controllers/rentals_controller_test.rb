@@ -1,5 +1,4 @@
 require "test_helper"
-require 'date'
 describe RentalsController do
 
   describe "checkout" do

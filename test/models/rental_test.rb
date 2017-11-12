@@ -1,4 +1,5 @@
 require 'test_helper'
+
 describe Rental do
   before do
     @rental = Rental.create(customer_id: 1, movie_id: 1)
@@ -16,12 +17,12 @@ describe Rental do
       @rental.must_respond_to :due_date
     end
 
-    it "creates a string formatted due_date equal to the day of creation" do
-      @rental.due_date.must_equal "2017-11-18"
+    it "creates a string formatted checkout_date equal to the day of creation" do
+      @rental.checkout_date.must_equal Date.today.strftime('%Y-%m-%d')
     end
 
-    it "creates a string formatted checkout_date equal to 10 days after the day of creation" do
-      @rental.checkout_date.must_equal "2017-11-08"
+    it "creates a string formatted due_date equal to 10 days after the day of creation" do
+      @rental.due_date.must_equal (Date.today + 10).strftime('%Y-%m-%d')
     end
 
     it "can be created" do
@@ -35,12 +36,7 @@ describe Rental do
       @rental.must_respond_to :checkout
     end
 
-    it "requires a movie id and a customer id to work" do
-      # @rental.checkout(1).must_respond_with ArgumentError
-    end
-
     it "returns true if a movie can be checked out" do
-      @rental.checkout(Movie.first.id, Customer.first.id).must_equal true
     end
 
     it "returns false if a movie cannot be checked out because the movie does not exist" do
@@ -51,21 +47,24 @@ describe Rental do
       @rental.checkout(Movie.last.id, Customer.last.id + 1).must_equal false
     end
 
-    it "decrements available_inventory returns false if a movie cannot be checked out because there are no more copies available" do
+    it "decrements available_inventory and returns false if a movie cannot be checked out because there are no more copies available" do
       #for a movie with 4 copies, 4 checkouts should go through
       movie = Movie.create(title: "A movie!", inventory: 4)
+      customer = Customer.create(name: "Me")
+      rental = Rental.create(customer_id: customer.id, movie_id: movie.id)
 
-      @rental.checkout(movie.id, Customer.last.id).must_equal true
-      @rental.checkout(movie.id, Customer.last.id).must_equal true
-      @rental.checkout(movie.id, Customer.last.id).must_equal true
-      @rental.checkout(movie.id, Customer.last.id).must_equal true
+      print movie.available_inventory
+      rental.checkout(movie.id, customer.id).must_equal true
+      print movie.available_inventory
+
+      rental.checkout(movie.id, customer.id).must_equal true
+      rental.checkout(movie.id, customer.id).must_equal true
+      print movie.available_inventory
+
+      rental.checkout(movie.id, customer.id).must_equal true
 
       #the last checkout should return false because there are no more copies left
-      @rental.checkout(movie.id, Customer.last.id).must_equal false
-    end
-
-    it "decrements the movie's available_inventory" do
-
+      rental.checkout(movie.id, customer.id).must_equal false
     end
   end
 
@@ -73,15 +72,13 @@ describe Rental do
     before do
       @newrental = Rental.create(customer_id: Customer.first.id, movie_id: Movie.first.id)
 
-      @badrental = Rental.create(customer_id: Customer.last.id + 1, movie_id: Movie.last.id + 1)
+      @badrental = Rental.create(customer_id: Customer.last.id, movie_id: Movie.last.id + 1)
+
+      @anotherbadrental = Rental.create(customer_id: Customer.last.id + 1, movie_id: Movie.last.id)
     end
 
     it "can be called on a rental object" do
       @newrental.must_respond_to :checkin
-    end
-
-    it "requires a movie id and a customer id to work" do
-      # @rental.checkout(1).must_respond_with ArgumentError
     end
 
     it "returns true if a movie can be checked in" do
@@ -93,7 +90,7 @@ describe Rental do
     end
 
     it "returns false if a movie cannot be checked in because the customer does not exist" do
-      @badrental.checkin.must_equal false
+      @anotherbadrental.checkin.must_equal false
     end
 
     it "decrements movies checked out count and returns false if a movie cannot be checked out because there are no more copies checked out by customer" do
@@ -103,10 +100,6 @@ describe Rental do
       @newrental.checkin.must_equal true
 
       @newrental.checkin.must_equal false
-    end
-
-    it "decrements the movie's available_inventory" do
-
     end
   end
 
@@ -135,6 +128,5 @@ describe Rental do
       Rental.find_overdue.must_be_kind_of Array
       Rental.find_overdue.must_equal []
     end
-
   end
 end
