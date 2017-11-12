@@ -49,7 +49,7 @@ describe Rental do
 
     it "decrements available_inventory and returns false if a movie cannot be checked out because there are no more copies available" do
       #for a movie with 4 copies, 4 checkouts should go through
-      movie = Movie.create(title: "A movie!", inventory: 4)
+      movie = Movie.create(title: "A movie!", inventory: 4, overview: "blah", release_date: "2017-11-09")
       customer = Customer.create(name: "Me")
       rental = Rental.create(customer_id: customer.id, movie_id: movie.id)
 
