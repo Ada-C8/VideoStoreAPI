@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+customer_one:
+  name: Joseph
+  registered_at: Street Address
+  address: MyString
+  city: City Name
+  state: STATE
+  postal_code: 65432
+  phone: 111-111-1111
+
+# customer_two:
+#   name: Gordon
+#   registered_at: MyString
+#   address: Street Address
+#   city: City Name
+#   state: STATE
+#   postal_code: 12345-6789
+#   phone: (888)777-4444
