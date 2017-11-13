@@ -7,7 +7,7 @@ describe Rental do
   it "exists" do
     rental_one.valid?.must_equal true
   end
-  
+
   it "must have a due date, customer and movie id" do
     rental.valid?.must_equal false
     rental.due_date = "due date"
