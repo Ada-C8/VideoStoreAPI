@@ -4,4 +4,8 @@ Rails.application.routes.draw do
 
   resources :movies, only: [:index, :show, :create]
 
+  post '/rentals/check-out', to: 'rentals#checkin'
+  post '/rentals/check-in', to: 'rentals#checkout'
+  get '/rentals/overdue', to: 'rentals#overdue'
+
 end
