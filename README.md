@@ -1,24 +1,5 @@
-# README
+# README - VideoStoreAPI
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API used with database to keep track of customers, movie inventory, due dates, etc, for a video store.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Ruby on Rails API using Rails 5.1.4
